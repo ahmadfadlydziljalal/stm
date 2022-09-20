@@ -26,7 +26,10 @@ if ($withBreadcrumb) {
 
         <h1>
             <?= Yii::$app->settings->get('site.icon') ?>
-            <?= Yii::$app->name  ?>
+            <?php
+                $text = Yii::$app->settings->get('site.name');
+                echo Yii::$app->$text
+            ?>
         </h1>
 
         <div class="d-flex flex-column text-justify" style="gap: 1.5rem">
