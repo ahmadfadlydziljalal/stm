@@ -1,0 +1,45 @@
+@use "vars";
+
+body.dark{
+
+  background-color: vars.$dark !important;
+  color: vars.$white !important;
+
+  input.form-control,
+  select.form-control,
+  textarea,
+  table,
+  table th,
+  table td,
+  div.card,
+  div.card .card-header,
+  div.card .card-footer,
+  aside,
+  nav.card,
+  ul.pagination li.page-item a.page-link,
+  footer {
+    background-color: vars.$dark !important;
+    color: vars.$white !important;
+  }
+
+  .dropdown-menu{
+    border: 1px solid vars.$white !important;
+    background-color: vars.$dark !important;
+    color: vars.$white !important;
+  }
+
+  a, i.bi{
+    color: vars.$white !important;
+  }
+
+  .dropdown-item:hover{
+    background-color: vars.$primary !important;
+  }
+
+  ul.pagination li.page-item.active a.page-link {
+    color: #212529 !important;
+    background-color: #fff !important;
+    border-color: transparent;
+  }
+
+}
