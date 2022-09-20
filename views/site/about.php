@@ -23,21 +23,16 @@ if ($withBreadcrumb) {
 
 <div class="site-about" style="max-width: 48rem">
     <div class="d-flex flex-column flex-nowrap" style="gap: .25rem">
-        <h1><i class="bi bi-bag"></i> <?= Yii::$app->name ?></h1>
 
-        <div class="d-flex flex-column" style="gap: 1.5rem">
+        <h1>
+            <?= Yii::$app->settings->get('site.icon') ?>
+            <?= Yii::$app->name  ?>
+        </h1>
 
-            <span class="text-justify">
-                <?= Yii::$app->name ?> bertujuan membantu mengelola data pembelian, vendor, sampai analisis
-                data dengan baik dan benar. Untuk <strong>User Account</strong> Anda, <?= Yii::$app->name ?>
-                meng-adaptasi dari
-                <strong><?= Yii::$app->params['hrdSystem'] ?></strong>.
-            </span>
-
-            <span>
-                Pihak yang berkaitan dengan proses bisnis di Departemen Purchasing bisa LogIn menggunakan account
-                yang sama dengan dari <strong><?= Yii::$app->params['hrdSystem'] ?>.</strong>
-            </span>
+        <div class="d-flex flex-column text-justify" style="gap: 1.5rem">
+            <p>
+                <?= Yii::$app->settings->get('site.description')?>
+            </p>
         </div>
 
 
@@ -57,6 +52,7 @@ if ($withBreadcrumb) {
                     ]
                 ]) ?>
             </div>
+
         </div>
     </div>
 </div>

@@ -3,7 +3,6 @@
 use yii\grid\SerialColumn;
 
 $params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
@@ -14,16 +13,17 @@ $config = [
     'components' => [
         'assetManager' => require __DIR__ . '/asset_manager.php',
         'authManager' => require __DIR__ . '/auth_manager.php',
-        'request' => require __DIR__ . '/request.php',
         'cache' => require __DIR__ . '/cache.php',
-        'user' => require __DIR__ . '/user.php',
+        'db' => require __DIR__ . '/db.php',
         'errorHandler' => require __DIR__ . '/error_handler.php',
         'formatter' => require __DIR__ . '/formatter.php',
-        'mailer' => require __DIR__ . '/mailer.php',
-        'log' => require __DIR__ . '/log.php',
         'i18n' => require __DIR__ . '/i18n.php',
-        'db' => $db,
+        'log' => require __DIR__ . '/log.php',
+        'mailer' => require __DIR__ . '/mailer.php',
+        'request' => require __DIR__ . '/request.php',
         'session' => require __DIR__ . '/session.php',
+        'settings' => require __DIR__ . '/settings.php',
+        'user' => require __DIR__ . '/user.php',
         'urlManager' => require __DIR__ . '/url_manager.php',
         'view' => require __DIR__ . '/view.php',
     ],
@@ -73,7 +73,12 @@ $config = [
             'class' => 'mdm\admin\Module',
             'viewPath' => '@app/views/mdm',
             'defaultRoute' => '/admin/default',
-        ]
+        ],
+        'settings' => [
+            'class' => 'pheme\settings\Module',
+            'sourceLanguage' => 'en',
+            'viewPath' => '@app/views/settings',
+        ],
     ],
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',

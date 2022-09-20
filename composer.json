@@ -29,7 +29,8 @@
     "yiisoft/yii2-httpclient": "*",
     "kartik-v/yii2-widget-select2": "dev-master",
     "schmunk42/yii2-giiant": "@dev",
-    "wbraganca/yii2-dynamicform": "dev-dev-dzil"
+    "wbraganca/yii2-dynamicform": "dev-dev-dzil",
+    "pheme/yii2-settings": "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",

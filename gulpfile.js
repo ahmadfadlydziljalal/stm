@@ -49,7 +49,6 @@ function scripts() {
 
 // just watch sass
 function serve() {
-
     browser.init({
         open: false,
         https: false,

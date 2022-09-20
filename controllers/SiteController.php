@@ -126,6 +126,9 @@ class SiteController extends Controller
         ]);
     }
 
+    /**
+     * @return string
+     */
     public function actionAccountInformation(): string
     {
         $image = Yii::$app->cache->get('sihrd-user-image' . Yii::$app->user->identity->id);
@@ -147,6 +150,9 @@ class SiteController extends Controller
         ]);
     }
 
+    /**
+     * @return string
+     */
     public function actionAbout(): string
     {
         return $this->render('about', ['withBreadcrumb' => true]);

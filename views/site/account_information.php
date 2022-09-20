@@ -2,7 +2,6 @@
 
 
 /* @var $this View */
-
 /* @see \app\controllers\SiteController::actionAccountInformation() */
 
 use yii\helpers\Html;
@@ -18,17 +17,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="col-12 offset-md-0 col-md-4 col-lg-3 offset-lg-1 align-self-start photo-profile pt-3">
             <div class="d-flex flex-column align-items-center" style="gap: 1rem">
-
                 <?php if (isset($image) and !empty($image)) : ?>
                     <?php echo $image ?>
-                <?php else : ?>
-                    <p>No Photo</p>
                 <?php endif ?>
             </div>
         </div>
 
         <div class="col-12 col-md-8 col-lg-8">
-
             <?php if (isset($dataKaryawan) and !empty($dataKaryawan)) : ?>
                 <p>Data dari SIHRD</p>
                 <table class="table table-bordered table-striped">
@@ -61,15 +56,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td><?= Yii::$app->formatter->asDate($dataKaryawan['user']['created_at']) ?></td>
                     </tr>
                 </table>
-
-            <?php else: ?>
-
-                <p>No Data Karyawan</p>
             <?php endif ?>
-
-
         </div>
-    </div>
 
+    </div>
 
 </div>
