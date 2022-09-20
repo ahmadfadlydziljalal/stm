@@ -13,6 +13,7 @@ use mdm\admin\components\MenuHelper;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
+use yii\helpers\VarDumper;
 
 $brandLabel =
     Html::beginTag('div', ['class' => 'd-flex justify-content-between brand-wrapper align-items-baseline', 'style' => ['gap' => '1.25rem']]) .
@@ -56,7 +57,7 @@ $brandLabel =
             ],
         ]);
     } catch (Exception $e) {
-        echo $e->getMessage();
+        echo '';
     }
     ?>
 </div>

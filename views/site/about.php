@@ -36,7 +36,7 @@ if ($withBreadcrumb) {
         </div>
 
 
-        <div class="d-flex justify-content-between align-items-center py-3">
+        <div class="d-flex justify-content-between align-items-center py-2">
             <div class="d-flex flex-column">
                 <span class="text-muted">Dibuat dan di maintenance oleh:</span>
                 <span><?= Yii::$app->params['maintainer'] ?></span>

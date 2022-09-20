@@ -8,6 +8,7 @@ use app\assets\ThemeAsset;
 use mdm\admin\components\MenuHelper;
 use yii\bootstrap5\Html;
 use yii\helpers\Inflector;
+use yii\helpers\VarDumper;
 
 ThemeAsset::register($this);
 
@@ -117,7 +118,7 @@ $leftItems = MenuHelper::getAssignedMenu(Yii::$app->user->id, 16, function ($ite
                 'label' => $label,
                 'url' => is_null($item['route']) ? "#" . $collapsedId : [$item['route']],
                 'items' => $item['children'],
-                'icon' => $data['icon'],
+                'icon' => $data['icon'] ?? null,
                 'active' =>
                 Yii::$app->controller->module->id == $data['module'] &&
                     Yii::$app->controller->id == $data['controller']
@@ -126,6 +127,7 @@ $leftItems = MenuHelper::getAssignedMenu(Yii::$app->user->id, 16, function ($ite
             [
                 'label' => $label,
                 'url' => is_null($item['route']) ? "#" . $collapsedId : [$item['route']],
+                'icon' => $data['icon'],
 
             ];
     }
@@ -135,6 +137,7 @@ $leftItems = MenuHelper::getAssignedMenu(Yii::$app->user->id, 16, function ($ite
             'label' => $label,
             'url' => is_null($item['route']) ? "#" . $collapsedId : [$item['route']],
             'items' => $item['children'],
+            'icon' => $data['icon'] ?? null,
             'options' => $options,
             'itemOptions' => $itemOptions,
             'active' => Yii::$app->controller->id == $data['controller']
@@ -145,6 +148,7 @@ $leftItems = MenuHelper::getAssignedMenu(Yii::$app->user->id, 16, function ($ite
         'label' => $label,
         'url' => is_null($item['route']) ? "#" . $collapsedId : [$item['route']],
         'items' => $item['children'],
+        'icon' => $data['icon'] ?? null,
         'options' => $options,
         'itemOptions' => $itemOptions,
         'active' => null

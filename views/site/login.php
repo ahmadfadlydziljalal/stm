@@ -12,7 +12,7 @@ $this->title = Yii::$app->name . ' - Log In';
 
 ?>
 
-<div class="site-login d-flex flex-row gap-5 px-0 px-md-5 px-lg-5 align-items-center">
+<div class="site-login d-flex flex-row gap-5 px-0 px-md-5 px-lg-5 align-items-top">
 
     <div class="login-section" style="min-width: 20rem">
         <h1 class="text-center d-sm-block d-md-none d-lg-none">
