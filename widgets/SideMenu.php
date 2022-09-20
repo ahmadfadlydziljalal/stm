@@ -12,8 +12,18 @@ use yii\widgets\Menu;
 class SideMenu extends Menu
 {
 
-    public $linkTemplate = '<a href="{url}" class="{class}">{label}</a>';
-    public $linkWithDataTargetTemplate = '<a href="{url}" class="{class}" data-bs-toggle="{data-bs-toggle}" aria-expanded="{aria-expanded}">{label}</a>';
+    public string $icon = "play-circle";
+
+    public $linkTemplate = '<a href="{url}" class="{class} d-flex flex-row align-items-center gap-2 m-0 px-2">
+        <span>{icon}</span>
+        <span>{label}</span>
+    </a>';
+
+    public string $linkWithDataTargetTemplate = '<a href="{url}" class="{class} d-flex flex-row align-items-center gap-2 m-0 px-2" data-bs-toggle="{data-bs-toggle}" aria-expanded="{aria-expanded}">
+        <span>{icon}</span>
+        <span class="flex-grow-1">{label}</span>
+            
+    </a>';
     public $submenuTemplate = "\n<ul class='submenu collapse {isShow}' id='{itemID}' >\n{items}\n</ul>\n";
 
     /**
@@ -44,11 +54,13 @@ class SideMenu extends Menu
             if (!empty($item['items'])) {
 
                 $itemID = Inflector::slug(strtolower(strip_tags($item['label'])));
+                $iconClass = $item['icon'] ?? $this->icon;
                 if ($item['active']) {
                     $submenuTemplate = ArrayHelper::getValue($item, 'submenuTemplate', $this->submenuTemplate);
                     $menu .= strtr($submenuTemplate, [
                         '{isShow}' => 'show',
                         '{itemID}' => $itemID,
+                        '{icon}' => '<i class="bi bi-' . $iconClass . '"></i>',
                         '{items}' => $this->renderItems($item['items']),
                     ]);
                 } else {
@@ -56,6 +68,7 @@ class SideMenu extends Menu
                     $menu .= strtr($submenuTemplate, [
                         '{isShow}' => null,
                         '{itemID}' => $itemID,
+                        '{icon}' => '<i class="bi bi-' . $iconClass . '"></i>',
                         '{items}' => $this->renderItems($item['items']),
                     ]);
                 }
@@ -73,6 +86,9 @@ class SideMenu extends Menu
      */
     protected function renderItem($item): string
     {
+
+        $iconClass = $item['icon'] ?? $this->icon;
+
         if (isset($item['url'])) {
 
             $template = ArrayHelper::getValue($item, 'template', $this->linkWithDataTargetTemplate);
@@ -80,6 +96,7 @@ class SideMenu extends Menu
                 return strtr($template, [
                     '{url}' => Html::encode(Url::to($item['url'])),
                     '{label}' => $item['label'],
+                    '{icon}' => '<i class="bi bi-' . $iconClass . '"></i>',
                     '{aria-expanded}' => 'false',
                     '{data-bs-toggle}' => 'collapse',
                     '{data-target}' => $item['itemOptions']['data-target'],
@@ -93,6 +110,7 @@ class SideMenu extends Menu
                 '{url}' => Html::encode(Url::to($item['url'])),
                 '{label}' => $item['label'],
                 '{class}' => $item['active'] ? $this->activeCssClass : '',
+                '{icon}' => '<i class="bi bi-' . $iconClass . '"></i>',
             ]);
         }
 
@@ -100,7 +118,6 @@ class SideMenu extends Menu
 
         return strtr($template, [
             '{label}' => $item['label'],
-
         ]);
     }
 }
