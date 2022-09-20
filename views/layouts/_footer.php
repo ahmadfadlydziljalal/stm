@@ -5,16 +5,27 @@ use yii\bootstrap5\Html; ?>
 <div class="row">
     <div class="col-md-6 text-center text-md-start">
 
-        &copy; <?= Yii::$app->params['companyName'] ?>, <?= date('Y') ?>
+        &copy; <?=
+        empty(Yii::$app->settings->get('site.companyClient')) ?
+            Yii::$app->params['companyName'] :
+            Yii::$app->settings->get('site.companyClient')
+        ?>, <?= date('Y') ?>
+
     </div>
     <div class="col-md-6 text-center text-md-end">
         <?php
-        echo Html::a(Yii::$app->params['myOwnCompany'], "https://rayakreasi.xyz/", [
+        echo Html::a(
+
+            (empty(Yii::$app->settings->get('site.maintainerCompany'))
+                ? Yii::$app->params['myOwnCompany'] :
+                Yii::$app->settings->get('site.maintainerCompany')
+            )
+            , "https://rayakreasi.xyz/", [
             'class' => 'text-primary text-decoration-none'
         ]);
         ?>
         |
-        <?= Html::a( (Yii::$app->params['theme'] === 'dark' ? '<i class="bi bi-sun"></i>' : '<i class="bi bi-moon"></i>'),
+        <?= Html::a((Yii::$app->params['theme'] === 'dark' ? '<i class="bi bi-sun"></i>' : '<i class="bi bi-moon"></i>'),
             ['/dark-light-toggle/index'],
             [
                 'id' => 'dark-light-link',

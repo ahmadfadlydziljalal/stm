@@ -14,8 +14,8 @@ class m220914_062930_InsertAuthItem extends Migration
     {
         $this->db->createCommand('SET FOREIGN_KEY_CHECKS = 0')->execute();
         $sql = <<<SQL
-INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`)
-VALUES
+DELETE FROM `auth_item`;
+INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`) VALUES
 	('/*', 2, NULL, NULL, NULL, 1662276433, 1662276433),
 	('/admin/*', 2, NULL, NULL, NULL, 1662784979, 1662784979),
 	('/admin/assignment/*', 2, NULL, NULL, NULL, 1662784979, 1662784979),
@@ -103,10 +103,19 @@ VALUES
 	('/session/index', 2, NULL, NULL, NULL, 1662784979, 1662784979),
 	('/session/update', 2, NULL, NULL, NULL, 1662784979, 1662784979),
 	('/session/view', 2, NULL, NULL, NULL, 1662784979, 1662784979),
+	('/settings/*', 2, NULL, NULL, NULL, 1663658205, 1663658205),
+	('/settings/default/*', 2, NULL, NULL, NULL, 1663658205, 1663658205),
+	('/settings/default/create', 2, NULL, NULL, NULL, 1663658205, 1663658205),
+	('/settings/default/delete', 2, NULL, NULL, NULL, 1663658205, 1663658205),
+	('/settings/default/index', 2, NULL, NULL, NULL, 1663658205, 1663658205),
+	('/settings/default/toggle', 2, NULL, NULL, NULL, 1663658205, 1663658205),
+	('/settings/default/update', 2, NULL, NULL, NULL, 1663658205, 1663658205),
+	('/settings/default/view', 2, NULL, NULL, NULL, 1663658205, 1663658205),
 	('/site/*', 2, NULL, NULL, NULL, 1662784979, 1662784979),
 	('/site/about', 2, NULL, NULL, NULL, 1662937535, 1662937535),
 	('/site/account-information', 2, NULL, NULL, NULL, 1662784979, 1662784979),
 	('/site/captcha', 2, NULL, NULL, NULL, 1662784979, 1662784979),
+	('/site/change-password', 2, NULL, NULL, NULL, 1663663060, 1663663060),
 	('/site/contact', 2, NULL, NULL, NULL, 1662784979, 1662784979),
 	('/site/error', 2, NULL, NULL, NULL, 1662784979, 1662784979),
 	('/site/index', 2, NULL, NULL, NULL, 1662784979, 1662784979),
@@ -117,7 +126,8 @@ VALUES
 	('/user/create-with-sihrd-integration', 2, NULL, NULL, NULL, 1662784979, 1662784979),
 	('/user/update', 2, NULL, NULL, NULL, 1662784979, 1662784979),
 	('/user/update-with-sihrd-integration', 2, NULL, NULL, NULL, 1662784979, 1662784979),
-	('super-admin', 1, NULL, NULL, NULL, 1662277025, 1662549609);
+	('super-admin', 1, NULL, NULL, NULL, 1662277025, 1662549609),
+	('user-default', 1, NULL, NULL, NULL, 1663663252, 1663663252);
 SQL;
 
         $this->db->createCommand($sql)->execute();

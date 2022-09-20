@@ -10,7 +10,7 @@ use yii\helpers\Html;
 /* @var $searchModel mdm\admin\models\searchs\User */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::$app->name . ' ' . Yii::t('rbac-admin', 'Users');
+$this->title = (!Yii::$app->settings->get('site.name') ? Yii::$app->name : Yii::$app->settings->get('site.name')) . ' ' . Yii::t('rbac-admin', 'Users');
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerCss("
@@ -50,7 +50,7 @@ $this->registerCss("
             ]) ?>
         </div>
     </div>
-    
+
     <?=
     GridView::widget([
         'dataProvider' => $dataProvider,
@@ -88,8 +88,8 @@ $this->registerCss("
                     }
 
                     return
-                        Html::beginTag('div', [ 'class' => 'd-flex flex-row align-items-center', 'style' => ['gap' => '1rem']]) .
-                        Yii::$app->cache->get('sihrd-user-image' . $model->id).
+                        Html::beginTag('div', ['class' => 'd-flex flex-row align-items-center', 'style' => ['gap' => '1rem']]) .
+                        Yii::$app->cache->get('sihrd-user-image' . $model->id) .
                         Html::endTag('div');
                 }
             ],

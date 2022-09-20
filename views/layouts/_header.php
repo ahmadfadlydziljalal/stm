@@ -13,12 +13,15 @@ use mdm\admin\components\MenuHelper;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
-use yii\helpers\VarDumper;
 
 $brandLabel =
     Html::beginTag('div', ['class' => 'd-flex justify-content-between brand-wrapper align-items-baseline', 'style' => ['gap' => '1.25rem']]) .
     Html::button('<i class="bi bi-list"></i>', ['role' => 'button', 'type' => 'button', 'id' => 'btn-toggle-sidebar', 'class' => 'btn btn-link text-dark text-decoration-none rounded py-0 px-0 ']) .
-    Html::a('<i class="bi bi-bag"></i>&nbsp;' . Yii::$app->name, Yii::$app->homeUrl, ['class' => 'text-decoration-none ']) .
+    Html::a(
+        !Yii::$app->settings->get('site.name') ?
+            Yii::$app->name :
+            Yii::$app->settings->get('site.name')
+        , Yii::$app->homeUrl, ['class' => 'text-decoration-none ']) .
     Html::endTag('div');
 ?>
 
@@ -34,33 +37,33 @@ $brandLabel =
     'togglerContent' => '<span class="bi bi-arrow-down-circle"></span>',
 ]); ?>
 
-<div class="search-navbar my-4 my-md-0 order-sm-0 order-md-1 order-lg-1 flex-sm-grow-1 flex-md-grow-0 float-md-end">
-    <?php
-    try {
-        echo Select2::widget([
-            'id' => 'search-menu',
-            'name' => 'search-menu',
-            'data' => ArrayHelper::arrayValueRecursiveForSearchMenu('0', $leftItems),
-            'options' => [
-                'placeholder' => 'Menu pencarian ... Ctrl + / ',
-            ],
-            'pluginOptions' => [
-                'dropdownAutoWidth' => true,
-                'width' => '100%'
-            ],
-            'pluginEvents' => [
-                'change' => "function(e) {
-                        if($(this).val()){
-                            window.location.replace($(this).val());
-                        }
-                    }"
-            ],
-        ]);
-    } catch (Exception $e) {
-        echo '';
-    }
-    ?>
-</div>
+    <div class="search-navbar my-4 my-md-0 order-sm-0 order-md-1 order-lg-1 flex-sm-grow-1 flex-md-grow-0 float-md-end">
+        <?php
+        try {
+            echo Select2::widget([
+                'id' => 'search-menu',
+                'name' => 'search-menu',
+                'data' => ArrayHelper::arrayValueRecursiveForSearchMenu('0', $leftItems),
+                'options' => [
+                    'placeholder' => 'Menu pencarian ... Ctrl + / ',
+                ],
+                'pluginOptions' => [
+                    'dropdownAutoWidth' => true,
+                    'width' => '100%'
+                ],
+                'pluginEvents' => [
+                    'change' => "function(e) {
+                    if($(this).val()){
+                        window.location.replace($(this).val());
+                    }
+                }"
+                ],
+            ]);
+        } catch (Exception $e) {
+            echo '';
+        }
+        ?>
+    </div>
 
 <?php
 try {

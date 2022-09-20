@@ -14,16 +14,16 @@ class SideMenu extends Menu
 
     public string $icon = "play-circle";
 
-    public $linkTemplate = '<a href="{url}" class="{class} d-flex flex-row align-items-center gap-2 m-0 px-2">
+    public $linkTemplate = '<a href="{url}" class="{class} d-flex flex-row align-items-center gap-2 m-0 ps-3 pe-1">
         <span>{icon}</span>
         <span>{label}</span>
     </a>';
 
-    public string $linkWithDataTargetTemplate = '<a href="{url}" class="{class} d-flex flex-row align-items-center gap-2 m-0 px-2" data-bs-toggle="{data-bs-toggle}" aria-expanded="{aria-expanded}">
+    public string $linkWithDataTargetTemplate = '<a href="{url}" class="{class} d-flex flex-row align-items-center gap-2 m-0 ps-3 pe-1" data-bs-toggle="{data-bs-toggle}" aria-expanded="{aria-expanded}">
         <span>{icon}</span>
         <span class="flex-grow-1">{label}</span>
-            
     </a>';
+
     public $submenuTemplate = "\n<ul class='submenu collapse {isShow}' id='{itemID}' >\n{items}\n</ul>\n";
 
     /**
@@ -31,7 +31,7 @@ class SideMenu extends Menu
      * @param array $items the menu items to be rendered recursively
      * @return string the rendering result
      */
-    protected function renderItems($items)
+    protected function renderItems($items): string
     {
         $n = count($items);
         $lines = [];

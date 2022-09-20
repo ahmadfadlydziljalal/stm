@@ -8,7 +8,7 @@
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
 
-$this->title = Yii::$app->name . ' - Log In';
+$this->title = (!Yii::$app->settings->get('site.name') ? Yii::$app->name : Yii::$app->settings->get('site.name')) . ' - Log In';
 
 ?>
 
@@ -17,7 +17,7 @@ $this->title = Yii::$app->name . ' - Log In';
     <div class="login-section" style="min-width: 20rem">
         <h1 class="text-center d-sm-block d-md-none d-lg-none">
             <i class="bi bi-bag"></i>
-            <?= Html::encode(Yii::$app->name) ?>
+            <?= Html::encode($this->title) ?>
         </h1>
 
         <?php $form = ActiveForm::begin([

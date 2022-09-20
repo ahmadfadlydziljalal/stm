@@ -28,7 +28,7 @@ if ($withBreadcrumb) {
             <?= Yii::$app->settings->get('site.icon') ?>
             <?php
                 $text = Yii::$app->settings->get('site.name');
-                echo Yii::$app->$text
+                echo empty($text) ? Yii::$app->name : $text
             ?>
         </h1>
 
@@ -42,7 +42,11 @@ if ($withBreadcrumb) {
         <div class="d-flex justify-content-between align-items-center py-2">
             <div class="d-flex flex-column">
                 <span class="text-muted">Dibuat dan di maintenance oleh:</span>
-                <span><?= Yii::$app->params['maintainer'] ?></span>
+                <span><?= Yii::$app->settings->get('site.maintainer') !== null ?
+                        Yii::$app->settings->get('site.maintainer') :
+                        Yii::$app->params['maintainer']
+                    ?>
+                </span>
             </div>
 
             <div class="px-3">

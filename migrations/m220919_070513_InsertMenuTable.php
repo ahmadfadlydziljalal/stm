@@ -19,7 +19,7 @@ class m220919_070513_InsertMenuTable extends Migration
         $sql = <<<SQL
 DELETE FROM `menu`;
 INSERT INTO `menu` (`id`, `name`, `parent`, `route`, `order`, `data`) VALUES
-	(3, 'Menu', 32, '/admin/menu/index', 0, _binary 0x72657475726e5b276d6f64756c6527203d3e202761646d696e272c2027636f6e74726f6c6c657227203d3e20276d656e75272c202769636f6e27203d3e2027706c61792d636972636c65275d3b),
+	(3, 'Menu', 32, '/admin/menu/index', NULL, _binary 0x72657475726e5b276d6f64756c6527203d3e202761646d696e272c2027636f6e74726f6c6c657227203d3e20276d656e75272c202769636f6e27203d3e2027706c61792d636972636c65275d3b),
 	(4, 'Permission', 32, '/admin/permission/index', NULL, _binary 0x72657475726e5b276d6f64756c6527203d3e202761646d696e272c2027636f6e74726f6c6c657227203d3e20277065726d697373696f6e272c202769636f6e27203d3e2027706c61792d636972636c65275d3b),
 	(5, 'Role', 32, '/admin/role/index', NULL, _binary 0x72657475726e5b276d6f64756c6527203d3e202761646d696e272c2027636f6e74726f6c6c657227203d3e2027726f6c65272c202769636f6e27203d3e2027706c61792d636972636c65275d3b),
 	(6, 'Route', 32, '/admin/route/index', NULL, NULL),
@@ -34,9 +34,12 @@ INSERT INTO `menu` (`id`, `name`, `parent`, `route`, `order`, `data`) VALUES
 	(26, 'Informasi Akun', 28, '/site/account-information', NULL, NULL),
 	(28, 'Right Menu', NULL, NULL, NULL, NULL),
 	(29, 'Tentang Web', 15, '/site/about', NULL, NULL),
-	(31, 'Develop', 16, NULL, 1, NULL),
-	(32, 'Trustee', 16, NULL, 2, NULL),
-	(33, 'Beranda', 16, '/site/index', NULL, NULL);
+	(31, 'Develop', 16, NULL, 10, _binary 0x72657475726e5b2769636f6e27203d3e202766696c652d636f6465275d3b),
+	(32, 'Trustee', 16, NULL, 30, _binary 0x72657475726e5b2769636f6e27203d3e202766697265275d3b),
+	(33, 'Beranda', 16, '/site/index', 0, _binary 0x72657475726e5b2769636f6e27203d3e2027686f757365275d3b),
+	(34, 'Settings', 16, '/settings/default/index', 20, _binary 0x72657475726e5b276d6f64756c6527203d3e202773657474696e6773272c2027636f6e74726f6c6c657227203d3e202764656661756c74272c202769636f6e27203d3e202767656172275d3b),
+	(35, 'Ganti Password', 28, '/site/change-password', NULL, NULL);
+
 SQL;
         $this->db->createCommand($sql)->execute();
 

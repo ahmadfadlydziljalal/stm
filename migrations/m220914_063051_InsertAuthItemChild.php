@@ -14,8 +14,8 @@ class m220914_063051_InsertAuthItemChild extends Migration
     {
         $this->db->createCommand('SET FOREIGN_KEY_CHECKS = 0')->execute();
         $sql = <<<SQL
-INSERT INTO `auth_item_child` (`parent`, `child`)
-VALUES
+DELETE FROM `auth_item_child`;
+INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
 	('super-admin', '/*'),
 	('super-admin', '/admin/*'),
 	('super-admin', '/admin/assignment/*'),
@@ -105,19 +105,27 @@ VALUES
 	('super-admin', '/session/view'),
 	('super-admin', '/site/*'),
 	('super-admin', '/site/about'),
+	('user-default', '/site/about'),
 	('super-admin', '/site/account-information'),
+	('user-default', '/site/account-information'),
 	('super-admin', '/site/captcha'),
+	('user-default', '/site/captcha'),
+	('user-default', '/site/change-password'),
 	('super-admin', '/site/contact'),
+	('user-default', '/site/contact'),
 	('super-admin', '/site/error'),
+	('user-default', '/site/error'),
 	('super-admin', '/site/index'),
+	('user-default', '/site/index'),
 	('super-admin', '/site/login'),
+	('user-default', '/site/login'),
 	('super-admin', '/site/logout'),
+	('user-default', '/site/logout'),
 	('super-admin', '/user/*'),
 	('super-admin', '/user/create'),
 	('super-admin', '/user/create-with-sihrd-integration'),
 	('super-admin', '/user/update'),
 	('super-admin', '/user/update-with-sihrd-integration');
-
 SQL;
         $this->db->createCommand($sql)->execute();
         $this->db->createCommand('SET FOREIGN_KEY_CHECKS = 1')->execute();
