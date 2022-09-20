@@ -102,10 +102,10 @@ $this->registerCss("
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => Helper::filterActionColumn(['assignment', 'activate', 'update-with-sihrd-integration', 'delete']),
+                'template' => Helper::filterActionColumn(['assignment', 'view', 'activate', 'update-with-sihrd-integration', 'delete']),
                 'buttons' => [
                     'assignment' => function ($url, $model) {
-                        return Html::a('<i class="bi bi-award"></i>', ['assignment/view', 'id' => $model->id]);
+                        return Html::a('<i class="bi bi-sign-turn-right"></i>', ['assignment/view', 'id' => $model->id]);
                     },
                     'activate' => function ($url, $model) {
 
