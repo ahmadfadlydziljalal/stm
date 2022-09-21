@@ -22,21 +22,26 @@ return [
     ],
 <?php
 $count = 0;
-foreach ($generator->getColumnNames() as $name) {
-    if ($name == 'id' || $name == 'created_at' || $name == 'updated_at' || $name == 'created_by' || $name == 'updated_by') {
+foreach ($generator->getTableSchema()->columns as $column) {
+
+    $format = $generator->generateColumnFormat($column);
+    if ($column->name == 'id' || $column->name == 'created_at' || $column->name == 'updated_at' || $column->name == 'created_by' || $column->name == 'updated_by') {
         echo "    // [\n";
         echo "        // 'class'=>'\yii\grid\DataColumn',\n";
-        echo "        // 'attribute'=>'" . $name . "',\n";
+        echo "        // 'attribute'=>'" . $column->name . "',\n";
+        echo "        // 'format'=>'" . $format . "',\n";
         echo "    // ],\n";
     } else if (++$count < 6) {
         echo "    [\n";
         echo "        'class'=>'\yii\grid\DataColumn',\n";
-        echo "        'attribute'=>'" . $name . "',\n";
+        echo "        'attribute'=>'" . $column->name . "',\n";
+        echo "        'format'=>'" . $format . "',\n";
         echo "    ],\n";
     } else {
         echo "    // [\n";
         echo "        // 'class'=>'\yii\grid\DataColumn',\n";
-        echo "        // 'attribute'=>'" . $name . "',\n";
+        echo "        // 'attribute'=>'" . $column->name . "',\n";
+        echo "        // 'format'=>'" . $format . "',\n";
         echo "    // ],\n";
     }
 }

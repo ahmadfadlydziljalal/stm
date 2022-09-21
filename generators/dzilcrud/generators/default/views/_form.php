@@ -27,7 +27,26 @@ use yii\bootstrap5\ActiveForm;
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-form">
 
     <?= "<?php " ?>$form = ActiveForm::begin([
-    'layout' => ActiveForm::LAYOUT_FLOATING
+
+        'layout' => ActiveForm::LAYOUT_HORIZONTAL,
+        'fieldConfig' => [
+            'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
+            'horizontalCssClasses' => [
+                'label' => 'col-sm-4 col-lg-3',
+                'offset' => 'offset-sm-4 offset-lg-3',
+                'wrapper' => 'col-sm-8 col-lg-9',
+                'error' => '',
+                'hint' => '',
+            ],
+        ],
+
+        /*'layout' => ActiveForm::LAYOUT_FLOATING,
+            'fieldConfig' => [
+            'options' => [
+            'class' => 'form-floating'
+            ]
+        ]*/
+
     ]); ?>
 
     <?php foreach ($generator->getColumnNames() as $key => $attribute) {
@@ -38,7 +57,7 @@ use yii\bootstrap5\ActiveForm;
             if ($key == 1) {
                 echo "    <?= " . $generator->generateActiveFieldAutoFocus($attribute) . "?>\n";
             } else {
-                echo "    <?= " . $generator->generateActiveField($attribute) . " ?>\n";
+                echo "        <?= " . $generator->generateActiveField($attribute) . " ?>\n";
             }
         }
     } ?>
@@ -46,8 +65,8 @@ use yii\bootstrap5\ActiveForm;
     <div class="d-flex mt-3 justify-content-between">
         <?= "<?= " ?>Html::submitButton(<?= $generator->generateString(' Simpan') ?>, ['class' =>'btn btn-success' ]) ?>
         <?= "<?= " ?>Html::a(<?= $generator->generateString(' Tutup') ?>, ['index'], [
-        'class' => 'btn btn-secondary',
-        'type' => 'button'
+            'class' => 'btn btn-secondary',
+            'type' => 'button'
         ]) ?>
     </div>
 

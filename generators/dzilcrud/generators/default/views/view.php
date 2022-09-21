@@ -4,7 +4,7 @@ use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
 /* @var $this yii\web\View */
-/* @var $generator yii\gii\generators\crud\Generator */
+/* @var $generator \app\generators\dzilcrud\generators\Generator */
 
 $urlParams = $generator->generateUrlParams();
 $labelID = empty($generator->labelID) ? $generator->getNameAttribute() : $generator->labelID;
@@ -65,6 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
         }
 
     } else {
+
         foreach ($generator->getTableSchema()->columns as $column) {
 
             if( $column->name == 'id'){

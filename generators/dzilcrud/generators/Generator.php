@@ -366,21 +366,33 @@ class Generator extends \yii\gii\Generator
      * @param ColumnSchema $column
      * @return string
      */
-    public function generateColumnFormat($column)
+    public function generateColumnFormat(ColumnSchema $column): string
     {
-        if ($column->phpType === 'boolean') {
-            return 'boolean';
-        } elseif ($column->type === 'text') {
-            return 'ntext';
-        } elseif (stripos($column->name, 'time') !== false && $column->phpType === 'integer') {
+
+        if ($column->type === 'date')
+            return 'date';
+
+        if ($column->type === 'datetime')
             return 'datetime';
-        } elseif (stripos($column->name, 'email') !== false) {
+
+        if ($column->phpType === 'boolean')
+            return 'boolean';
+
+        if ($column->type === 'text')
+            return 'ntext';
+
+        if (stripos($column->name, 'time') !== false && $column->phpType === 'integer')
+            return 'datetime';
+
+        if (stripos($column->name, 'email') !== false)
             return 'email';
-        } elseif (stripos($column->name, 'url') !== false) {
+
+        if (stripos($column->name, 'url') !== false)
             return 'url';
-        } else {
-            return 'text';
-        }
+
+
+        return 'text';
+
     }
 
     /**
