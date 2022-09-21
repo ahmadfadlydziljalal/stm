@@ -1,22 +1,15 @@
 {
-  "name": "yiisoft/yii2-app-basic",
-  "description": "Yii 2 Basic Project Template",
+  "name": "dziljalal/tms-starter",
+  "description": "TMS Starter menggunakan Yii2",
   "keywords": [
     "yii2",
     "framework",
-    "basic",
+    "tms-starter",
     "project template"
   ],
   "homepage": "http://www.yiiframework.com/",
   "type": "project",
   "license": "BSD-3-Clause",
-  "support": {
-    "issues": "https://github.com/yiisoft/yii2/issues?state=open",
-    "forum": "http://www.yiiframework.com/forum/",
-    "wiki": "http://www.yiiframework.com/wiki/",
-    "irc": "irc://irc.freenode.net/yii",
-    "source": "https://github.com/yiisoft/yii2"
-  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=7.4.0",
@@ -31,7 +24,10 @@
     "schmunk42/yii2-giiant": "@dev",
     "wbraganca/yii2-dynamicform": "dev-dev-dzil",
     "pheme/yii2-settings": "*",
-    "mdmsoft/yii2-autonumber": "~1.0"
+    "mdmsoft/yii2-autonumber": "~1.0",
+    "kartik-v/yii2-datecontrol": "@dev",
+    "kartik-v/yii2-widget-datepicker": "dev-master",
+    "kartik-v/yii2-widget-datetimepicker": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",
