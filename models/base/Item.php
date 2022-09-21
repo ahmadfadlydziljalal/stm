@@ -11,6 +11,8 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
+ * @property string $tanggal
+ * @property string $tanggal_waktu
  *
  * @property \app\models\ItemDetail[] $itemDetails
  * @property string $aliasModel
@@ -35,6 +37,7 @@ abstract class Item extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
+            [['tanggal', 'tanggal_waktu'], 'safe'],
             [['name'], 'string', 'max' => 255]
         ];
     }
@@ -47,6 +50,8 @@ abstract class Item extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
+            'tanggal' => 'Tanggal',
+            'tanggal_waktu' => 'Tanggal Waktu',
         ];
     }
 

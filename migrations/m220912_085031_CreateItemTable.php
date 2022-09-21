@@ -14,7 +14,9 @@ class m220912_085031_CreateItemTable extends Migration
     {
         $this->createTable('{{%item}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string()->notNull()
+            'name' => $this->string()->notNull(),
+            'tanggal' => $this->date(),
+            'tanggal_waktu' => $this->dateTime()
         ]);
 
         $this->createTable('{{%item_detail}}', [
@@ -30,7 +32,6 @@ class m220912_085031_CreateItemTable extends Migration
             'name' => $this->string()->notNull(),
             'dropdown_item' => $this->string(),
         ]);
-
 
         $this->createIndex('idx_detail', '{{item_detail}}', 'item_id');
         $this->createIndex('idx_detail_detail', '{{item_detail_detail}}', 'item_detail_id');
