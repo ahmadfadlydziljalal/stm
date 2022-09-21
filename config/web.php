@@ -43,11 +43,11 @@ $config = [
                 ],
                 'layout' =>
                     '<div class="table-responsive">' .
-                        "{items}" .
+                    "{items}" .
                     '</div>' .
                     '<div class="d-flex flex-column flex-md-row justify-content-center justify-content-md-between border-1 border-top-0 align-items-baseline py-3 m-0">' .
-                        "{pager}" .
-                        "{summary}" .
+                    "{pager}" .
+                    "{summary}" .
                     '</div>',
                 'pager' => [
                     'firstPageLabel' => 'First',
@@ -68,18 +68,7 @@ $config = [
             ]
         ]
     ],
-    'modules' => [
-        'admin' => [
-            'class' => 'mdm\admin\Module',
-            'viewPath' => '@app/views/mdm',
-            'defaultRoute' => '/admin/default',
-        ],
-        'settings' => [
-            'class' => 'pheme\settings\Module',
-            'sourceLanguage' => 'en',
-            'viewPath' => '@app/views/settings',
-        ],
-    ],
+    'modules' => require __DIR__ . '/modules.php',
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
