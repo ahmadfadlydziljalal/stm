@@ -1,15 +1,19 @@
 <?php
 
+use yii\data\Pagination;
+use yii\grid\ActionColumn;
+use yii\grid\GridView;
 use yii\grid\SerialColumn;
+use yii\widgets\LinkPager;
+use yii\bootstrap5\LinkPager AS Bs5LinkPager;
 
 $params = require __DIR__ . '/params.php';
 
 $config = [
-    'id' => 'basic',
-    'name' => strtoupper(getenv('APP_NAME')),
+    'aliases' => require __DIR__ . '/aliases.php',
+    'as access' => require __DIR__ . '/as_access.php',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'aliases' => require __DIR__ . '/aliases.php',
     'components' => [
         'assetManager' => require __DIR__ . '/asset_manager.php',
         'authManager' => require __DIR__ . '/auth_manager.php',
@@ -29,9 +33,9 @@ $config = [
     ],
     'container' => [
         'definitions' => [
-            yii\data\Pagination::class => ['pageSize' => 10],
-            yii\widgets\LinkPager::class => yii\bootstrap5\LinkPager::class,
-            yii\grid\GridView::class => [
+            Pagination::class => ['pageSize' => 10],
+            LinkPager::class => Bs5LinkPager::class,
+            GridView::class => [
                 'headerRowOptions' => [
                     'class' => 'text-nowrap text-center'
                 ],
@@ -65,17 +69,18 @@ $config = [
                         'text-align' => 'right'
                     ]
                 ],
+            ],
+            ActionColumn::class => [
+                'header' => 'Aksi',
+                'contentOptions' => [
+                    'class' => 'text-center'
+                ],
             ]
         ]
     ],
+    'id' => 'basic',
     'modules' => require __DIR__ . '/modules.php',
-    'as access' => [
-        'class' => 'mdm\admin\components\AccessControl',
-        'allowActions' => [
-            'site/*',
-            'dark-light-toggle/*'
-        ]
-    ],
+    'name' => strtoupper(getenv('APP_NAME')),
     'params' => $params,
     'timeZone' => 'Asia/Jakarta',
 ];
@@ -93,14 +98,13 @@ if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
         'allowedIPs' => ['127.0.0.1', '::1', "*"],
         'generators' => [
             'dzilcrud' => [
                 'class' => 'app\generators\dzilcrud\generators\Generator',
                 'templates' => [
-                    'master-details' => '@app/generators/dzilcrud/generators/masterdetails',
-                    'master-details-details' => '@app/generators/dzilcrud/generators/masterdetailsdetails',
+                    'master-details' => '@app/generators/dzilcrud/generators/master_details',
+                    'master-details-details' => '@app/generators/dzilcrud/generators/master_details_details',
                 ]
             ],
         ],
