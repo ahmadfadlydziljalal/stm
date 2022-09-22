@@ -35,7 +35,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
             'fieldConfig' => [
                 'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
                 'horizontalCssClasses' => [
-                    'label' => 'col-sm-4',
+                    'label' => 'col-sm-4 col-form-label',
                     'offset' => 'offset-sm-4',
                     'wrapper' => 'col-sm-8',
                     'error' => '',
@@ -54,19 +54,23 @@ use wbraganca\dynamicform\DynamicFormWidget;
     <div class="d-flex flex-column mt-0" style="gap: 1rem">
 
         <div class="form-master">
-            <?php foreach ($generator->getColumnNames() as $key => $attribute) {
-                if (in_array($attribute, ['created_at', 'updated_at', 'created_by', 'updated_by'])) {
-                    continue;
-                }
+            <div class="row">
+                <div class="col-12 col-lg-7">
+                    <?php foreach ($generator->getColumnNames() as $key => $attribute) {
+                        if (in_array($attribute, ['created_at', 'updated_at', 'created_by', 'updated_by'])) {
+                            continue;
+                        }
 
-                if (in_array($attribute, $safeAttributes)) {
-                    if ($key == 1) {
-                        echo "<?= " . $generator->generateActiveFieldAutoFocus($attribute) . " ?>\n";
-                    } else {
-                        echo "            <?= " . $generator->generateActiveField($attribute) . " ?>\n";
-                    }
-                }
-            } ?>
+                        if (in_array($attribute, $safeAttributes)) {
+                            if ($key == 1) {
+                                echo "<?= " . $generator->generateActiveFieldAutoFocus($attribute) . " ?>\n";
+                            } else {
+                                echo "            <?= " . $generator->generateActiveField($attribute) . " ?>\n";
+                            }
+                        }
+                    } ?>
+                </div>
+            </div>
         </div>
 
         <div class="form-detail">
@@ -141,10 +145,10 @@ use wbraganca\dynamicform\DynamicFormWidget;
 
                     <tfoot>
                     <tr>
-                        <td colspan="<?= $colspan + 2 ?>">
-                            <?= "<?php echo " ?>Html::button('<span class="bi bi-plus-circle"></span> Tambah', [ 'class'
-                            => 'add-item btn btn-success', ]); ?>
+                        <td class="text-end" colspan="<?= $colspan + 1 ?>">
+                            <?= "<?php echo " ?>Html::button('<span class="bi bi-plus-circle"></span> Tambah', [ 'class' => 'add-item btn btn-success', ]); ?>
                         </td>
+                        <td></td>
                     </tr>
                     </tfoot>
                 </table>
@@ -154,9 +158,8 @@ use wbraganca\dynamicform\DynamicFormWidget;
         </div>
 
         <div class="d-flex justify-content-between">
+            <?= "<?= " ?>Html::a(<?= $generator->generateString(' Tutup') ?>, ['index'], ['class' => 'btn btn-secondary']) ?>
             <?= "<?= " ?>Html::submitButton(<?= $generator->generateString(' Simpan') ?>, ['class' =>'btn btn-success'])?>
-            <?= "<?= " ?>Html::a(<?= $generator->generateString(' Tutup') ?>, ['index'], ['class' => 'btn
-            btn-secondary']) ?>
         </div>
     </div>
 

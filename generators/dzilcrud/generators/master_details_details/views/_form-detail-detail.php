@@ -1,13 +1,14 @@
 <?php
 
 use rmrevin\yii\fontawesome\FAS;
+use yii\db\ActiveRecord;
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
 /* @var $this yii\web\View */
 /* @var $generator \app\generators\dzilajaxcrud\generators\Generator */
 
-/* @var $model \yii\db\ActiveRecord */
+/* @var $model ActiveRecord */
 $model = new $generator->modelClass();
 $safeAttributes = $model->safeAttributes();
 if (empty($safeAttributes)) {
@@ -25,7 +26,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
 /* @var $modelsDetail <?= ltrim($generator->modelsClassDetail, '\\') ?> */
 /* @var $modelsDetailDetail <?= ltrim($generator->modelsClassDetailDetail, '\\') ?> */
-/* @var $form yii\bootstrap4\ActiveForm */
+/* @var $form yii\bootstrap5\ActiveForm */
 ?>
 
 <?= "<?php " ?>
@@ -62,19 +63,19 @@ DynamicFormWidget::begin([
                 if ($columnName === 'id') continue;
                 if ($columnName === Inflector::underscore(StringHelper::basename($generator->modelsClassDetail)) . '_id') continue;
                 ?><th scope="col"><?= Inflector::humanize($columnName) ?></th>
-            <?php } ?><th scope="col" style="width: 2px">Aksi</th>
+            <?php } ?><th scope="col" class="text-center" style="width: 2px"><?= "<?php echo " ?>Html::button('<span class="bi bi-plus-circle"></span>' , [ 'class' => 'add-room btn btn-link text-primary', ]); ?></th>
         </tr>
     </thead>
     <tbody class="container-rooms">
     <?= "<?php " ?>foreach ($modelsDetailDetail as $j => $modelDetailDetail): ?>
     <tr class="room-item">
-        <td style="width: 2px;">
+        <td class="align-middle"  style="width: 2px;">
 
             <?= "<?php " ?>if (!$modelDetailDetail->isNewRecord) {
             echo Html::activeHiddenInput($modelDetailDetail, "[{$i}][{$j}]id");
             }  ?>
 
-            <i class="bi bi-chevron-double-right"></i>
+            <i class="bi bi-dash"></i>
         </td>
 
         <?php foreach ($generator->getDetailDetailColumnNames() as $columnName) {
@@ -91,16 +92,6 @@ DynamicFormWidget::begin([
     </tr>
     <?= "<?php " ?>endforeach; ?>
     </tbody>
-
-    <tfoot>
-    <tr>
-        <td colspan="<?= $colspan + 2  ?>" style="text-align: end">
-            <?= "<?php echo " ?>Html::button('<span class="fa fa-plus"></span> Tambah <?= lcfirst($detailDetail) ?>' , [
-                'class' => 'add-room btn btn-success',
-            ]); ?>
-        </td>
-    </tr>
-    </tfoot>
 
 </table>
 <?= "<?php " ?> DynamicFormWidget::end(); ?>

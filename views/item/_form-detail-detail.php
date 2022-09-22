@@ -8,7 +8,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
 /* @var $model app\models\Item */
 /* @var $modelsDetail app\models\ItemDetail */
 /* @var $modelsDetailDetail app\models\ItemDetailDetail */
-/* @var $form yii\bootstrap4\ActiveForm */
+/* @var $form yii\bootstrap5\ActiveForm */
 ?>
 
 <?php DynamicFormWidget::begin([
@@ -34,19 +34,19 @@ use wbraganca\dynamicform\DynamicFormWidget;
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Dropdown item</th>
-            <th scope="col" style="width: 2px">Aksi</th>
+            <th scope="col" class="text-center" style="width: 2px"><?php echo Html::button('<span class="bi bi-plus-circle"></span>' , [ 'class' => 'add-room btn btn-link text-primary', ]); ?></th>
         </tr>
     </thead>
     <tbody class="container-rooms">
     <?php foreach ($modelsDetailDetail as $j => $modelDetailDetail): ?>
     <tr class="room-item">
-        <td style="width: 2px;">
+        <td class="align-middle"  style="width: 2px;">
 
             <?php if (!$modelDetailDetail->isNewRecord) {
             echo Html::activeHiddenInput($modelDetailDetail, "[{$i}][{$j}]id");
             }  ?>
 
-            <i class="bi bi-chevron-double-right"></i>
+            <i class="bi bi-dash"></i>
         </td>
 
         <td><?= $form->field($modelDetailDetail, "[{$i}][{$j}]name", ['template' => '{input}{error}{hint}', 'options' =>['class' => null] ]); ?></td>
@@ -60,16 +60,6 @@ use wbraganca\dynamicform\DynamicFormWidget;
     </tr>
     <?php endforeach; ?>
     </tbody>
-
-    <tfoot>
-    <tr>
-        <td colspan="4" style="text-align: end">
-            <?php echo Html::button('<span class="fa fa-plus"></span> Tambah item Detail Details' , [
-                'class' => 'add-room btn btn-success',
-            ]); ?>
-        </td>
-    </tr>
-    </tfoot>
 
 </table>
 <?php  DynamicFormWidget::end(); ?>

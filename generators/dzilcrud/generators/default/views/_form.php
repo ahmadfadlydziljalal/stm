@@ -32,9 +32,9 @@ use yii\bootstrap5\ActiveForm;
         'fieldConfig' => [
             'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
             'horizontalCssClasses' => [
-                'label' => 'col-sm-4 col-lg-3',
-                'offset' => 'offset-sm-4 offset-lg-3',
-                'wrapper' => 'col-sm-8 col-lg-9',
+                'label' => 'col-sm-4 col-form-label',
+                'offset' => 'offset-sm-4',
+                'wrapper' => 'col-sm-8',
                 'error' => '',
                 'hint' => '',
             ],
@@ -49,26 +49,34 @@ use yii\bootstrap5\ActiveForm;
 
     ]); ?>
 
-    <?php foreach ($generator->getColumnNames() as $key => $attribute) {
-        if (in_array($attribute, ['created_at', 'updated_at', 'created_by', 'updated_by'])) {
-            continue;
-        }
-        if (in_array($attribute, $safeAttributes)) {
-            if ($key == 1) {
-                echo "    <?= " . $generator->generateActiveFieldAutoFocus($attribute) . "?>\n";
-            } else {
-                echo "        <?= " . $generator->generateActiveField($attribute) . " ?>\n";
-            }
-        }
-    } ?>
+    <div class="row">
+        <div class="col-12 col-lg-8">
 
-    <div class="d-flex mt-3 justify-content-between">
-        <?= "<?= " ?>Html::submitButton(<?= $generator->generateString(' Simpan') ?>, ['class' =>'btn btn-success' ]) ?>
-        <?= "<?= " ?>Html::a(<?= $generator->generateString(' Tutup') ?>, ['index'], [
-            'class' => 'btn btn-secondary',
-            'type' => 'button'
-        ]) ?>
+        <?php foreach ($generator->getColumnNames() as $key => $attribute) {
+            if (in_array($attribute, ['created_at', 'updated_at', 'created_by', 'updated_by'])) {
+                continue;
+            }
+            if (in_array($attribute, $safeAttributes)) {
+                if ($key == 1) {
+                    echo "    <?= " . $generator->generateActiveFieldAutoFocus($attribute) . "?>\n";
+                } else {
+                    echo "           <?= " . $generator->generateActiveField($attribute) . " ?>\n";
+                }
+            }
+        } ?>
+
+            <div class="d-flex mt-3 justify-content-between">
+                <?= "<?= " ?>Html::a(<?= $generator->generateString(' Tutup') ?>, ['index'], [
+                    'class' => 'btn btn-secondary',
+                    'type' => 'button'
+                ]) ?>
+                <?= "<?= " ?>Html::submitButton(<?= $generator->generateString(' Simpan') ?>, ['class' =>'btn btn-success' ]) ?>
+
+            </div>
+        </div>
     </div>
+
+
 
     <?= "<?php " ?>ActiveForm::end(); ?>
 

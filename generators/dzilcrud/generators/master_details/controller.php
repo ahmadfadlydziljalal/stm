@@ -9,7 +9,7 @@ use yii\helpers\StringHelper;
 
 
 /* @var $this yii\web\View */
-/* @var $generator \app\generators\dzilajaxcrud\generators\Generator */
+/* @var $generator \app\generators\dzilcrud\generators\Generator */
 
 $controllerClass = StringHelper::basename($generator->controllerClass);
 $modelClass = StringHelper::basename($generator->modelClass);

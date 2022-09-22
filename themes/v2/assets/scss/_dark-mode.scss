@@ -12,14 +12,16 @@ body.dark{
   table th,
   table td,
   div.card,
-  div.card .card-header,
-  div.card .card-footer,
   aside,
   nav.card,
   ul.pagination li.page-item a.page-link,
   footer {
     background-color: vars.$dark !important;
     color: vars.$white !important;
+  }
+
+  div.card{
+    border: 1px solid vars.$white;
   }
 
   .dropdown-menu{
