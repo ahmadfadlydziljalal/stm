@@ -1,6 +1,6 @@
 <?php
 
-use rmrevin\yii\fontawesome\FAS;
+
 use yii\db\ActiveRecord;
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
@@ -99,7 +99,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
 
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
-                            <?= "<?php " ?>if (!$modelDetail->isNewRecord) { echo Html::activeHiddenInput($modelDetail, "[{$i}]id"); } ?>
+                            <?= "<?php " ?>if (!$modelDetail->isNewRecord) { echo Html::activeHiddenInput($modelDetail, "[$i]id"); } ?>
                             <strong><i class="bi bi-arrow-right-short"></i> <?= $detail ?></strong>
                             <button type="button" class="remove-item btn btn-link text-danger"><i class="bi bi-x-circle"> </i></button></div>
                     </div>
@@ -108,7 +108,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
                         <?php foreach ($generator->getDetailColumnNames() as $columnName) {
                             if ($columnName === 'id') continue;
                             if ($columnName === Inflector::underscore(StringHelper::basename($generator->modelClass)) . '_id') continue;
-                            ?><?= "<?= " ?>$form->field($modelDetail, "[{$i}]<?= $columnName ?>", ['options' =>['class' => 'mb-3 row'] ]); ?>
+                            ?><?= "<?= " ?>$form->field($modelDetail, "[$i]<?= $columnName ?>", ['options' =>['class' => 'mb-3 row'] ]); ?>
                         <?php } ?>
 
                         <?= "<?= " ?>$this->render('_form-detail-detail', [

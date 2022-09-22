@@ -43,7 +43,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ]);
         } catch(Exception $e){
             echo $e->getMessage();
-        }<?= "\n         ?>\n"
+        }
+        catch (Throwable $e) {
+            echo $e->getMessage();
+        }
+    <?= "\n         ?>\n"
     ?>
 
 </div>

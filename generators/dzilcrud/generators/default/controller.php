@@ -73,7 +73,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     */
     public function actionIndex() : string {
     <?php if (!empty($generator->searchModelClass)): ?>
-    $searchModel = new <?= isset($searchModelAlias) ? $searchModelAlias : $searchModelClass ?>();
+    $searchModel = new <?= $searchModelAlias ?? $searchModelClass ?>();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -97,7 +97,8 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     * @return string
     * @throws NotFoundHttpException
     */
-    public function actionView(string <?= $actionParams ?>) : string {
+    public function actionView(<?= $actionParams !== '$id' ? $actionParams : 'int ' . $actionParams  ?>) : string
+    {
         return $this->render('view', [
             'model' => $this->findModel(<?= $actionParams ?>)
         ]);
@@ -132,8 +133,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     * @return Response|string
     * @throws NotFoundHttpException if the model cannot be found
     */
-    public function actionUpdate(string <?= $actionParams ?>){
-
+    public function actionUpdate(<?= $actionParams !== '$id' ? $actionParams : 'int ' . $actionParams  ?>){
         $model = $this->findModel(<?= $actionParams ?>);
 
         if($this->request->isPost && $model->load($this->request->post()) && $model->save()){
@@ -155,7 +155,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     * @throws StaleObjectException
     * @throws Throwable
     */
-    public function actionDelete(string <?= $actionParams ?>) : Response {
+    public function actionDelete(<?= $actionParams !== '$id' ? $actionParams : 'int ' . $actionParams  ?>) : Response {
         $model = $this->findModel(<?= $actionParams ?>);
         $model->delete();
 
@@ -170,7 +170,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     * @return <?= $modelClass ?> the loaded model
     * @throws NotFoundHttpException if the model cannot be found
     */
-    protected function findModel(string <?= $actionParams ?>) : <?= $modelClass ?> {
+    protected function findModel(<?= $actionParams !== '$id' ? $actionParams : 'int ' . $actionParams  ?>) : <?= $modelClass ?> {
         <?php
         if (count($pks) === 1) {
             $condition = '$id';

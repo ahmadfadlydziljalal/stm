@@ -254,9 +254,9 @@ class Generator extends \yii\gii\Generator
         } elseif ($column->type === 'text') {
             return "\$form->field(\$model, '$attribute')->textarea(['rows' => 6])";
         } elseif ($column->type === 'date') {
-            return "\$form->field(\$model, '$attribute')->widget(\kartik\datecontrol\DateControl::class,[ 'type'=>kartik\datecontrol\DateControl::FORMAT_DATE, ])";
+            return "\$form->field(\$model, '$attribute')->widget(\kartik\datecontrol\DateControl::class,[ 'type'=>\kartik\datecontrol\DateControl::FORMAT_DATE, ])";
         } elseif ($column->type === 'datetime') {
-            return "\$form->field(\$model, '$attribute')->widget(\kartik\datecontrol\DateControl::class,[ 'type'=>kartik\datecontrol\DateControl::FORMAT_DATETIME, ])";
+            return "\$form->field(\$model, '$attribute')->widget(\kartik\datecontrol\DateControl::class,[ 'type'=>\kartik\datecontrol\DateControl::FORMAT_DATETIME, ])";
         } else {
             if (preg_match('/^(password|pass|passwd|passcode)$/i', $column->name)) {
                 $input = 'passwordInput';
@@ -607,7 +607,7 @@ class Generator extends \yii\gii\Generator
         if (($table = $this->getTableSchema()) === false) {
             $params = [];
             foreach ($pks as $pk) {
-                $params[] = '@param ' . (substr(strtolower($pk), -2) == 'id' ? 'integer' : 'string') . ' $' . $pk;
+                $params[] = '@param ' . (substr(strtolower($pk), -2) == 'id' ? 'int' : 'string') . ' $' . $pk;
             }
 
             return $params;

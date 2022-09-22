@@ -1,6 +1,5 @@
 <?php
 
-use yii\bootstrap\Modal;
 use yii\helpers\StringHelper;
 
 
@@ -49,11 +48,10 @@ return [
     ?>
     [
         'class' => 'yii\grid\ActionColumn',
-        'urlCreator' => function($action, $model, $key, $index) {
-            return \yii\helpers\Url::to([
+        'urlCreator' => function($action, $model) {
+            return Url::to([
                 $action,
-                'id' => $model->id,
-                'page' => Yii::$app->request->getQueryParam('page', null)
+                'id' => $model->id
             ]);
         },
     ],

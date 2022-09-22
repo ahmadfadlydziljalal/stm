@@ -1,7 +1,6 @@
 <?php
 
-use rmrevin\yii\fontawesome\FAS;
-use yii\bootstrap\Modal;
+
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
@@ -42,6 +41,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns' => require(__DIR__.'/_columns.php'),
             ]);
         } catch(Exception $e){
+            echo $e->getMessage();
+        } catch (Throwable $e) {
             echo $e->getMessage();
         }<?= "\n         ?>\n"
     ?>

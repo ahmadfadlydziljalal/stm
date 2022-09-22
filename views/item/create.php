@@ -3,7 +3,6 @@
 /* @var $this yii\web\View */
 /* @var $model app\models\Item */
 /* @var $modelsDetail app\models\ItemDetail */
-/* @var $modelsDetailDetail app\models\ItemDetailDetail */
 
 use yii\helpers\Html;
 $this->title = 'Tambah Item';
@@ -18,7 +17,5 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $this->render('_form', [
         'model' => $model,
         'modelsDetail' => $modelsDetail,
-        'modelsDetailDetail' => $modelsDetailDetail,
     ]) ?>
-
 </div>

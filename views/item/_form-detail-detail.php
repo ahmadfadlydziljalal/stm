@@ -1,6 +1,5 @@
 <?php
 use yii\helpers\Html;
-use yii\bootstrap5\ActiveForm;
 use wbraganca\dynamicform\DynamicFormWidget;
 
 /* @var $this yii\web\View */
@@ -43,14 +42,14 @@ use wbraganca\dynamicform\DynamicFormWidget;
         <td class="align-middle"  style="width: 2px;">
 
             <?php if (!$modelDetailDetail->isNewRecord) {
-            echo Html::activeHiddenInput($modelDetailDetail, "[{$i}][{$j}]id");
+            echo Html::activeHiddenInput($modelDetailDetail, "[$i][$j]id");
             }  ?>
 
             <i class="bi bi-dash"></i>
         </td>
 
-        <td><?= $form->field($modelDetailDetail, "[{$i}][{$j}]name", ['template' => '{input}{error}{hint}', 'options' =>['class' => null] ]); ?></td>
-        <td><?= $form->field($modelDetailDetail, "[{$i}][{$j}]dropdown_item", ['template' => '{input}{error}{hint}', 'options' =>['class' => null] ]); ?></td>
+        <td><?= $form->field($modelDetailDetail, "[$i][$j]name", ['template' => '{input}{error}{hint}', 'options' =>['class' => null] ]); ?></td>
+        <td><?= $form->field($modelDetailDetail, "[$i][$j]dropdown_item", ['template' => '{input}{error}{hint}', 'options' =>['class' => null] ]); ?></td>
         
         <td class="text-center" style="width: 90px;">
             <button type="button" class="remove-room btn btn-link text-danger">

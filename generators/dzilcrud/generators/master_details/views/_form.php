@@ -121,7 +121,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
 
                         <td style="width: 2px;" class="align-middle">
                             <?= "<?php " ?>if (!$modelDetail->isNewRecord) {
-                            echo Html::activeHiddenInput($modelDetail, "[{$i}]id");
+                            echo Html::activeHiddenInput($modelDetail, "[$i]id");
                             } ?>
                             <i class="bi bi-arrow-right-short"></i>
                         </td>
@@ -129,7 +129,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
                         <?php foreach ($generator->getDetailColumnNames() as $columnName) {
                             if ($columnName === 'id') continue;
                             if ($columnName === Inflector::underscore(StringHelper::basename($generator->modelClass)) . '_id') continue;
-                            ?><td><?= "<?= " ?>$form->field($modelDetail, "[{$i}]<?= $columnName ?>", ['template' =>
+                            ?><td><?= "<?= " ?>$form->field($modelDetail, "[$i]<?= $columnName ?>", ['template' =>
                             '{input}{error}{hint}', 'options' =>['class' => null] ]); ?></td>
                         <?php } ?>
 

@@ -1,12 +1,11 @@
 <?php
-use yii\helpers\Url;
-use yii\helpers\Html;
-use yii\bootstrap5\Modal;
-use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\search\ItemSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+
+use yii\helpers\Html;
+use yii\grid\GridView;
 
 $this->title = 'Item';
 $this->params['breadcrumbs'][] = $this->title;
@@ -28,6 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns' => require(__DIR__.'/_columns.php'),
             ]);
         } catch(Exception $e){
+            echo $e->getMessage();
+        } catch (Throwable $e) {
             echo $e->getMessage();
         }
          ?>

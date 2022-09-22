@@ -26,7 +26,7 @@
     "kartik-v/yii2-widget-datepicker": "dev-master",
     "kartik-v/yii2-widget-datetimepicker": "dev-master",
     "kartik-v/yii2-mpdf": "dev-master",
-    "mdmsoft/yii2-admin": "dev-master",
+    "mdmsoft/yii2-admin": "2.x-dev",
     "mdmsoft/yii2-autonumber": "~1.0",
     "twbs/bootstrap-icons": "^1.9"
   },

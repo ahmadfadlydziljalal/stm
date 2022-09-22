@@ -2,7 +2,6 @@
 
 namespace app\models\search;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Item;
@@ -15,7 +14,7 @@ class ItemSearch extends Item
     /**
      * @inheritdoc
      */
-    public function rules()
+    public function rules() : array
     {
         return [
             [['id'], 'integer'],
@@ -26,7 +25,7 @@ class ItemSearch extends Item
     /**
      * @inheritdoc
      */
-    public function scenarios()
+    public function scenarios() : array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -34,12 +33,10 @@ class ItemSearch extends Item
 
     /**
      * Creates data provider instance with search query applied
-     *
      * @param array $params
-     *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search(array $params) : ActiveDataProvider
     {
         $query = Item::find();
 

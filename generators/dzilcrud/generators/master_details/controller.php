@@ -108,7 +108,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     * @return string
     * @throws HttpException
     */
-    public function actionView(int <?= $actionParams ?>) : string{
+    public function actionView(<?= $actionParams !== '$id' ? $actionParams : 'int ' . $actionParams  ?>) : string{
         return $this->render('view', [
             'model' => $this->findModel(<?= $actionParams ?>),
         ]);
@@ -140,8 +140,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                 try{
 
                     if ($flag = $model->save(false)) {
-                        foreach ($modelsDetail as $i => $detail) :
-                            if ($flag === false) {break;}
+                        foreach ($modelsDetail as $detail) :
                             $detail-><?= Inflector::underscore(StringHelper::basename($generator->modelClass)) . '_id' ?> = $model->id;
                             if (!($flag = $detail->save(false))) {break;}
                         endforeach;
@@ -184,7 +183,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     * @throws HttpException
     * @throws NotFoundHttpException
     */
-    public function actionUpdate(int <?= $actionParams ?>)
+    public function actionUpdate(<?= $actionParams !== '$id' ? $actionParams : 'int ' . $actionParams  ?>)
     {
         $request = Yii::$app->request;
         $model = $this->findModel(<?= $actionParams ?>);
@@ -210,11 +209,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                             <?= $modelsDetail ?>::deleteAll(['id' => $deletedDetailsID]);
                         }
 
-                        foreach ($modelsDetail as $i => $detail) :
-                            if ($flag === false) {
-                                break;
-                            }
-
+                        foreach ($modelsDetail as $detail) :
                             $detail-><?= Inflector::underscore(StringHelper::basename($generator->modelClass)) . '_id' ?> = $model->id;
                             if (!($flag = $detail->save(false))) {
                                 break;
@@ -258,7 +253,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     * @throws Throwable
     * @throws StaleObjectException
     */
-    public function actionDelete(int <?= $actionParams ?>) : Response
+    public function actionDelete(<?= $actionParams !== '$id' ? $actionParams : 'int ' . $actionParams  ?>) : Response
     {
         $model = $this->findModel(<?= $actionParams ?>);
         $model->delete();
@@ -274,7 +269,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     * @return <?= $modelClass ?> the loaded model
     * @throws NotFoundHttpException if the model cannot be found
     */
-    protected function findModel(int <?= $actionParams ?>) : <?= $modelClass ?>
+    protected function findModel(<?= $actionParams !== '$id' ? $actionParams : 'int ' . $actionParams  ?>) : <?= $modelClass ?>
     {
     <?php
     if (count($pks) === 1) {
