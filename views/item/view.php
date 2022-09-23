@@ -18,9 +18,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <h1><?= Html::encode($this->title) ?></h1>
         <div class="d-flex flex-row flex-wrap align-items-center" style="gap: .5rem">
 
+            <?= Html::a('Kembali', Yii::$app->request->referrer, ['class' => 'btn btn-outline-secondary']) ?>
             <?= Html::a('Index', ['index'], ['class' => 'btn btn-outline-primary']) ?>
             <?= Html::a('Buat Lagi', ['create'], ['class' => 'btn btn-success']) ?>
-            <?= Html::a('Kembali', Yii::$app->request->referrer, ['class' => 'btn btn-outline-secondary']) ?>
             <?= Html::a('Update',['update', 'id' => $model->id], ['class' => 'btn btn-outline-primary']) ?>
             <?php 
                 if(Helper::checkRoute('delete')) :

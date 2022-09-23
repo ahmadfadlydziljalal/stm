@@ -372,12 +372,6 @@ class ItemController extends Controller
     {
         /** @var Pdf $pdf */
         $pdf = Yii::$app->pdfWithLetterhead;
-
-
-//        return $this->renderPartial('_pdf', [
-//            'model' => $this->findModel($id)
-//        ]);
-        
         $pdf->content = $this->renderPartial('_pdf', [
             'model' => $this->findModel($id)
         ]);

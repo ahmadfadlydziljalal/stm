@@ -33,9 +33,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <h1><?= "<?= " ?>Html::encode($this->title) ?></h1>
         <div class="d-flex flex-row flex-wrap align-items-center" style="gap: .5rem">
 
+            <?= "<?= " ?>Html::a(<?= $generator->generateString('Kembali') ?>, Yii::$app->request->referrer, ['class' => 'btn btn-outline-secondary']) ?>
             <?= "<?= " ?>Html::a(<?= $generator->generateString('Index') ?>, ['index'], ['class' => 'btn btn-outline-primary']) ?>
             <?= "<?= " ?>Html::a(<?= $generator->generateString('Buat Lagi') ?>, ['create'], ['class' => 'btn btn-success']) ?>
-            <?= "<?= " ?>Html::a(<?= $generator->generateString('Kembali') ?>, Yii::$app->request->referrer, ['class' => 'btn btn-outline-secondary']) ?>
             <?= "<?= " ?>Html::a(<?= $generator->generateString('Update') ?>,['update', <?= $urlParams ?>], ['class' => 'btn btn-outline-primary']) ?>
             <?= "<?php \n"?>
                 if(Helper::checkRoute('delete')) :
