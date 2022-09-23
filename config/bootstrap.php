@@ -2,5 +2,5 @@
 
 return [
     'log',
-    'app\components\bootstraps\PdfProperties'
+    'app\components\bootstraps\PdfProperties',
 ];

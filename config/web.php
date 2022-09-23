@@ -31,7 +31,8 @@ $config = [
         'user' => require __DIR__ . '/user.php',
         'urlManager' => require __DIR__ . '/url_manager.php',
         'view' => require __DIR__ . '/view.php',
-        'pdf' => require __DIR__ . '/pdf.php'
+        'pdf' => require __DIR__ . '/pdf.php',
+        'pdfWithLetterhead' => require __DIR__ . '/pdf_with_letterhead.php',
     ],
     'container' => [
         'definitions' => [

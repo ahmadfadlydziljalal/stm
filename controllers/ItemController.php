@@ -371,7 +371,7 @@ class ItemController extends Controller
     public function actionExportPdf(int $id): string
     {
         /** @var Pdf $pdf */
-        $pdf = Yii::$app->pdf;
+        $pdf = Yii::$app->pdfWithLetterhead;
 
 
 //        return $this->renderPartial('_pdf', [

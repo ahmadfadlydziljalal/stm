@@ -24,7 +24,7 @@ const files = {
     cssBuildPath: THEME_PATH + '/dist/css/',
     jsBuildPath: THEME_PATH + '/dist/js/',
     fontsBuildPath: THEME_PATH + '/dist/fonts/',
-    imagesBuildPath: THEME_PATH + '/dist/images/'
+    imgBuildPath: THEME_PATH + '/dist/img/'
 }
 
 // compiles *.scss to .css file

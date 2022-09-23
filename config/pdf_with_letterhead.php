@@ -1,5 +1,4 @@
 <?php
-$params = require __DIR__ . '/params.php';
 
 return [
     'class' => kartik\mpdf\Pdf::class,
@@ -7,10 +6,10 @@ return [
     'orientation' => kartik\mpdf\Pdf::ORIENT_PORTRAIT,
     'destination' => kartik\mpdf\Pdf::DEST_BROWSER,
     'cssFile' => '@app/themes/v2/dist/css/print.css',
-    'methods' => [],
-    'options' => [
-        'showWatermarkText' => true,
-        'useSubstitutions' => false,
-        'simpleTables' => true,
-    ]
+    'methods' => [
+        'SetDisplayMode' => 'fullpage',
+        'SetDisplayPreferences' => '/HideMenubar/HideToolbar/DisplayDocTitle/FitWindow',
+    ],
+    'marginTop' => '30',
+    'marginHeader' => '5'
 ];
