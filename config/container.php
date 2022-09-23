@@ -1,6 +1,5 @@
 <?php
 
-use kartik\grid\GridView as KartikGridview;
 use yii\bootstrap5\LinkPager as Bs5LinkPager;
 use yii\data\Pagination;
 use yii\grid\ActionColumn;
@@ -9,7 +8,7 @@ use yii\grid\SerialColumn;
 use yii\widgets\DetailView;
 use yii\widgets\LinkPager;
 
-return  [
+return [
     'definitions' => [
         Pagination::class => ['pageSize' => 10],
         LinkPager::class => Bs5LinkPager::class,
@@ -41,7 +40,7 @@ return  [
             ],
             'summary' => "{begin, number}-{end, number} dari {totalCount, number} {totalCount, plural, one{item} other{items}}",
         ],
-        KartikGridview::class => [
+        \kartik\grid\GridView::class => [
             'headerRowOptions' => [
                 'class' => 'text-nowrap text-center'
             ],
@@ -53,11 +52,18 @@ return  [
             ],
             'headerContainer' => [],
             'bordered' => false,
-            'responsive' => false, // Matikan responsive bawaan
-            'responsiveWrap' => false, // Matikan responsive bawaan
-            'resizableColumns' => false, // Matikan responsive bawaan
-            'panel' => false,
+            'responsive' => false,
+            'responsiveWrap' => false,
+            'resizableColumns' => false,
             'striped' => false,
+            'exportConfig' => [
+                'html' => [],
+                'csv' => [],
+                'txt' => [],
+                'xls' => [],
+                'pdf' => [],
+                'json' => [],
+            ],
             'layout' =>
                 '<div class="table-responsive">' .
                 "{items}" .
@@ -72,7 +78,6 @@ return  [
                 'prevPageLabel' => '<i class="bi bi-chevron-left small"></i>',
                 'nextPageLabel' => '<i class="bi bi-chevron-right small"></i>',
                 'maxButtonCount' => 3,
-
             ],
             'summary' => "{begin, number}-{end, number} dari {totalCount, number} {totalCount, plural, one{item} other{items}}",
         ],

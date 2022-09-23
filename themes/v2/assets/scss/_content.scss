@@ -1,5 +1,51 @@
+@import "vars";
+
 section.content {
   padding: 1rem;
   margin-left: 250px;
   transition: all .1s;
+}
+
+.card {
+
+  .kv-panel-before {
+    border-bottom: 1px solid $primary;
+  }
+
+  .card-header {
+    border: none;
+  }
+
+  .card-footer {
+    border-top: 1px solid $primary;
+    background: transparent;
+    padding: 1rem 1.5rem;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  table td, table th {
+    border: 1px solid $primary;
+  }
+
+  table tr:first-child th {
+    border-top: 0;
+  }
+
+  table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  table tr td:first-child,
+  table tr th:first-child {
+    border-left: 0;
+  }
+
+  table tr td:last-child,
+  table tr th:last-child {
+    border-right: 0;
+  }
+
 }
