@@ -6,7 +6,7 @@ use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
 /* @var $this yii\web\View */
-/* @var $generator \app\generators\dzilajaxcrud\generators\Generator */
+/* @var $generator \app\generators\dzilcrud\generators\Generator */
 
 /* @var $model ActiveRecord */
 $model = new $generator->modelClass();

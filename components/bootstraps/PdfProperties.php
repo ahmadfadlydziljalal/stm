@@ -17,7 +17,7 @@ class PdfProperties extends Component
             Yii::$app->name :
             Yii::$app->settings->get('site.name');
 
-        $footer = empty(Yii::$app->settings->get('site.companyClient')) ?
+        $footer = !Yii::$app->settings->get('site.companyClient') ?
             Yii::$app->params['companyName'] :
             Yii::$app->settings->get('site.companyClient');
 
