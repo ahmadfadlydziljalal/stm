@@ -59,9 +59,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= "<?php try { 
             echo "?>DetailView::widget([
                 'model' => $model,
-                'options' => [
-                    'class' => 'table table-bordered'
-                ],
                 'attributes' => [
                     <?php
                     if (($tableSchema = $generator->getTableSchema()) === false) {

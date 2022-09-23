@@ -1,0 +1,22 @@
+@import "vars";
+
+@media print {
+
+  body {
+
+    font-weight: normal;
+    font-size: 11pt;
+
+    @import "print_table";
+
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .text-end {
+    text-align: right;
+  }
+
+}

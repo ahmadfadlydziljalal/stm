@@ -39,9 +39,6 @@ use yii\widgets\DetailView;
         <?= "<?php try { 
             echo "?>DetailView::widget([
                 'model' => $model,
-                'options' => [
-                    'class' => 'table table-bordered'
-                ],
                 'attributes' => [<?php
                     array_map(function($el) use($generator){
                         if ($el == 'id' || $el == Inflector::underscore(StringHelper::basename($generator->modelClass)).'_id' || $el == 'created_at' || $el == 'updated_at' || $el == 'created_by' || $el == 'updated_by') {

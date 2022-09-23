@@ -14,7 +14,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
     'widgetContainer' => 'dynamicform_inner',
     'widgetBody' => '.container-rooms',
     'widgetItem' => '.room-item',
-    'limit' => 10,
+    'limit' => 99,
     'min' => 1,
     'insertButton' => '.add-room',
     'deleteButton' => '.remove-room',

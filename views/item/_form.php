@@ -6,126 +6,102 @@ use wbraganca\dynamicform\DynamicFormWidget;
 /* @var $this yii\web\View */
 /* @var $model app\models\Item */
 /* @var $modelsDetail app\models\ItemDetail */
+/* @var $modelsDetailDetail app\models\ItemDetailDetail */
 /* @var $form yii\bootstrap5\ActiveForm */
 ?>
 
 <div class="item-form">
 
     <?php $form = ActiveForm::begin([
-            'id' => 'dynamic-form',
-            'layout' => ActiveForm::LAYOUT_HORIZONTAL,
-            'fieldConfig' => [
-                'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
-                'horizontalCssClasses' => [
-                    'label' => 'col-sm-4 col-form-label',
-                    'offset' => 'offset-sm-4',
-                    'wrapper' => 'col-sm-8',
-                    'error' => '',
-                    'hint' => '',
-                ],
+        'id' => 'dynamic-form',
+        'layout' => ActiveForm::LAYOUT_HORIZONTAL,
+        'fieldConfig' => [
+            'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
+            'horizontalCssClasses' => [
+                'label' => 'col-sm-4 col-form-label',
+                'offset' => 'offset-sm-4',
+                'wrapper' => 'col-sm-8',
+                'error' => '',
+                'hint' => '',
             ],
+        ],
 
-            /*'layout' => ActiveForm::LAYOUT_FLOATING,
-            'fieldConfig' => [
-                'options' => [
+        /*'layout' => ActiveForm::LAYOUT_FLOATING,
+        'fieldConfig' => [
+            'options' => [
                 'class' => 'form-floating'
-                ]
-            ]*/
+            ]
+        ]*/
     ]); ?>
 
     <div class="d-flex flex-column mt-0" style="gap: 1rem">
-
         <div class="form-master">
             <div class="row">
                 <div class="col-12 col-lg-7">
-                    <?= $form->field($model, 'name')->textInput([
+                        <?= $form->field($model, 'name')->textInput([
                     'maxlength' => true,
                     'autofocus'=> 'autofocus'
                 ]) ?>
-            <?= $form->field($model, 'tanggal')->widget(\kartik\datecontrol\DateControl::class,[ 'type'=>\kartik\datecontrol\DateControl::FORMAT_DATE, ]) ?>
-            <?= $form->field($model, 'tanggal_waktu')->widget(\kartik\datecontrol\DateControl::class,[ 'type'=>\kartik\datecontrol\DateControl::FORMAT_DATETIME, ]) ?>
-                </div>
+<?php echo $form->field($model, 'tanggal')->widget(\kartik\datecontrol\DateControl::class,[ 'type'=>\kartik\datecontrol\DateControl::FORMAT_DATE, ]); ?>
+	<?php echo $form->field($model, 'tanggal_waktu')->widget(\kartik\datecontrol\DateControl::class,[ 'type'=>\kartik\datecontrol\DateControl::FORMAT_DATETIME, ]); ?>
+	                </div>
             </div>
         </div>
 
         <div class="form-detail">
 
-            <?php 
-            DynamicFormWidget::begin([
+            <?php DynamicFormWidget::begin([
                 'widgetContainer' => 'dynamicform_wrapper',
-                'widgetBody' => '.container-items',
-                'widgetItem' => '.item',
-                'limit' => 100,
-                'min' => 1,
-                'insertButton' => '.add-item',
-                'deleteButton' => '.remove-item',
+                'widgetBody' => '.container-items', // required: css class selector
+                'widgetItem' => '.item', // required: css class
+                'limit' => 100, // the maximum times, an element can be cloned (default 999)
+                'min' => 1, // 0 or 1 (default 1)
+                'insertButton' => '.add-item', // css class
+                'deleteButton' => '.remove-item', // css class
                 'model' => $modelsDetail[0],
                 'formId' => 'dynamic-form',
                 'formFields' => [ 'id',  'item_id',  'name',  'dropdown_item', ],
-                ]);
-            ?>
+            ]); ?>
+            
+            <div class="container-items">
 
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th colspan="4">Item detail</th>
-                    </tr>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Dropdown item</th>
-                        <th scope="col" style="width: 2px">Aksi</th>
-                    </tr>
-                    </thead>
+                <?php foreach ($modelsDetail as $i => $modelDetail): ?>
+                <div class="card mb-4 shadow-sm item">
 
-                    <tbody class="container-items">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <?php if (!$modelDetail->isNewRecord) { echo Html::activeHiddenInput($modelDetail, "[$i]id"); } ?>
+                            <strong><i class="bi bi-arrow-right-short"></i> Item Details</strong>
+                            <button type="button" class="remove-item btn btn-link text-danger"><i class="bi bi-x-circle"> </i></button></div>
+                    </div>
 
-                    <?php foreach ($modelsDetail as $i => $modelDetail): ?>
-                    <tr class="item">
-
-                        <td style="width: 2px;" class="align-middle">
-                            <?php if (!$modelDetail->isNewRecord) {
-                            echo Html::activeHiddenInput($modelDetail, "[$i]id");
-                            } ?>
-                            <i class="bi bi-arrow-right-short"></i>
-                        </td>
-
-                        <td><?= $form->field($modelDetail, "[$i]name", ['template' =>
-                            '{input}{error}{hint}', 'options' =>['class' => null] ]); ?></td>
-                        <td><?= $form->field($modelDetail, "[$i]dropdown_item", ['template' =>
-                            '{input}{error}{hint}', 'options' =>['class' => null] ]); ?></td>
+                    <div class="card-body">
+                        <?= $form->field($modelDetail, "[$i]name", ['options' =>['class' => 'mb-3 row'] ]); ?>
+                        <?= $form->field($modelDetail, "[$i]dropdown_item", ['options' =>['class' => 'mb-3 row'] ]); ?>
                         
-                        <td>
-                            <button type="button" class="remove-item btn btn-link text-danger">
-                                <i class="bi bi-trash"> </i>
-                            </button>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
+                        <?= $this->render('_form-detail-detail', [
+                                'form' => $form,
+                                'i' => $i,
+                                'modelsDetailDetail' => $modelsDetailDetail[$i],
+                        ]) ?>
+                    </div>
 
-                    </tbody>
+                </div>
 
-                    <tfoot>
-                    <tr>
-                        <td class="text-end" colspan="3">
-                            <?php echo Html::button('<span class="bi bi-plus-circle"></span> Tambah', [ 'class' => 'add-item btn btn-success', ]); ?>
-                        </td>
-                        <td></td>
-                    </tr>
-                    </tfoot>
-                </table>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="text-end">
+                <?php echo Html::button('<span class="bi bi-plus-circle"></span> Tambah item Details', [ 'class' => 'add-item btn btn-success', ]); ?>
             </div>
 
             <?php DynamicFormWidget::end(); ?> 
+
+            <div class="d-flex justify-content-between mt-3">
+                <?= Html::a( ' Tutup', ['index'], ['class' => 'btn btn-secondary']) ?>
+                <?= Html::submitButton(' Simpan', ['class' =>'btn btn-primary' ]) ?>
+            </div>
         </div>
 
-        <div class="d-flex justify-content-between">
-            <?= Html::a(' Tutup', ['index'], ['class' => 'btn btn-secondary']) ?>
-            <?= Html::submitButton(' Simpan', ['class' =>'btn btn-success'])?>
-        </div>
+        <?php ActiveForm::end();  ?> 
     </div>
-
-    <?php ActiveForm::end();  ?> 
-
-</div>

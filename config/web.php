@@ -1,11 +1,12 @@
 <?php
 
+use yii\bootstrap5\LinkPager as Bs5LinkPager;
 use yii\data\Pagination;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\grid\SerialColumn;
+use yii\widgets\DetailView;
 use yii\widgets\LinkPager;
-use yii\bootstrap5\LinkPager AS Bs5LinkPager;
 
 $params = require __DIR__ . '/params.php';
 
@@ -13,7 +14,7 @@ $config = [
     'aliases' => require __DIR__ . '/aliases.php',
     'as access' => require __DIR__ . '/as_access.php',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => require __DIR__ . '/bootstrap.php',
     'components' => [
         'assetManager' => require __DIR__ . '/asset_manager.php',
         'authManager' => require __DIR__ . '/auth_manager.php',
@@ -30,6 +31,7 @@ $config = [
         'user' => require __DIR__ . '/user.php',
         'urlManager' => require __DIR__ . '/url_manager.php',
         'view' => require __DIR__ . '/view.php',
+        'pdf' => require __DIR__ . '/pdf.php'
     ],
     'container' => [
         'definitions' => [
@@ -43,7 +45,7 @@ $config = [
                     'class' => 'text-nowrap'
                 ],
                 'tableOptions' => [
-                    'class' => 'table table-bordered'
+                    'class' => 'table table-bordered table-grid-view'
                 ],
                 'layout' =>
                     '<div class="table-responsive">' .
@@ -75,6 +77,11 @@ $config = [
                 'contentOptions' => [
                     'class' => 'text-center'
                 ],
+            ],
+            DetailView::class => [
+                'options' => [
+                    'class' => 'table table-bordered table-detail-view'
+                ]
             ]
         ]
     ],

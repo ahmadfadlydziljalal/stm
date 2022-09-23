@@ -22,9 +22,6 @@ use yii\widgets\DetailView;
         <?php try { 
             echo DetailView::widget([
                 'model' => $model,
-                'options' => [
-                    'class' => 'table table-bordered'
-                ],
                 'attributes' => [
                          // 'id',
                          // 'item_id',
