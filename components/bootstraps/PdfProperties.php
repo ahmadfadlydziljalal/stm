@@ -29,7 +29,6 @@ class PdfProperties extends Component
 
         /* PDF dengan kop surat */
 
-        $dataKaryawan = Yii::$app->cache->get('sihrd-karyawan' . Yii::$app->user->identity->id);
         $pdf = Yii::$app->pdfWithLetterhead;
         $pdf->methods['SetHTMLHeader'] = PdfHtmlHeader::widget();
         $pdf->methods['SetFooter'] = $footer . '| |' . '{PAGENO} dari {nb}';

@@ -18,12 +18,14 @@ class PdfHtmlHeader extends Widget
 
     public function init()
     {
-        parent::init();
 
-        $dataKaryawan = Yii::$app->cache->get('sihrd-karyawan' . Yii::$app->user->identity->id);
-        if(isset($dataKaryawan['jabatan_utama']['perusahaan'])){
-            $this->perusahaan = $dataKaryawan['jabatan_utama']['perusahaan'];
-            $this->alamat = $dataKaryawan['jabatan_utama']['alamat'];
+        parent::init();
+        if(!Yii::$app->user->isGuest){
+            $dataKaryawan = Yii::$app->cache->get('sihrd-karyawan' . Yii::$app->user->identity->id);
+            if(isset($dataKaryawan['jabatan_utama']['perusahaan'])){
+                $this->perusahaan = $dataKaryawan['jabatan_utama']['perusahaan'];
+                $this->alamat = $dataKaryawan['jabatan_utama']['alamat'];
+            }
         }
 
     }

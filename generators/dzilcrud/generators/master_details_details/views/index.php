@@ -11,9 +11,7 @@ $nameAttribute = $generator->getNameAttribute();
 $plusIcon = '<i class="bi bi-plus-circle-dotted"></i>';
 echo "<?php\n";
 ?>
-use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\bootstrap5\Modal;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */

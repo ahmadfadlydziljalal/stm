@@ -6,11 +6,6 @@ return [
         'viewPath' => '@app/views/mdm',
         'defaultRoute' => '/admin/default',
     ],
-    'settings' => [
-        'class' => 'pheme\settings\Module',
-        'sourceLanguage' => 'en',
-        'viewPath' => '@app/views/settings',
-    ],
     'datecontrol' => [
         'class' => 'kartik\datecontrol\Module',
         'displaySettings' => [
@@ -61,4 +56,12 @@ return [
             ],
         ]
     ],
+    'settings' => [
+        'class' => 'pheme\settings\Module',
+        'sourceLanguage' => 'en',
+        'viewPath' => '@app/views/settings',
+    ],
+    'gridview' => [
+        'class' => 'kartik\grid\Module',
+    ]
 ];
