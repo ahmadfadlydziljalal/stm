@@ -27,7 +27,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
 
     <thead class="thead-light">
         <tr>
-            <th colspan="4">Item detail detail</th>
+            <th colspan="4" class="ps-4"><i class="bi bi-arrow-right-short"></i>  <i class="bi bi-arrow-right-short"></i>   Item detail detail</th>
         </tr>
         <tr>
             <th scope="col">#</th>

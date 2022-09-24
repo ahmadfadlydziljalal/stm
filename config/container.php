@@ -48,22 +48,22 @@ return [
                 'class' => 'text-nowrap'
             ],
             'tableOptions' => [
-                'class' => 'table table-bordered table-grid-view'
+                'class' => 'table table-grid-view'
             ],
-            'headerContainer' => [],
-            'bordered' => false,
-            'responsive' => false,
-            'responsiveWrap' => false,
-            'resizableColumns' => false,
-            'striped' => false,
-            'exportConfig' => [
-                'html' => [],
-                'csv' => [],
-                'txt' => [],
-                'xls' => [],
-                'pdf' => [],
-                'json' => [],
-            ],
+//            'headerContainer' => [],
+//            'bordered' => false,
+//            'responsive' => false,
+//            'responsiveWrap' => false,
+//            'resizableColumns' => false,
+//            'striped' => false,
+//            'exportConfig' => [
+//                'html' => [],
+//                'csv' => [],
+//                'txt' => [],
+//                'xls' => [],
+//                'pdf' => [],
+//                'json' => [],
+//            ],
             'layout' =>
                 '<div class="table-responsive">' .
                 "{items}" .
@@ -72,14 +72,14 @@ return [
                 "{pager}" .
                 "{summary}" .
                 '</div>',
-            'pager' => [
-                'firstPageLabel' => 'First',
-                'lastPageLabel' => 'Last',
-                'prevPageLabel' => '<i class="bi bi-chevron-left small"></i>',
-                'nextPageLabel' => '<i class="bi bi-chevron-right small"></i>',
-                'maxButtonCount' => 3,
-            ],
-            'summary' => "{begin, number}-{end, number} dari {totalCount, number} {totalCount, plural, one{item} other{items}}",
+//            'pager' => [
+//                'firstPageLabel' => 'First',
+//                'lastPageLabel' => 'Last',
+//                'prevPageLabel' => '<i class="bi bi-chevron-left small"></i>',
+//                'nextPageLabel' => '<i class="bi bi-chevron-right small"></i>',
+//                'maxButtonCount' => 3,
+//            ],
+//            'summary' => "{begin, number}-{end, number} dari {totalCount, number} {totalCount, plural, one{item} other{items}}",
         ],
         SerialColumn::class => [
             'contentOptions' => [

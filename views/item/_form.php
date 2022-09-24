@@ -1,4 +1,6 @@
 <?php
+
+use kartik\datecontrol\DateControl;
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
 use wbraganca\dynamicform\DynamicFormWidget;
@@ -42,8 +44,8 @@ use wbraganca\dynamicform\DynamicFormWidget;
                     'maxlength' => true,
                     'autofocus'=> 'autofocus'
                 ]) ?>
-<?php echo $form->field($model, 'tanggal')->widget(\kartik\datecontrol\DateControl::class,[ 'type'=>\kartik\datecontrol\DateControl::FORMAT_DATE, ]); ?>
-	<?php echo $form->field($model, 'tanggal_waktu')->widget(\kartik\datecontrol\DateControl::class,[ 'type'=>\kartik\datecontrol\DateControl::FORMAT_DATETIME, ]); ?>
+<?php echo $form->field($model, 'tanggal')->widget(DateControl::class,[ 'type'=> DateControl::FORMAT_DATE, ]); ?>
+	<?php echo $form->field($model, 'tanggal_waktu')->widget(DateControl::class,[ 'type'=> DateControl::FORMAT_DATETIME, ]); ?>
 	                </div>
             </div>
         </div>
@@ -66,25 +68,26 @@ use wbraganca\dynamicform\DynamicFormWidget;
             <div class="container-items">
 
                 <?php foreach ($modelsDetail as $i => $modelDetail): ?>
-                <div class="card mb-4 shadow-sm item">
+                <div class="card mb-4 item">
 
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <?php if (!$modelDetail->isNewRecord) { echo Html::activeHiddenInput($modelDetail, "[$i]id"); } ?>
                             <strong><i class="bi bi-arrow-right-short"></i> Item Details</strong>
-                            <button type="button" class="remove-item btn btn-link text-danger"><i class="bi bi-x-circle"> </i></button></div>
+                            <button type="button" class="remove-item btn btn-link text-danger"><i class="bi bi-x-circle"> </i></button>
+                        </div>
                     </div>
 
                     <div class="card-body">
                         <?= $form->field($modelDetail, "[$i]name", ['options' =>['class' => 'mb-3 row'] ]); ?>
                         <?= $form->field($modelDetail, "[$i]dropdown_item", ['options' =>['class' => 'mb-3 row'] ]); ?>
-                        
-                        <?= $this->render('_form-detail-detail', [
-                                'form' => $form,
-                                'i' => $i,
-                                'modelsDetailDetail' => $modelsDetailDetail[$i],
-                        ]) ?>
                     </div>
+
+                    <?= $this->render('_form-detail-detail', [
+                        'form' => $form,
+                        'i' => $i,
+                        'modelsDetailDetail' => $modelsDetailDetail[$i],
+                    ]) ?>
 
                 </div>
 

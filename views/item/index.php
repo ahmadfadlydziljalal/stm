@@ -25,6 +25,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
             'columns' => require(__DIR__ . '/_columns.php'),
+            /*'panel' => [
+                'type' => 'primary',
+                'after' => false
+            ],*/
+            'panel' => false,
+            'bordered' => true,
+            'striped' => false,
+            'headerContainer' => []
         ]);
     } catch (Exception $e) {
         echo $e->getMessage();
