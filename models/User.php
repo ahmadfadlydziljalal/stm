@@ -2,9 +2,10 @@
 
 namespace app\models;
 
-use mdm\admin\models\User as ModelsUser;
+use mdm\admin\models\User as MdmUser;
 use Yii;
 use yii\base\InvalidConfigException;
+use yii\base\NotSupportedException;
 use yii\bootstrap5\Html;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
@@ -14,7 +15,7 @@ use yii\httpclient\Exception;
 /**
  * @property int $karyawan_id
  * */
-class User extends ModelsUser
+class User extends MdmUser
 {
 
     const SCENARIO_CREATE = 'create';
@@ -108,10 +109,8 @@ class User extends ModelsUser
 
     public function afterSave($insert, $changedAttributes)
     {
-
         parent::afterSave($insert, $changedAttributes);
         $this->saveCacheForImage();
-
     }
 
     /**
@@ -215,4 +214,5 @@ class User extends ModelsUser
         Yii::$app->cache->delete('sihrd-karyawan' . $this->id);
         parent::afterDelete();
     }
+
 }

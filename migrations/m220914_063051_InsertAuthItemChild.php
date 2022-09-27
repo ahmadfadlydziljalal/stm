@@ -14,118 +14,117 @@ class m220914_063051_InsertAuthItemChild extends Migration
     {
         $this->db->createCommand('SET FOREIGN_KEY_CHECKS = 0')->execute();
         $sql = <<<SQL
-DELETE FROM `auth_item_child`;
-INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
-	('super-admin', '/*'),
-	('super-admin', '/admin/*'),
-	('super-admin', '/admin/assignment/*'),
-	('super-admin', '/admin/assignment/assign'),
-	('super-admin', '/admin/assignment/index'),
-	('super-admin', '/admin/assignment/revoke'),
-	('super-admin', '/admin/assignment/view'),
-	('super-admin', '/admin/default/*'),
-	('super-admin', '/admin/default/index'),
-	('super-admin', '/admin/menu/*'),
-	('super-admin', '/admin/menu/create'),
-	('super-admin', '/admin/menu/delete'),
-	('super-admin', '/admin/menu/index'),
-	('super-admin', '/admin/menu/update'),
-	('super-admin', '/admin/menu/view'),
-	('super-admin', '/admin/permission/*'),
-	('super-admin', '/admin/permission/assign'),
-	('super-admin', '/admin/permission/create'),
-	('super-admin', '/admin/permission/delete'),
-	('super-admin', '/admin/permission/get-users'),
-	('super-admin', '/admin/permission/index'),
-	('super-admin', '/admin/permission/remove'),
-	('super-admin', '/admin/permission/update'),
-	('super-admin', '/admin/permission/view'),
-	('super-admin', '/admin/role/*'),
-	('super-admin', '/admin/role/assign'),
-	('super-admin', '/admin/role/create'),
-	('super-admin', '/admin/role/delete'),
-	('super-admin', '/admin/role/get-users'),
-	('super-admin', '/admin/role/index'),
-	('super-admin', '/admin/role/remove'),
-	('super-admin', '/admin/role/update'),
-	('super-admin', '/admin/role/view'),
-	('super-admin', '/admin/route/*'),
-	('super-admin', '/admin/route/assign'),
-	('super-admin', '/admin/route/create'),
-	('super-admin', '/admin/route/index'),
-	('super-admin', '/admin/route/refresh'),
-	('super-admin', '/admin/route/remove'),
-	('super-admin', '/admin/rule/*'),
-	('super-admin', '/admin/rule/create'),
-	('super-admin', '/admin/rule/delete'),
-	('super-admin', '/admin/rule/index'),
-	('super-admin', '/admin/rule/update'),
-	('super-admin', '/admin/rule/view'),
-	('super-admin', '/admin/user/*'),
-	('super-admin', '/admin/user/activate'),
-	('super-admin', '/admin/user/change-password'),
-	('super-admin', '/admin/user/delete'),
-	('super-admin', '/admin/user/index'),
-	('super-admin', '/admin/user/login'),
-	('super-admin', '/admin/user/logout'),
-	('super-admin', '/admin/user/request-password-reset'),
-	('super-admin', '/admin/user/reset-password'),
-	('super-admin', '/admin/user/signup'),
-	('super-admin', '/admin/user/view'),
-	('super-admin', '/dark-light-toggle/*'),
-	('super-admin', '/dark-light-toggle/index'),
-	('super-admin', '/debug/*'),
-	('super-admin', '/debug/default/*'),
-	('super-admin', '/debug/default/db-explain'),
-	('super-admin', '/debug/default/download-mail'),
-	('super-admin', '/debug/default/index'),
-	('super-admin', '/debug/default/toolbar'),
-	('super-admin', '/debug/default/view'),
-	('super-admin', '/debug/user/*'),
-	('super-admin', '/debug/user/reset-identity'),
-	('super-admin', '/debug/user/set-identity'),
-	('super-admin', '/gii/*'),
-	('super-admin', '/gii/default/*'),
-	('super-admin', '/gii/default/action'),
-	('super-admin', '/gii/default/diff'),
-	('super-admin', '/gii/default/index'),
-	('super-admin', '/gii/default/preview'),
-	('super-admin', '/gii/default/view'),
-	('super-admin', '/item/*'),
-	('super-admin', '/item/create'),
-	('super-admin', '/item/delete'),
-	('super-admin', '/item/index'),
-	('super-admin', '/item/update'),
-	('super-admin', '/item/view'),
-	('super-admin', '/session/*'),
-	('super-admin', '/session/create'),
-	('super-admin', '/session/delete'),
-	('super-admin', '/session/index'),
-	('super-admin', '/session/update'),
-	('super-admin', '/session/view'),
-	('super-admin', '/site/*'),
-	('super-admin', '/site/about'),
-	('user-default', '/site/about'),
-	('super-admin', '/site/account-information'),
-	('user-default', '/site/account-information'),
-	('super-admin', '/site/captcha'),
-	('user-default', '/site/captcha'),
-	('user-default', '/site/change-password'),
-	('super-admin', '/site/contact'),
-	('user-default', '/site/contact'),
-	('super-admin', '/site/error'),
-	('user-default', '/site/error'),
-	('super-admin', '/site/index'),
-	('user-default', '/site/index'),
-	('super-admin', '/site/login'),
-	('user-default', '/site/login'),
-	('super-admin', '/site/logout'),
-	('user-default', '/site/logout'),
-	('super-admin', '/user/*'),
-	('super-admin', '/user/create'),
-	('super-admin', '/user/create-with-sihrd-integration'),
-	('super-admin', '/user/update'),
-	('super-admin', '/user/update-with-sihrd-integration');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/assignment/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/assignment/assign');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/assignment/index');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/assignment/revoke');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/assignment/view');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/default/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/default/index');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/menu/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/menu/create');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/menu/delete');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/menu/index');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/menu/update');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/menu/view');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/permission/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/permission/assign');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/permission/create');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/permission/delete');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/permission/get-users');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/permission/index');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/permission/remove');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/permission/update');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/permission/view');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/role/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/role/assign');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/role/create');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/role/delete');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/role/get-users');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/role/index');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/role/remove');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/role/update');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/role/view');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/route/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/route/assign');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/route/create');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/route/index');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/route/refresh');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/route/remove');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/rule/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/rule/create');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/rule/delete');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/rule/index');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/rule/update');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/rule/view');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/user/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/user/activate');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/user/change-password');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/user/delete');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/user/index');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/user/login');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/user/logout');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/user/request-password-reset');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/user/reset-password');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/user/signup');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/admin/user/view');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/dark-light-toggle/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/dark-light-toggle/index');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/debug/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/debug/default/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/debug/default/db-explain');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/debug/default/download-mail');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/debug/default/index');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/debug/default/toolbar');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/debug/default/view');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/debug/user/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/debug/user/reset-identity');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/debug/user/set-identity');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/gii/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/gii/default/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/gii/default/action');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/gii/default/diff');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/gii/default/index');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/gii/default/preview');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/gii/default/view');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/item/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/item/create');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/item/delete');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/item/index');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/item/update');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/item/view');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/session/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/session/create');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/session/delete');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/session/index');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/session/update');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/session/view');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/site/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/site/about');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('user-default', '/site/about');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/site/account-information');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('user-default', '/site/account-information');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/site/captcha');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('user-default', '/site/captcha');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('user-default', '/site/change-password');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/site/contact');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('user-default', '/site/contact');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/site/error');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('user-default', '/site/error');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/site/index');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('user-default', '/site/index');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/site/login');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('user-default', '/site/login');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/site/logout');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('user-default', '/site/logout');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/user/*');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/user/create');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/user/create-with-sihrd-integration');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/user/update');
+INSERT INTO tms_starter.auth_item_child (parent, child) VALUES ('super-admin', '/user/update-with-sihrd-integration');
+
 SQL;
         $this->db->createCommand($sql)->execute();
         $this->db->createCommand('SET FOREIGN_KEY_CHECKS = 1')->execute();

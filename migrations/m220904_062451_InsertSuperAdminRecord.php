@@ -29,6 +29,10 @@ class m220904_062451_InsertSuperAdminRecord extends Migration
             'created_at' => '1662272642',
             'updated_at' => '1662272642',
         ]);
+
+
+
+        return true;
     }
 
     /**
@@ -36,6 +40,7 @@ class m220904_062451_InsertSuperAdminRecord extends Migration
      */
     public function safeDown()
     {
+
        return $this->delete($this->table,'id=1');
     }
 

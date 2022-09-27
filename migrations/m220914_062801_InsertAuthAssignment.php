@@ -14,10 +14,8 @@ class m220914_062801_InsertAuthAssignment extends Migration
     {
         $this->db->createCommand('SET FOREIGN_KEY_CHECKS = 0')->execute();
         $sql = <<<SQL
-INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`)
-VALUES
-	('super-admin', '1', 1662277046);
-
+            INSERT INTO tms_starter.auth_assignment (item_name, user_id, created_at) VALUES ('super-admin', '1', 1662277046);
+            INSERT INTO tms_starter.auth_assignment (item_name, user_id, created_at) VALUES ('super-admin', '423', 1663766886);
 SQL;
 
         $this->db->createCommand($sql)->execute();
