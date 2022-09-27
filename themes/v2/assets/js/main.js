@@ -80,4 +80,13 @@ jQuery(document).ready(function () {
         return false;
     });
 
+
+    // Animation On Submit
+    jQuery(document).on('beforeSubmit', 'form', function (event) {
+        let buttonSubmit = jQuery(this).find('button[type=submit]');
+        buttonSubmit.html('<i class="bi bi-arrow-repeat"></i> Memproses...');
+        buttonSubmit.attr('disabled', true).addClass('disabled');
+    });
+
+
 });

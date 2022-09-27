@@ -25,7 +25,7 @@ if ($withBreadcrumb) {
 
     <div class="d-flex flex-column flex-nowrap" style="gap: .25rem">
 
-        <div class="d-flex flex-row">
+        <div class="d-flex flex-row" style="gap: 1rem">
             <h1><?= Yii::$app->settings->get('site.icon') ?></h1>
             <h1>
                 <?php
