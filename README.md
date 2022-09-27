@@ -1,4 +1,7 @@
 <p align="center">
+    <a href="https://github.com/yiisoft" target="_blank">
+        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
+    </a>
     <h1 align="center">TMS Starter</h1>
     <br>
 </p>
@@ -78,8 +81,11 @@ Konfigurasi database untuk keperluan testing ada di `config/test_db.php`.
 Untuk menjalankan testing, ketik perintah berikut satu per satu
 
 ```
-=> docker exec -it tms-starter php tests/bin/yii migrate
-=> docker exec -it tms-starter bash c run
+docker exec -it tms-starter php tests/bin/yii migrate
+```
+
+```
+docker exec -it tms-starter-php bash c run
 ```
 
 Jika tidak ada konfigurasi yang salah, ketiga jenis testing tersebut akan jalan secara normal.
