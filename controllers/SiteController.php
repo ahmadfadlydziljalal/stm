@@ -110,9 +110,11 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
+        $withBreadcrumb = true;
 
         if (Yii::$app->user->isGuest) {
             $this->layout = 'login';
+            $withBreadcrumb = false;
         }
 
         $model = new ContactForm();
@@ -123,6 +125,7 @@ class SiteController extends Controller
         }
 
         return $this->render('contact', [
+            'withBreadcrumb' => $withBreadcrumb,
             'model' => $model,
         ]);
     }

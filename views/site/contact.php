@@ -9,9 +9,13 @@ use yii\bootstrap5\Html;
 use yii\captcha\Captcha;
 
 $this->title = 'Contact';
-$this->params['breadcrumbs'][] = $this->title;
+
+if($withBreadcrumb){
+    $this->params['breadcrumbs'][] = $this->title;
+
+}
 ?>
-<div class="site-contact d-flex flex-column gap-2 px-0 align-items-center">
+<div class="site-contact d-flex flex-column gap-2 px-0 mx-5 mx-sm-5 mx-md-3 mx-lg-0 align-items-center">
 
     <h1 class="align-self-start"><?= Html::encode($this->title) ?></h1>
 
