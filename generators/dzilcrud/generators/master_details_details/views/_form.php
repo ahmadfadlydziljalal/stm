@@ -95,7 +95,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
             <div class="container-items">
 
                 <?= "<?php " ?>foreach ($modelsDetail as $i => $modelDetail): ?>
-                <div class="card mb-4 shadow-sm item">
+                <div class="card mb-4 item">
 
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
@@ -110,13 +110,13 @@ use wbraganca\dynamicform\DynamicFormWidget;
                             if ($columnName === Inflector::underscore(StringHelper::basename($generator->modelClass)) . '_id') continue;
                             ?><?= "<?= " ?>$form->field($modelDetail, "[$i]<?= $columnName ?>", ['options' =>['class' => 'mb-3 row'] ]); ?>
                         <?php } ?>
+                    </div>
 
-                        <?= "<?= " ?>$this->render('_form-detail-detail', [
+                    <?= "<?= " ?>$this->render('_form-detail-detail', [
                                 'form' => $form,
                                 'i' => $i,
                                 'modelsDetailDetail' => $modelsDetailDetail[$i],
-                        ]) ?>
-                    </div>
+                    ]) ?>
 
                 </div>
 

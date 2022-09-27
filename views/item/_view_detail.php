@@ -2,53 +2,50 @@
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Item */
-
 /* @var $index int */
 
-use kartik\grid\GridView;
 use yii\data\ActiveDataProvider;
+use kartik\grid\GridView;
 use yii\helpers\StringHelper;
 use yii\widgets\DetailView;
-
 ?>
 
-<div class="card mb-4 border-1 shadow-sm item">
+<div class="card mb-4 border-1 item">
 
     <div class="card-body">
         <strong>
             <?= ($index + 1) . '. ' . StringHelper::basename(get_class($model)) ?>
         </strong>
     </div>
+        
 
-
-    <?php try {
+    <?php try { 
         echo DetailView::widget([
             'model' => $model,
-
             'attributes' => [
-                // 'id',
-                // 'item_id',
-                'name',
-                'dropdown_item',
+                         // 'id',
+                         // 'item_id',
+                        'name',
+                        'dropdown_item',
             ],
         ]);
 
         echo GridView::widget([
             'panel' => false,
-            'bordered' => true,
+            'bordered' => false,
             'striped' => false,
             'headerContainer' => [],
             'dataProvider' => new ActiveDataProvider([
-                'query' => $model->getItemDetailDetails(),
-                'sort' => false,
-                'pagination' => false
+                 'query' => $model->getItemDetailDetails(),
+                 'sort' => false,
+                 'pagination' => false
             ]),
             'tableOptions' => [
                 'class' => 'mb-0'
             ],
             'layout' => '{items}',
-            'columns' => [
-                [
+            'columns' =>[
+                 [
                     'class' => 'yii\grid\SerialColumn',
                     'contentOptions' => [
                         'style' => [
@@ -56,24 +53,24 @@ use yii\widgets\DetailView;
                         ]
                     ],
                 ],
-                // [
-                // 'class'=>'\yii\grid\DataColumn',
-                // 'attribute'=>'id',
-                // ],
-                // [
-                // 'class'=>'\yii\grid\DataColumn',
-                // 'attribute'=>'item_detail_id',
-                // ],
-                [
-                    'class' => '\yii\grid\DataColumn',
-                    'attribute' => 'name',
-                ],
-                [
-                    'class' => '\yii\grid\DataColumn',
-                    'attribute' => 'dropdown_item',
-                ],
-            ]
-        ]);
+                     // [
+                          // 'class'=>'\yii\grid\DataColumn',
+                          // 'attribute'=>'id',
+                     // ],
+                     // [
+                          // 'class'=>'\yii\grid\DataColumn',
+                          // 'attribute'=>'item_detail_id',
+                     // ],
+                     [
+                          'class'=>'\yii\grid\DataColumn',
+                          'attribute'=>'name',
+                     ],
+                     [
+                          'class'=>'\yii\grid\DataColumn',
+                          'attribute'=>'dropdown_item',
+                     ],
+           ]
+       ]);
     } catch (Exception $e) {
         echo $e->getMessage();
     } catch (Throwable $e) {

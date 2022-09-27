@@ -12,7 +12,7 @@ $plusIcon = '<i class="bi bi-plus-circle-dotted"></i>';
 echo "<?php\n";
 ?>
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 <?= !empty($generator->searchModelClass) ? "/* @var \$searchModel " . ltrim($generator->searchModelClass, '\\') . " */\n" : '' ?>
@@ -36,6 +36,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
             'columns' => require(__DIR__.'/_columns.php'),
+            'panel' => false,
+            'bordered' => true,
+            'striped' => false,
+            'headerContainer' => [],
             ]);
         } catch(Exception $e){
             echo $e->getMessage();

@@ -1,17 +1,18 @@
 <?php
-use yii\widgets\DetailView;
+
 use yii\helpers\Html;
+use yii\widgets\DetailView;
 use mdm\admin\components\Helper;
-use yii\data\ActiveDataProvider;
-use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Item */
+/* @see app\controllers\ItemController::actionView() */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Items', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Item', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="item-view">
 
     <div class="d-flex justify-content-between flex-wrap mb-3 mb-md-3 mb-lg-0" style="gap: .5rem">
@@ -33,36 +34,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]);
                 endif;
             ?>
-
         </div>
     </div>
-                
-    <?php try { 
-            echo DetailView::widget([
-                'model' => $model,
-                'attributes' => [
-                      'name',
-                   'tanggal:date',
-                   'tanggal_waktu:datetime',
-                 ],
-            ]);
 
-            echo ListView::widget([
-                'dataProvider' => new ActiveDataProvider([
-                    'query' => $model->getItemDetails()
-                ]),
-                'itemView' => function ($model, $key, $index, $widget){
-                    return $this->render('_view_detail', [
-                        'model' => $model,
-                        'index' => $index
-                    ]);
-                },
-                'layout' => '{items}'
-            ]);
-
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
+    <?php try {
+        echo DetailView::widget([
+            'model' => $model,
+            'options' => [
+                'class' => 'table table-bordered table-detail-view'
+            ],
+            'attributes' => [
+                  'name',
+                  'tanggal:date',
+                  'tanggal_waktu:datetime',
+            ],
+        ]);
+    }catch (Throwable $e) {
+        echo $e->getMessage();
+    }
     ?>
 
 </div>

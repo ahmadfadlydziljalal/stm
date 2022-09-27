@@ -18,14 +18,14 @@ echo "<?php\n";
 /* @var $index int */
 
 use yii\data\ActiveDataProvider;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\helpers\StringHelper;
 use yii\widgets\DetailView;
 ?>
 
 <?php $modelsDetail = StringHelper::basename($generator->modelsClassDetail); ?>
 <?php $modelsDetailDetail = StringHelper::basename($generator->modelsClassDetailDetail); ?>
-<div class="card mb-4 shadow-sm item">
+<div class="card mb-4 border-1 item">
 
     <div class="card-body">
         <strong>
@@ -35,59 +35,66 @@ use yii\widgets\DetailView;
     <?php $details = lcfirst(Inflector::camelize(Inflector::pluralize(StringHelper::basename($modelsDetail))));  ?>
     <?php $detailsDetails = lcfirst(Inflector::camelize(Inflector::pluralize(StringHelper::basename($modelsDetailDetail))));  ?>
 
-    <div class="card-body">
-        <?= "<?php try { 
-            echo "?>DetailView::widget([
-                'model' => $model,
-                'attributes' => [<?php
-                    array_map(function($el) use($generator){
-                        if ($el == 'id' || $el == Inflector::underscore(StringHelper::basename($generator->modelClass)).'_id' || $el == 'created_at' || $el == 'updated_at' || $el == 'created_by' || $el == 'updated_by') {
-                            echo "\n                         // '" . $el . "',";
-                        }else{
-                            echo "\n                        '" . $el . "',";
-                        }},$generator->getDetailColumnNames());
-                    echo "\n";
-                     ?>
-                ],
-            ]);
 
-            echo GridView::widget([
-                'dataProvider' => new ActiveDataProvider([
-                     'query' => $model->get<?= ucfirst($detailsDetails) . "()" ?>,
-                     'sort' => false,
-                     'pagination' => false
-                ]),
-                'layout' => '{items}',
-                'columns' =>[
-                     [
-                        'class' => 'yii\grid\SerialColumn',
-                        'contentOptions' => [
-                            'style' => [
-                                'width' => '2px'
-                            ]
-                        ],
-                    ],<?php array_map(function($el) use ($generator){
-                if ($el == 'id'|| $el == Inflector::underscore(StringHelper::basename($generator->modelsClassDetail)).'_id' || $el == 'created_at' || $el == 'updated_at' || $el == 'created_by' || $el == 'updated_by') {
-                    echo "\n                     // [\n";
-                    echo "                          // 'class'=>'\yii\grid\DataColumn',\n";
-                    echo "                          // 'attribute'=>'" . $el . "',\n";
-                    echo "                     // ],";
-                }else{
-                    echo "\n                     [\n";
-                    echo "                          'class'=>'\yii\grid\DataColumn',\n";
-                    echo "                          'attribute'=>'" . $el . "',\n";
-                    echo "                     ],";
-                }},$generator->getDetailDetailColumnNames());
+    <?= "<?php try { 
+        echo "?>DetailView::widget([
+            'model' => $model,
+            'attributes' => [<?php
+                array_map(function($el) use($generator){
+                    if ($el == 'id' || $el == Inflector::underscore(StringHelper::basename($generator->modelClass)).'_id' || $el == 'created_at' || $el == 'updated_at' || $el == 'created_by' || $el == 'updated_by') {
+                        echo "\n                         // '" . $el . "',";
+                    }else{
+                        echo "\n                        '" . $el . "',";
+                    }},$generator->getDetailColumnNames());
                 echo "\n";
-                ?>
-               ]
-           ]);
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        } catch (Throwable $e) {
-            echo $e->getMessage();
-        }
+                 ?>
+            ],
+        ]);
+
+        echo GridView::widget([
+            'panel' => false,
+            'bordered' => false,
+            'striped' => false,
+            'headerContainer' => [],
+            'dataProvider' => new ActiveDataProvider([
+                 'query' => $model->get<?= ucfirst($detailsDetails) . "()" ?>,
+                 'sort' => false,
+                 'pagination' => false
+            ]),
+            'tableOptions' => [
+                'class' => 'mb-0'
+            ],
+            'layout' => '{items}',
+            'columns' =>[
+                 [
+                    'class' => 'yii\grid\SerialColumn',
+                    'contentOptions' => [
+                        'style' => [
+                            'width' => '2px'
+                        ]
+                    ],
+                ],<?php array_map(function($el) use ($generator){
+            if ($el == 'id'|| $el == Inflector::underscore(StringHelper::basename($generator->modelsClassDetail)).'_id' || $el == 'created_at' || $el == 'updated_at' || $el == 'created_by' || $el == 'updated_by') {
+                echo "\n                     // [\n";
+                echo "                          // 'class'=>'\yii\grid\DataColumn',\n";
+                echo "                          // 'attribute'=>'" . $el . "',\n";
+                echo "                     // ],";
+            }else{
+                echo "\n                     [\n";
+                echo "                          'class'=>'\yii\grid\DataColumn',\n";
+                echo "                          'attribute'=>'" . $el . "',\n";
+                echo "                     ],";
+            }},$generator->getDetailDetailColumnNames());
+            echo "\n";
+            ?>
+           ]
+       ]);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    } catch (Throwable $e) {
+        echo $e->getMessage();
+    }
     ?>
 
-    </div>
+
 </div>

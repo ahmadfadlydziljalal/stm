@@ -5,7 +5,7 @@ use yii\helpers\StringHelper;
 
 
 /* @var $this yii\web\View */
-/* @var $generator \app\generators\crud\generators\Generator */
+/* @var $generator \app\generators\dzilcrud\Generator */
 
 $urlParams = $generator->generateUrlParams();
 $labelID = empty($generator->labelID) ? $generator->getNameAttribute() : $generator->labelID;
@@ -59,6 +59,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= "<?php try { 
             echo "?>DetailView::widget([
                 'model' => $model,
+                'options' => [
+                    'class' => 'table table-bordered table-detail-view'
+                ],
                 'attributes' => [
                     <?php
                     if (($tableSchema = $generator->getTableSchema()) === false) {
