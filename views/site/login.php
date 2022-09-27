@@ -8,16 +8,18 @@
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
 
-$this->title = (!Yii::$app->settings->get('site.name') ? Yii::$app->name : Yii::$app->settings->get('site.name')) . ' - Log In';
+$title = (!Yii::$app->settings->get('site.name')
+    ? Yii::$app->name : Yii::$app->settings->get('site.name'));
+$this->title =  $title . ' - Log In';
 
 ?>
 
 <div class="site-login d-flex flex-row gap-5 px-0 px-md-5 px-lg-5 align-items-top">
 
     <div class="login-section" style="min-width: 20rem">
-        <h1 class="text-center d-sm-block d-md-none d-lg-none">
-            <i class="bi bi-bag"></i>
-            <?= Html::encode($this->title) ?>
+        <h1 class="text-center d-sm-block d-md-none d-lg-none mb-3 mb-md-0 mb-lg-0">
+            <?= Yii::$app->settings->get('site.icon') ?>
+            <?= Html::encode($title) ?>
         </h1>
 
         <?php $form = ActiveForm::begin([
