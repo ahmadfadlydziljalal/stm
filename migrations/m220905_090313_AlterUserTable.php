@@ -14,18 +14,18 @@ class m220905_090313_AlterUserTable extends Migration
     public function safeUp()
     {
         $this->addColumn('user', 'karyawan_id', $this->integer()->null());
-        $this->insert('user',[
-            'id' => 423,
-            'username' => '3698-PS-22071989',
-            'auth_key' => 'qYBrnBPIuAbjJs_0kp50MG8psDpVOo2k',
-            'password_hash' => '$2y$13$QTsv8sZFqeNBcS.fHyMT7.ruuYG8HHP0jTPNXi436XEBvaVhAxh3G',
+        /*$this->insert('user',[
+            'id' => '',
+            'username' => '',
+            'auth_key' => '',
+            'password_hash' => '',
             'password_reset_token' => NULL,
-            'email' => 'dzil@tresnamuda.co.id',
+            'email' => '',
             'status' => 10,
-            'created_at' => '1625132789',
-            'updated_at' => '1660821791',
-            'karyawan_id' => 209
-        ]);
+            'created_at' => '',
+            'updated_at' => '',
+            'karyawan_id' => ''
+        ]);*/
     }
 
     /**
@@ -33,7 +33,7 @@ class m220905_090313_AlterUserTable extends Migration
      */
     public function safeDown()
     {
-        $this->delete('user', 'id=423');
+        // $this->delete('user', 'id=:id', [':id' => '']);
         $this->dropColumn('user', 'karyawan_id');
     }
 
