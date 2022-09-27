@@ -22,15 +22,18 @@ if ($withBreadcrumb) {
 ?>
 
 <div class="site-about" style="max-width: 48rem">
+
     <div class="d-flex flex-column flex-nowrap" style="gap: .25rem">
 
-        <h1>
-            <?= Yii::$app->settings->get('site.icon') ?>
-            <?php
+        <div class="d-flex flex-row">
+            <h1><?= Yii::$app->settings->get('site.icon') ?></h1>
+            <h1>
+                <?php
                 $text = Yii::$app->settings->get('site.name');
                 echo empty($text) ? Yii::$app->name : $text
-            ?>
-        </h1>
+                ?>
+            </h1>
+        </div>
 
         <div class="d-flex flex-column text-justify" style="gap: 1.5rem">
             <p>

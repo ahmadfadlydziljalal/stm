@@ -1,4 +1,7 @@
 <?php
+
+use yii\symfonymailer\Mailer;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/test_db.php';
 
@@ -6,31 +9,28 @@ $db = require __DIR__ . '/test_db.php';
  * Application configuration shared by all test types
  */
 return [
-    'id' => 'basic-tests',
+    'aliases' => require __DIR__ . '/aliases.php',
     'basePath' => dirname(__DIR__),
-    'aliases' => [
-        '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
-    ],
-    'language' => 'en-US',
     'components' => [
+        'assetManager' => [
+            'basePath' => __DIR__ . '/../web/assets',
+        ],
+        'authManager' => require __DIR__ . '/auth_manager.php',
+        'cache' => require __DIR__ . '/cache.php',
         'db' => $db,
+        'i18n' => require __DIR__ . '/i18n.php',
         'mailer' => [
-            'class' => \yii\symfonymailer\Mailer::class,
+            'class' => Mailer::class,
             'viewPath' => '@app/mail',
             // send all mails to a file by default.
             'useFileTransport' => true,
             'messageClass' => 'yii\symfonymailer\Message'
         ],
-        'assetManager' => [
-            'basePath' => __DIR__ . '/../web/assets',
-        ],
-        'urlManager' => [
+        /*'urlManager' => [
             'showScriptName' => true,
-        ],
-        'user' => [
-            'identityClass' => 'app\models\User',
-        ],
+        ],*/
+        'urlManager' => require __DIR__ . '/url_manager.php',
+        'user' => require __DIR__ . '/user.php',
         'request' => [
             'cookieValidationKey' => 'test',
             'enableCsrfValidation' => false,
@@ -41,6 +41,11 @@ return [
             ],
             */
         ],
+        'settings' => require __DIR__ . '/settings.php',
     ],
+    'id' => 'basic-tests',
+    'language' => 'en-US',
+    'modules' => require __DIR__ . '/modules.php',
+    'name' => strtoupper(getenv('APP_NAME')),
     'params' => $params,
 ];

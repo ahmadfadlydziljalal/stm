@@ -215,4 +215,13 @@ class User extends MdmUser
         parent::afterDelete();
     }
 
+
+    /**
+     * @inheritdoc
+     */
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return static::findOne(['auth_key' => $token]);
+    }
+
 }

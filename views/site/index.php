@@ -2,12 +2,14 @@
 
 /** @var yii\web\View $this */
 
+use yii\helpers\Html;
+
 $this->title = 'Dashboard';
 ?>
 <div class="site-index">
 
     <div class="d-flex flex-column">
-        <h2>Colors</h2>
+        <h1><?= Html::encode($this->title) ?></h1>
         <div class="d-flex flex-column w-50">
 
             <div class="col bg-primary text-white p-4">

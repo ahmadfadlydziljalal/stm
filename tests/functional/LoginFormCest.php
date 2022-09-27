@@ -1,35 +1,36 @@
 <?php
 
+use app\models\User;
+
 class LoginFormCest
 {
-    public function _before(\FunctionalTester $I)
+    public function _before(FunctionalTester $I)
     {
         $I->amOnRoute('site/login');
     }
 
-    public function openLoginPage(\FunctionalTester $I)
+    public function openLoginPage(FunctionalTester $I)
     {
-        $I->see('Login', 'h1');
-
+        $I->seeElement('form#login-form');
     }
 
     // demonstrates `amLoggedInAs` method
-    public function internalLoginById(\FunctionalTester $I)
+    public function internalLoginById(FunctionalTester $I)
     {
-        $I->amLoggedInAs(100);
+        $I->amLoggedInAs(1);
         $I->amOnPage('/');
-        $I->see('Logout (admin)');
+        $I->see(getenv('SUPER_ADMIN_USERNAME'));
     }
 
     // demonstrates `amLoggedInAs` method
-    public function internalLoginByInstance(\FunctionalTester $I)
+    public function internalLoginByInstance(FunctionalTester $I)
     {
-        $I->amLoggedInAs(\app\models\User::findByUsername('admin'));
+        $I->amLoggedInAs(User::findByUsername(getenv('SUPER_ADMIN_USERNAME')));
         $I->amOnPage('/');
-        $I->see('Logout (admin)');
+        $I->see(getenv('SUPER_ADMIN_USERNAME'));
     }
 
-    public function loginWithEmptyCredentials(\FunctionalTester $I)
+    public function loginWithEmptyCredentials(FunctionalTester $I)
     {
         $I->submitForm('#login-form', []);
         $I->expectTo('see validations errors');
@@ -37,7 +38,7 @@ class LoginFormCest
         $I->see('Password cannot be blank.');
     }
 
-    public function loginWithWrongCredentials(\FunctionalTester $I)
+    public function loginWithWrongCredentials(FunctionalTester $I)
     {
         $I->submitForm('#login-form', [
             'LoginForm[username]' => 'admin',
@@ -47,13 +48,13 @@ class LoginFormCest
         $I->see('Incorrect username or password.');
     }
 
-    public function loginSuccessfully(\FunctionalTester $I)
+    public function loginSuccessfully(FunctionalTester $I)
     {
         $I->submitForm('#login-form', [
-            'LoginForm[username]' => 'admin',
-            'LoginForm[password]' => 'admin',
+            'LoginForm[username]' => getenv('SUPER_ADMIN_USERNAME'),
+            'LoginForm[password]' => getenv('SUPER_ADMIN_PASSWORD'),
         ]);
-        $I->see('Logout (admin)');
+        $I->see('Dashboard');
         $I->dontSeeElement('form#login-form');              
     }
 }

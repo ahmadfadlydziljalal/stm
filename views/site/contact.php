@@ -11,7 +11,9 @@ use yii\captcha\Captcha;
 $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-contact d-flex flex-column gap-5 px-0 align-items-center">
+<div class="site-contact d-flex flex-column gap-2 px-0 align-items-center">
+
+    <h1 class="align-self-start"><?= Html::encode($this->title) ?></h1>
 
     <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
 

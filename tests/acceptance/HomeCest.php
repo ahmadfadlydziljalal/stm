@@ -1,18 +1,22 @@
 <?php
 
+use Codeception\Step\Argument\PasswordArgument;
 use yii\helpers\Url;
 
 class HomeCest
 {
-    public function ensureThatHomePageWorks(AcceptanceTester $I)
-    {
-        $I->amOnPage(Url::toRoute('/site/index'));        
-        $I->see('My Company');
-        
-        $I->seeLink('About');
-        $I->click('About');
-        $I->wait(2); // wait for page to be opened
-        
-        $I->see('This is the About page.');
+    public function _before(AcceptanceTester $I){
+        $I->login(
+            getenv('SUPER_ADMIN_USERNAME'),
+            new PasswordArgument(getenv('SUPER_ADMIN_PASSWORD'))
+        );
     }
+
+    public function ensureHomePageCanBeAccessed(AcceptanceTester $I)
+    {
+        $I->amGoingTo('Mengakses halaman home page. Sebelumnya harus login terlebih dahulu');
+        $I->amOnPage(Url::toRoute('/site/index'));
+        $I->see('Dashboard');
+    }
+
 }
