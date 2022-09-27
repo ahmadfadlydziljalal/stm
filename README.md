@@ -84,24 +84,6 @@ Untuk menjalankan testing, ketik perintah berikut satu per satu
 
 Jika tidak ada konfigurasi yang salah, ketiga jenis testing tersebut akan jalan secara normal.
 
-### Khusus running  acceptance tests
-
-To execute acceptance tests do the following:  
-
-1. Rename `tests/acceptance.suite.yml.example` to `tests/acceptance.suite.yml` to enable suite configuration
-2. Now you can run all available tests
-
-   ```
-   # run all available tests
-   vendor/bin/codecept run
-
-   # run acceptance tests
-   vendor/bin/codecept run acceptance
-
-   # run only unit and functional tests
-   vendor/bin/codecept run unit,functional
-   ```
-
 ### Code coverage support
 
 By default, code coverage is disabled in `codeception.yml` configuration file, you should uncomment needed rows to be able
