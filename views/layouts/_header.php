@@ -18,9 +18,9 @@ $brandLabel =
     Html::beginTag('div', ['class' => 'd-flex justify-content-between brand-wrapper align-items-baseline', 'style' => ['gap' => '1.25rem']]) .
     Html::button('<i class="bi bi-list"></i>', ['role' => 'button', 'type' => 'button', 'id' => 'btn-toggle-sidebar', 'class' => 'btn btn-link text-dark text-decoration-none rounded py-0 px-0 ']) .
     Html::a(
-        !Yii::$app->settings->get('site.name') ?
-            Yii::$app->name :
-            Yii::$app->settings->get('site.name')
+        "<div class='d-flex flex-row align-items-center' style='gap: .5rem'>" .
+                    Yii::$app->settings->get('site.icon') . (!Yii::$app->settings->get('site.name') ? Yii::$app->name : Yii::$app->settings->get('site.name')) .
+             "</div>"
         , Yii::$app->homeUrl, ['class' => 'text-decoration-none ']) .
     Html::endTag('div');
 ?>
@@ -89,6 +89,14 @@ try {
         Html::endTag('div');
 
     $dropdownItems = ArrayHelper::merge([$profileImage . '<div class="dropdown-divider"></div>'], MenuHelper::getAssignedMenu(Yii::$app->user->id, '28'));
+    $dropdownItems[] = '<div class="dropdown-divider"></div>';
+    $dropdownItems[] = '<div class="d-flex flex-row w-100">
+                            <div class="col bg-primary text-white p-2"></div>
+                            <div class="col bg-success text-white p-2"></div>
+                            <div class="col bg-info p-2"></div>
+                            <div class="col bg-warning p-2"></div>
+                            <div class="col bg-danger text-white p-2"></div>
+                        </div>';
     $dropdownItems[] = '<div class="dropdown-divider"></div>';
     $dropdownItems[] =
         [

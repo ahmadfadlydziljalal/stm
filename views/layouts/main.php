@@ -194,7 +194,7 @@ $leftItems = MenuHelper::getAssignedMenu(Yii::$app->user->id, 16, function ($ite
     </main>
 
     <!-- Render footer -->
-    <footer class="footer mt-auto">
+    <footer class="footer mt-auto shadow-sm">
         <?= $this->render('_footer') ?>
     </footer>
 

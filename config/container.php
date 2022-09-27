@@ -24,11 +24,11 @@ return [
             ],
             'layout' =>
                 '<div class="table-responsive">' .
-                "{items}" .
+                    "{items}" .
                 '</div>' .
-                '<div class="d-flex flex-column flex-md-row justify-content-center justify-content-md-between border-1 border-top-0 align-items-baseline py-3 m-0">' .
-                "{pager}" .
-                "{summary}" .
+                '<div class="d-flex flex-column flex-md-row justify-content-center justify-content-md-between border-1 border-top-0 align-items-center py-0 m-0">' .
+                    "{pager}" .
+                    "{summary}" .
                 '</div>',
             'pager' => [
                 'firstPageLabel' => 'First',
@@ -36,7 +36,6 @@ return [
                 'prevPageLabel' => '<i class="bi bi-chevron-left small"></i>',
                 'nextPageLabel' => '<i class="bi bi-chevron-right small"></i>',
                 'maxButtonCount' => 3,
-
             ],
             'summary' => "{begin, number}-{end, number} dari {totalCount, number} {totalCount, plural, one{item} other{items}}",
         ],

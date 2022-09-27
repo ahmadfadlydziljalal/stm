@@ -55,8 +55,28 @@ $this->params['breadcrumbs'][] = $this->title;
                     ),
                 ],
                 'key',
-                'value:ntext',
-                'type',
+                [
+                    'attribute' => 'value',
+                    'format' => 'raw',
+                    'value' => function($model){
+                        return nl2br($model->value);
+                    },
+                    'contentOptions' => [
+                            'class' =>'text-wrap',
+                        'style' => [
+                            'max-width' => '128em',
+                        ]
+                    ]
+                ],
+                [
+                    'attribute' => 'type',
+                    'contentOptions' => [
+                        'class' =>'text-nowrap',
+                        'style' => [
+                            'max-width' => '2px',
+                        ]
+                    ]
+                ],
                 [
                     'class' => '\pheme\grid\ToggleColumn',
                     'attribute' => 'active',

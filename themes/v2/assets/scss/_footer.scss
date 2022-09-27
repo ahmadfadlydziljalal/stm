@@ -1,4 +1,7 @@
+@import "vars";
+
 footer{
-  padding: 1rem;
+  padding: .75rem 1rem;
   margin-left: 250px;
+  border-top: 1px solid $gray-200;
 }

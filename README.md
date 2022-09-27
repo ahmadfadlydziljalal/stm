@@ -3,7 +3,7 @@
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
     </a>
     <h1 align="center">TMS Starter</h1>
-    <br>
+    <br />
 </p>
 
 TMS Starter dibuat menggunakan [Yii2](http://www.yiiframework.com/), dengan basic template.
@@ -38,15 +38,21 @@ Setelah berhasil meng-clone TMS Starter,
 #### Install with Docker
 Build images yang dibutuhkan dengan cara mengetikkan perintah pada direktori root project:
 
-    docker-compose -f docker-compose.yml -f docker-compose.sass.yml -f docker-compose.chrome.yml up --build -d
+```
+docker-compose -f docker-compose.yml -f docker-compose.sass.yml -f docker-compose.chrome.yml up --build -d
+```
     
 Init migration untuk database
 
-    docker exec -it tms-starter-php php yii migrate      
+```
+docker exec -it tms-starter-php php yii migrate
+```
  
 Sekarang aplikasi sudah bisa diakses via:
-
-    http://localhost:3000
+```
+http://localhost:3000
+```
+    
 
 **NOTES:** 
 - Pada proses development, Port 3000 bisa diganti via file docker-compose.sass.yml
@@ -81,7 +87,7 @@ Konfigurasi database untuk keperluan testing ada di `config/test_db.php`.
 Untuk menjalankan testing, ketik perintah berikut satu per satu
 
 ```
-docker exec -it tms-starter php tests/bin/yii migrate
+docker exec -it tms-starter-php php tests/bin/yii migrate
 ```
 
 ```

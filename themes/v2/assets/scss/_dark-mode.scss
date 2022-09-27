@@ -5,6 +5,14 @@ body.dark{
   background-color: vars.$dark !important;
   color: vars.$white !important;
 
+  main {
+    aside {
+      &.left-navigation {
+        border-right: 1px solid vars.$black;
+      }
+    }
+  }
+
   input.form-control,
   select.form-control,
   textarea,
@@ -42,6 +50,10 @@ body.dark{
     color: #212529 !important;
     background-color: #fff !important;
     border-color: transparent;
+  }
+
+  footer{
+    border-top: 0;
   }
 
 }

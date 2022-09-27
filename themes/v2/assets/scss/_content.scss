@@ -1,7 +1,7 @@
 @import "vars";
 
 section.content {
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
   margin-left: 250px;
   transition: all .1s;
 }
@@ -64,5 +64,11 @@ section.content {
         border-bottom: 0;
       }
     }
+  }
+}
+
+ul{
+  &.pagination{
+    margin: 0 0  auto;
   }
 }
