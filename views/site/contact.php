@@ -16,24 +16,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1 class="align-self-start"><?= Html::encode($this->title) ?></h1>
 
     <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
+        <?php $this->params['breadcrumbs'] = [] ?>
+        <div class="contact-form-submitted w-100">
 
-        <div class="contact-form-submitted">
-
-            <h1><?= Html::encode($this->title) ?></h1>
-            
             <div class="alert alert-success">
                 Thank you for contacting us. We will respond to you as soon as possible.
             </div>
-
             <p>
-                Note that if you turn on the Yii debugger, you should be able
-                to view the mail message on the mail panel of the debugger.
-                <?php if (Yii::$app->mailer->useFileTransport): ?>
-                    Because the application is in development mode, the email is not sent but saved as
-                    a file under <code><?= Yii::getAlias(Yii::$app->mailer->fileTransportPath) ?></code>. Please configure the
-                    <code>useFileTransport</code> property of the <code>mail</code>
-                    application component to be false to enable email sending.
-                <?php endif; ?>
+                <?= Html::a('Kembali ke beranda', ['/'], ['class' => 'btn btn-outline-primary']) ?>
             </p>
 
         </div>
