@@ -1,7 +1,6 @@
 <?php
 
 
-
 $params = require __DIR__ . '/params.php';
 
 $config = [
@@ -19,6 +18,7 @@ $config = [
         'i18n' => require __DIR__ . '/i18n.php',
         'log' => require __DIR__ . '/log.php',
         'mailer' => require __DIR__ . '/mailer.php',
+        'mongodb' => require __DIR__ . '/mongodb.php',
         'request' => require __DIR__ . '/request.php',
         'session' => require __DIR__ . '/session.php',
         'settings' => require __DIR__ . '/settings.php',

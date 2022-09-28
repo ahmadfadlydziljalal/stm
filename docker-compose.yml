@@ -44,6 +44,22 @@ services:
     depends_on:
       - db
 
+  # Mongo Service, database pendukung, eg: cache, log, dll
+  mongodb:
+    image: mongo:5.0.6
+    container_name: ${APP_NAME}-mongo
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - ${APP_NAME}-volumes:/data/db
+      - ./.docker/mongo/:/docker-entrypoint-initdb.d/:ro
+    ports:
+      - ${MONGO_PORT}:27017
+    networks:
+      - ${APP_NAME}-network
+
 # Docker Networks
 networks:
   tms-starter-network:

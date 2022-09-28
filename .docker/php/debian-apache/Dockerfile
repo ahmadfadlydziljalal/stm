@@ -20,6 +20,9 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure intl \
     && docker-php-ext-install -j$(nproc) gd
 
+# Install mongodb via pecl.
+RUN pecl install mongodb
+
 # Install php extension
 RUN docker-php-ext-install pdo_mysql zip exif pcntl intl opcache
 

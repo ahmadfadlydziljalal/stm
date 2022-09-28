@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'class' => 'yii\caching\DbCache',
+    'class' => yii\mongodb\Cache::class,
 ];
