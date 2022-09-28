@@ -11,7 +11,7 @@ use yii\helpers\Html;
 ?>
 
 
-<div class="card border-primary">
+<div class="card border-1">
     <div class="card-body">
 
         <p class="card-title">
@@ -22,7 +22,7 @@ use yii\helpers\Html;
         <div class="d-flex flex-row my-3 gap-3">
             <?= Html::a(
                 Html::tag('i', '', ['class' => 'bi bi-trash']) . ' Delete',
-                ['cache/delete', 'id' => $model->id],
+                ['cache/delete', '_id' => (string)$model->_id],
                 [
                     'class' => 'btn btn-danger',
                     'data' => [
@@ -34,5 +34,6 @@ use yii\helpers\Html;
         </div>
 
         <small class="card-text"><?= $model->data; ?></small>
+
     </div>
 </div>

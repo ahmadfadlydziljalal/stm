@@ -50,31 +50,31 @@ class CacheController extends Controller
     /**
      * Deletes an existing Cache model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
+     * @param string $_id
      * @return Response
      * @throws NotFoundHttpException if the model cannot be found
      * @throws StaleObjectException
      * @throws Throwable
      */
-    public function actionDelete(string $id): Response
+    public function actionDelete(string $_id): Response
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($_id);
         $model->delete();
 
-        Yii::$app->session->setFlash('danger', 'Cache: ' . $model->id . ' berhasil dihapus.');
+        Yii::$app->session->setFlash('danger', 'Cache: ' . $model->_id . ' berhasil dihapus.');
         return $this->redirect(['index']);
     }
 
     /**
      * Finds the Cache model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
+     * @param string $_id
      * @return Cache the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel(string $id): Cache
+    protected function findModel(string $_id): Cache
     {
-        if (($model = Cache::findOne($id)) !== null) {
+        if (($model = Cache::findOne($_id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
