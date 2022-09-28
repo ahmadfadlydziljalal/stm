@@ -2,33 +2,60 @@
 
 namespace app\models;
 
-use Yii;
-use \app\models\base\Cache as BaseCache;
-use yii\helpers\ArrayHelper;
+use MongoDB\BSON\ObjectID;
+use yii\mongodb\ActiveRecord;
 
 /**
- * This is the model class for table "cache".
+ * This is the model class for collection "cache".
+ *
+ * @property ObjectID|string $_id
+ * @property mixed $id
+ * @property mixed $expire
+ * @property mixed $data
  */
-class Cache extends BaseCache
+class Cache extends ActiveRecord
 {
-
-    public function behaviors()
+    /**
+     * {@inheritdoc}
+     */
+    public static function collectionName()
     {
-        return ArrayHelper::merge(
-            parent::behaviors(),
-            [
-                # custom behaviors
-            ]
-        );
+        return ['tms_starter', 'cache'];
     }
 
-    public function rules()
+    /**
+     * {@inheritdoc}
+     */
+    public function attributes(): array
     {
-        return ArrayHelper::merge(
-            parent::rules(),
-            [
-                # custom validation rules
-            ]
-        );
+        return [
+            '_id',
+            'id',
+            'expire',
+            'data',
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules(): array
+    {
+        return [
+            [['id', 'expire', 'data'], 'safe']
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels(): array
+    {
+        return [
+            '_id' => '_id',
+            'id' => 'id',
+            'expire' => 'Expire',
+            'data' => 'Data',
+        ];
     }
 }

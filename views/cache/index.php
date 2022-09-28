@@ -18,7 +18,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <h1 class="my-0"><?= Html::encode($this->title) ?></h1>
         <div class="ms-md-auto ms-lg-auto">
             <?= Html::a('<i class="bi bi-arrow-clockwise"></i>' . ' Reload', ['index'], ['class' => 'btn btn-primary']) ?>
-            <?= Html::a('<i class="bi bi-plus-circle-dotted"></i>' . ' Tambah', ['create'], ['class' => 'btn btn-success']) ?>
         </div>
     </div>
 
@@ -26,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?php try {
-
+        
         echo ListView::widget([
             'dataProvider' => $dataProvider,
             'itemView' => function ($model, $index, $key) {

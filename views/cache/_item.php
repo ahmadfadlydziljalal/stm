@@ -15,7 +15,7 @@ use yii\helpers\Html;
     <div class="card-body">
 
         <p class="card-title">
-            <strong><?= $index ?>.</strong>
+            <strong><?= $model->_id ?>.</strong>
             <?= Yii::$app->formatter->asDatetime($model->expire) ?>
         </p>
 

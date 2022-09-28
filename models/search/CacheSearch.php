@@ -17,7 +17,7 @@ class CacheSearch extends Cache
     public function rules(): array
     {
         return [
-            [['id', 'data'], 'safe'],
+            [['_id', 'id', 'data'], 'safe'],
             [['expire'], 'integer'],
         ];
     }
@@ -60,12 +60,13 @@ class CacheSearch extends Cache
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'expire' => $this->expire,
-        ]);
+        $query
+            ->andFilterWhere(['expire' => $this->expire])
+            ->andFilterWhere(['_id' => $this->_id]);
 
-        $query->andFilterWhere(['like', 'id', $this->id])
-            ->andFilterWhere(['like', 'data', $this->data]);
+        /*$query
+            ->andFilterCompare('id', $this->id, '=')
+            ->andFilterCompare('data', $this->data, '=');*/
 
         return $dataProvider;
     }

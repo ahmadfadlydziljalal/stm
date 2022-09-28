@@ -20,8 +20,10 @@ use yii\helpers\Html;
         'fieldConfig' => ['options' => ['class' => 'col']]
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?= $form->field($model, '_id') ?>
 
+    <?= $form->field($model, 'id') ?>
+    
     <?= $form->field($model, 'expire') ?>
 
     <?= $form->field($model, 'data') ?>
