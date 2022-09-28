@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'class' => 'yii\caching\FileCache',
+    'class' => 'yii\caching\DbCache',
 ];

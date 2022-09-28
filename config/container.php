@@ -7,6 +7,7 @@ use yii\grid\GridView;
 use yii\grid\SerialColumn;
 use yii\widgets\DetailView;
 use yii\widgets\LinkPager;
+use yii\widgets\ListView;
 
 return [
     'definitions' => [
@@ -24,11 +25,11 @@ return [
             ],
             'layout' =>
                 '<div class="table-responsive">' .
-                    "{items}" .
+                "{items}" .
                 '</div>' .
-                '<div class="d-flex flex-column flex-md-row justify-content-center justify-content-md-between border-1 border-top-0 align-items-center py-0 m-0">' .
-                    "{pager}" .
-                    "{summary}" .
+                '<div class="d-flex flex-column flex-md-row justify-content-center justify-content-md-between border-1 border-top-0 align-items-center py-0 m-0 my-lg-3">' .
+                "{pager}" .
+                "{summary}" .
                 '</div>',
             'pager' => [
                 'firstPageLabel' => 'First',
@@ -98,6 +99,15 @@ return [
             'options' => [
                 'class' => 'table table-bordered table-detail-view'
             ]
+        ],
+        ListView::class => [
+            'layout' =>
+                "{items}" .
+                '<div class="d-flex flex-column flex-md-row justify-content-center justify-content-md-between border-1 border-top-0 align-items-center py-0 m-0 my-lg-3">' .
+                "{pager}" .
+                "{summary}" .
+                '</div>'
+            ,
         ]
     ]
 ];

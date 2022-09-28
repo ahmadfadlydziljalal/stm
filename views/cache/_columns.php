@@ -6,30 +6,29 @@ return [
     // [
     // 'class'=>'\yii\grid\DataColumn',
     // 'attribute'=>'id',
+    // 'format'=>'text',
     // ],
     [
         'class' => '\yii\grid\DataColumn',
         'attribute' => 'expire',
-        'format' => 'datetime'
-    ],
-    [
-        'class' => '\yii\grid\DataColumn',
-        'attribute' => 'data',
+        'format' => 'datetime',
         'contentOptions' => [
             'class' => 'text-nowrap',
             'style' => [
-                'min-width' => '24em'
+                'width' => '2px',
             ]
         ]
     ],
     [
         'class' => '\yii\grid\DataColumn',
-        'attribute' => 'user_id',
-    ],
-    [
-        'class' => '\yii\grid\DataColumn',
-        'attribute' => 'last_write',
-        'format' => 'datetime'
+        'attribute' => 'data',
+        'format' => 'raw',
+        'contentOptions' => [
+            'class' => 'text-wrap',
+            'style' => [
+                'max-width' => '36rem',
+            ]
+        ]
     ],
     [
         'class' => 'yii\grid\ActionColumn',
