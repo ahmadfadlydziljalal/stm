@@ -41,12 +41,12 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
-        // 'panels' => [
-        // 'mongodb' => [
-        // 'class' => 'yii\\mongodb\\debug\\MongoDbPanel',
-        // 'db' => 'mongodb', // MongoDB component ID, defaults to `db`. Uncomment and change this line, if you registered MongoDB component with a different ID.
-        // ],
-        // ],
+        'panels' => [
+            'mongodb' => [
+                'class' => 'yii\\mongodb\\debug\\MongoDbPanel',
+                'db' => 'mongodb', // MongoDB component ID, defaults to `db`. Uncomment and change this line, if you registered MongoDB component with a different ID.
+            ],
+        ],
         // uncomment the following to add your IP if you are not connecting from localhost.
         'allowedIPs' => ['127.0.0.1', '::1', "*"],
     ];
