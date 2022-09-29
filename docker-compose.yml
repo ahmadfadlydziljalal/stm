@@ -53,7 +53,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
-      - ${APP_NAME}-volumes:/data/db
+      - ${APP_NAME}-mongo-volumes:/data/db
       - ./.docker/mongo/:/docker-entrypoint-initdb.d/:ro
     ports:
       - ${MONGO_PORT}:27017
@@ -68,4 +68,6 @@ networks:
 # Docker Volumes
 volumes:
   tms-starter-volumes:
+    driver: local
+  tms-starter-mongo-volumes:
     driver: local
