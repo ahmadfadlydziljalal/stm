@@ -19,7 +19,7 @@ class LoginFormCest
     {
         $I->amLoggedInAs(1);
         $I->amOnPage('/');
-        $I->see(getenv('SUPER_ADMIN_USERNAME'));
+        $I->see('Dashboard');
     }
 
     // demonstrates `amLoggedInAs` method
@@ -27,7 +27,7 @@ class LoginFormCest
     {
         $I->amLoggedInAs(User::findByUsername(getenv('SUPER_ADMIN_USERNAME')));
         $I->amOnPage('/');
-        $I->see(getenv('SUPER_ADMIN_USERNAME'));
+        $I->see('Dashboard');
     }
 
     public function loginWithEmptyCredentials(FunctionalTester $I)
@@ -55,6 +55,6 @@ class LoginFormCest
             'LoginForm[password]' => getenv('SUPER_ADMIN_PASSWORD'),
         ]);
         $I->see('Dashboard');
-        $I->dontSeeElement('form#login-form');              
+        $I->dontSeeElement('form#login-form');
     }
 }
