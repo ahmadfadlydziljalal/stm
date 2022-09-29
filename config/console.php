@@ -3,16 +3,21 @@
 $params = require __DIR__ . '/params.php';
 
 $config = [
-    'id' => 'basic-console',
-    'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
-    'controllerNamespace' => 'app\commands',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
         '@tests' => '@app/tests',
     ],
-
+    'id' => 'basic-console',
+    'basePath' => dirname(__DIR__),
+    'bootstrap' => ['log'],
+    'controllerNamespace' => 'app\commands',
+    'controllerMap' => [
+        'mongodb-migrate' => [
+            'class' => 'yii\mongodb\console\controllers\MigrateController',
+            'migrationPath' => '@app/migrations/mongodb',
+        ],
+    ],
     'components' => [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',

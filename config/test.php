@@ -3,7 +3,6 @@
 use yii\symfonymailer\Mailer;
 
 $params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/test_db.php';
 
 /**
  * Application configuration shared by all test types
@@ -16,8 +15,8 @@ return [
             'basePath' => __DIR__ . '/../web/assets',
         ],
         'authManager' => require __DIR__ . '/auth_manager.php',
-        'cache' => require __DIR__ . '/cache.php',
-        'db' => $db,
+        'db' => require __DIR__ . '/test_db.php',
+        'mongodb' => require __DIR__ . '/test_mongodb.php',
         'i18n' => require __DIR__ . '/i18n.php',
         'mailer' => [
             'class' => Mailer::class,
