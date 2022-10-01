@@ -16,7 +16,7 @@ return [
         'class' => '\yii\grid\DataColumn',
         'attribute' => 'data',
         'contentOptions' => [
-            'class' => 'text-nowrap',
+            'class' => 'text-wrap',
             'style' => [
                 'min-width' => '24em'
             ]
@@ -25,6 +25,7 @@ return [
     [
         'class' => '\yii\grid\DataColumn',
         'attribute' => 'user_id',
+        'value' => 'user.username'
     ],
     [
         'class' => '\yii\grid\DataColumn',
@@ -34,4 +35,4 @@ return [
     [
         'class' => 'yii\grid\ActionColumn',
     ],
-];   
+];
