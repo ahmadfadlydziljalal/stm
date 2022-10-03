@@ -24,8 +24,8 @@ class PdfProperties extends Component
 
         /* Regular PDF */
         $pdf = Yii::$app->pdf;
-        $pdf->methods['SetHeader'] = $header . '| |' . Yii::$app->formatter->asDatetime(date("Y-m-d H:i"));
-        $pdf->methods['SetFooter'] = $footer . '| |' . '{PAGENO} dari {nb}';
+        /*$pdf->methods['SetHeader'] = $header . '| |' . Yii::$app->formatter->asDatetime(date("Y-m-d H:i"));
+        $pdf->methods['SetFooter'] = $footer . '| |' . '{PAGENO} dari {nb}';*/
 
         /* PDF dengan kop surat */
 
