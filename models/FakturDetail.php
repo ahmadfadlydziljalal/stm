@@ -2,8 +2,8 @@
 
 namespace app\models;
 
+use app\models\base\FakturDetail as BaseFakturDetail;
 use Yii;
-use \app\models\base\FakturDetail as BaseFakturDetail;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -12,7 +12,7 @@ use yii\helpers\ArrayHelper;
 class FakturDetail extends BaseFakturDetail
 {
 
-    public function behaviors()
+    public function behaviors(): array
     {
         return ArrayHelper::merge(
             parent::behaviors(),
@@ -22,13 +22,38 @@ class FakturDetail extends BaseFakturDetail
         );
     }
 
-    public function rules()
+    public function rules(): array
     {
         return ArrayHelper::merge(
             parent::rules(),
             [
-                # custom validation rules
+
             ]
         );
     }
+
+
+    public function getFormatHargaBarangDiMediaCetak()
+    {
+        return [
+            Yii::$app->getFormatter()->currencyCode,
+            Yii::$app->formatter->asDecimal($this->harga_barang)
+        ];
+    }
+
+
+    public function getSubTotal()
+    {
+        return $this->quantity * $this->harga_barang;
+    }
+
+    public function getFormatSubTotalDiMediaCetak(): array
+    {
+        return [
+            Yii::$app->getFormatter()->currencyCode,
+            Yii::$app->formatter->asDecimal($this->quantity * $this->harga_barang)
+        ];
+    }
+    
+
 }

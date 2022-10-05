@@ -14,5 +14,5 @@ return [
         NumberFormatter::MAX_FRACTION_DIGITS => 2,
     ],
     'nullDisplay' => '',
-    //'locale' => 'id-ID', //your language locale
+    'locale' => 'id-ID', //your language locale
 ];

@@ -10,8 +10,8 @@ use Yii;
  * This is the base-model class for table "faktur".
  *
  * @property integer $id
- * @property string $tanggal_faktur
  * @property string $nomor_faktur
+ * @property string $tanggal_faktur
  * @property string $nomor_purchase_order
  * @property integer $jenis_transaksi_id
  *
@@ -38,8 +38,8 @@ abstract class Faktur extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['tanggal_faktur', 'jenis_transaksi_id'], 'required'],
             [['tanggal_faktur'], 'safe'],
-            [['jenis_transaksi_id'], 'required'],
             [['jenis_transaksi_id'], 'integer'],
             [['nomor_faktur', 'nomor_purchase_order'], 'string', 'max' => 255],
             [['jenis_transaksi_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\JenisTransaksi::class, 'targetAttribute' => ['jenis_transaksi_id' => 'id']]
@@ -53,8 +53,8 @@ abstract class Faktur extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'tanggal_faktur' => 'Tanggal Faktur',
             'nomor_faktur' => 'Nomor Faktur',
+            'tanggal_faktur' => 'Tanggal Faktur',
             'nomor_purchase_order' => 'Nomor Purchase Order',
             'jenis_transaksi_id' => 'Jenis Transaksi ID',
         ];

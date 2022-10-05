@@ -17,7 +17,7 @@ class BarangSearch extends Barang
     public function rules() : array
     {
         return [
-            [['id', 'satuan_id'], 'integer'],
+            [['id'], 'integer'],
             [['nama', 'part_number'], 'safe'],
         ];
     }
@@ -52,14 +52,13 @@ class BarangSearch extends Barang
         $this->load($params);
 
         if (!$this->validate()) {
-            // if you do not want to return any records when validation fails
+            // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
         }
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'satuan_id' => $this->satuan_id,
         ]);
 
         $query->andFilterWhere(['like', 'nama', $this->nama])

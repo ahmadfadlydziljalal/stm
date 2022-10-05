@@ -1,18 +1,18 @@
 <?php
 
 use mdm\admin\components\Helper;
+use yii\data\ArrayDataProvider;
+use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Barang */
-/* @see app\controllers\BarangController::actionView() */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Barang', 'url' => ['index']];
+$this->title = $model->nama;
+$this->params['breadcrumbs'][] = ['label' => 'Barangs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
 <div class="barang-view">
 
     <div class="d-flex justify-content-between flex-wrap mb-3 mb-md-3 mb-lg-0" style="gap: .5rem">
@@ -46,9 +46,41 @@ $this->params['breadcrumbs'][] = $this->title;
             'attributes' => [
                 'nama',
                 'part_number',
-                'satuan_id',
             ],
         ]);
+
+        echo Html::tag('h2', 'Barang Satuan');
+        echo !empty($model->barangSatuans) ?
+            GridView::widget([
+                'dataProvider' => new ArrayDataProvider([
+                    'allModels' => $model->barangSatuans
+                ]),
+                'columns' => [
+                    // [
+                    // 'class'=>'\yii\grid\DataColumn',
+                    // 'attribute'=>'id',
+                    // ],
+                    // [
+                    // 'class'=>'\yii\grid\DataColumn',
+                    // 'attribute'=>'barang_id',
+                    // ],
+                    [
+                        'class' => '\yii\grid\DataColumn',
+                        'attribute' => 'satuan_id',
+                        'value' => 'satuan.nama'
+                    ],
+                    [
+                        'class' => '\yii\grid\DataColumn',
+                        'attribute' => 'harga',
+                        'format' => ['decimal', 2]
+                    ],
+                ]
+            ]) :
+            Html::tag("p", 'Barang Satuan tidak tersedia', [
+                'class' => 'text-warning font-weight-bold p-3'
+            ]);
+    } catch (Exception $e) {
+        echo $e->getMessage();
     } catch (Throwable $e) {
         echo $e->getMessage();
     }

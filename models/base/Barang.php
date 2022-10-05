@@ -12,9 +12,9 @@ use Yii;
  * @property integer $id
  * @property string $nama
  * @property string $part_number
- * @property integer $satuan_id
  *
- * @property \app\models\Satuan $satuan
+ * @property \app\models\BarangSatuan[] $barangSatuans
+ * @property \app\models\FakturDetail[] $fakturDetails
  * @property string $aliasModel
  */
 abstract class Barang extends \yii\db\ActiveRecord
@@ -36,12 +36,10 @@ abstract class Barang extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nama', 'satuan_id'], 'required'],
-            [['satuan_id'], 'integer'],
+            [['nama'], 'required'],
             [['nama'], 'string', 'max' => 255],
             [['part_number'], 'string', 'max' => 32],
-            [['part_number'], 'unique'],
-            [['satuan_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Satuan::class, 'targetAttribute' => ['satuan_id' => 'id']]
+            [['part_number'], 'unique']
         ];
     }
 
@@ -54,16 +52,23 @@ abstract class Barang extends \yii\db\ActiveRecord
             'id' => 'ID',
             'nama' => 'Nama',
             'part_number' => 'Part Number',
-            'satuan_id' => 'Satuan ID',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSatuan()
+    public function getBarangSatuans()
     {
-        return $this->hasOne(\app\models\Satuan::class, ['id' => 'satuan_id']);
+        return $this->hasMany(\app\models\BarangSatuan::class, ['barang_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFakturDetails()
+    {
+        return $this->hasMany(\app\models\FakturDetail::class, ['barang_id' => 'id']);
     }
 
 

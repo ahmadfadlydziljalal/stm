@@ -32,7 +32,9 @@
     "twbs/bootstrap-icons": "^1.9",
     "kartik-v/yii2-export": "@dev",
     "kartik-v/yii2-grid": "@dev",
-    "kartik-v/yii2-bootstrap5-dropdown": "@dev"
+    "kartik-v/yii2-bootstrap5-dropdown": "@dev",
+    "kartik-v/yii2-number": "dev-master",
+    "kartik-v/yii2-widget-depdrop": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",

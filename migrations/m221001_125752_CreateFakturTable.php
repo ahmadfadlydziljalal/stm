@@ -25,8 +25,8 @@ class m221001_125752_CreateFakturTable extends Migration
 
         $this->createTable('{{%faktur}}', [
             'id' => $this->primaryKey(),
-            'tanggal_faktur' => $this->date(),
             'nomor_faktur' => $this->string(),
+            'tanggal_faktur' => $this->date()->notNull(),
             'nomor_purchase_order' => $this->string(),
             'jenis_transaksi_id' => $this->integer()->notNull()
         ]);
@@ -41,12 +41,11 @@ class m221001_125752_CreateFakturTable extends Migration
 
         $this->createTable('{{faktur_detail}}', [
             'id' => $this->primaryKey(),
-
             'faktur_id' => $this->integer(),
             'barang_id' => $this->integer()->notNull(),
-            'quantity' => $this->decimal(5, 2),
-            'satuan_id' => $this->integer(),
-            'harga_barang' => $this->decimal(10, 2),
+            'quantity' => $this->decimal(5, 2)->notNull(),
+            'satuan_id' => $this->integer()->notNull(),
+            'harga_barang' => $this->decimal(10, 2)->notNull(),
         ]);
 
         $this->createIndex('idx_faktur_detail_id', 'faktur_detail', 'faktur_id');
@@ -61,7 +60,7 @@ class m221001_125752_CreateFakturTable extends Migration
         $this->addForeignKey('fk_barang_faktur_detail_id', 'faktur_detail', 'barang_id',
             'barang',
             'id',
-            'RESTRICT',
+            'CASCADE',
             'CASCADE'
         );
     }

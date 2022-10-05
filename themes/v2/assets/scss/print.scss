@@ -8,15 +8,9 @@
     font-size: 11pt;
 
     @import "print_table";
+    @import "print_utils";
 
   }
 
-  .text-center {
-    text-align: center;
-  }
-
-  .text-end {
-    text-align: right;
-  }
 
 }

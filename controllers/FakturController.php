@@ -136,7 +136,10 @@ class FakturController extends Controller
                 }
 
                 if ($status['code']) {
-                    Yii::$app->session->setFlash('success', 'Faktur: ' . Html::a($model->id, ['view', 'id' => $model->id]) . " berhasil ditambahkan.");
+                    Yii::$app->session->setFlash('success', 'Faktur: ' . Html::a($model->nomor_faktur, ['view', 'id' => $model->id]) . " berhasil ditambahkan.");
+                    if ($request->post('create-another')) {
+                        return $this->redirect(['faktur/create']);
+                    }
                     return $this->redirect(['index']);
                 }
 
@@ -206,7 +209,10 @@ class FakturController extends Controller
                 }
 
                 if ($status['code']) {
-                    Yii::$app->session->setFlash('info', "Faktur: " . Html::a($model->id, ['view', 'id' => $model->id]) . " berhasil di update.");
+                    Yii::$app->session->setFlash('info', "Faktur: " . Html::a($model->id, ['view', 'id' => $model->nomor_faktur]) . " berhasil di update.");
+                    if ($request->post('create-another')) {
+                        return $this->redirect(['faktur/create']);
+                    }
                     return $this->redirect(['index']);
                 }
 

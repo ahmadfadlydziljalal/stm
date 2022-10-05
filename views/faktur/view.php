@@ -1,15 +1,17 @@
 <?php
 
+use app\models\FakturDetail;
+use kartik\grid\GridView;
+use kartik\grid\SerialColumn;
 use mdm\admin\components\Helper;
-use yii\data\ArrayDataProvider;
-use yii\grid\GridView;
+use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Faktur */
 
-$this->title = $model->id;
+$this->title = $model->nomor_faktur;
 $this->params['breadcrumbs'][] = ['label' => 'Fakturs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -41,25 +43,41 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-    <?php try {
-        echo DetailView::widget([
-            'model' => $model,
-            'options' => [
-                'class' => 'table table-bordered table-detail-view'
-            ],
-            'attributes' => [
-                'tanggal_faktur:date',
-                'nomor_faktur',
-                'nomor_purchase_order',
-                'jenis_transaksi_id',
-            ],
-        ]);
+    <div class="row">
+        <div class="col col-lg-7">
+            <?php
+            try {
+                echo DetailView::widget([
+                    'model' => $model,
+                    'options' => [
+                        'class' => 'table table-bordered table-detail-view'
+                    ],
+                    'attributes' => [
+                        'tanggal_faktur:date',
+                        'nomor_faktur',
+                        'nomor_purchase_order',
+                        [
+                            'attribute' => 'jenis_transaksi_id',
+                            'value' => $model->jenisTransaksi->nama
+                        ],
+                    ],
+                ]);
+            } catch (Throwable $e) {
+                echo $e->getMessage();
+            }
+            ?>
+        </div>
+    </div>
 
-        echo Html::tag('h2', 'Faktur Detail');
+
+    <?php try {
+        $sumSubtotal = $model->sumSubtotal;
         echo !empty($model->fakturDetails) ?
             GridView::widget([
-                'dataProvider' => new ArrayDataProvider([
-                    'allModels' => $model->fakturDetails
+                'dataProvider' => new ActiveDataProvider([
+                    'query' => $model->getFakturDetails()
+                        ->joinWith('barang', false)
+                        ->joinWith('satuan', false)
                 ]),
                 'columns' => [
                     // [
@@ -71,22 +89,135 @@ $this->params['breadcrumbs'][] = $this->title;
                     // 'attribute'=>'faktur_id',
                     // ],
                     [
-                        'class' => '\yii\grid\DataColumn',
+                        'class' => SerialColumn::class,
+                        'width' => '1%',
+                        'header' => 'No.',
+                        'contentOptions' => [
+                            'class' => 'text-end'
+                        ]
+                    ],
+                    [
+                        'class' => 'kartik\grid\DataColumn',
+                        'label' => 'Part Number',
+                        'width' => '13rem',
                         'attribute' => 'barang_id',
+                        'value' => function ($model) {
+                            /** @var FakturDetail $model */
+                            return $model->barang->part_number;
+                        },
+                        'headerOptions' => [
+                            'class' => 'text-center'
+                        ],
+                        'pageSummary' => function () use ($sumSubtotal) {
+                            return Html::tag('span', 'Terbilang: ' . Yii::$app->formatter->asSpellout($sumSubtotal), [
+                                'font-weight' => 'bold'
+                            ]);
+                        },
+                        'pageSummaryOptions' => [
+                            'colspan' => 5,
+
+                        ],
                     ],
                     [
-                        'class' => '\yii\grid\DataColumn',
+                        'class' => 'kartik\grid\DataColumn',
+                        'attribute' => 'barang_id',
+                        'label' => 'Description',
+                        'value' => function ($model) {
+                            /** @var FakturDetail $model */
+                            return $model->barang->nama;
+                        },
+                        'headerOptions' => [
+                            'class' => 'text-center'
+                        ],
+                        'contentOptions' => [
+                            'class' => 'text-nowrap'
+                        ]
+                    ],
+                    [
+                        'class' => 'kartik\grid\DataColumn',
                         'attribute' => 'quantity',
+                        'label' => 'Qty',
+                        'contentOptions' => [
+                            'class' => 'text-nowrap'
+                        ],
+                        'value' => function ($model) {
+                            /** @var FakturDetail $model */
+                            return $model->quantity . ' ' . $model->satuan->nama;
+                        },
+                        'headerOptions' => [
+                            'class' => 'text-center'
+                        ],
                     ],
                     [
-                        'class' => '\yii\grid\DataColumn',
-                        'attribute' => 'satuan_id',
+                        'class' => 'kartik\grid\DataColumn',
+                        'headerOptions' => [
+                            'class' => 'text-end border-end-0 '
+                        ],
+                        'contentOptions' => [
+                            'class' => 'text-end border-end-0 '
+                        ],
+                        'value' => function ($model) {
+                            return Yii::$app->getFormatter()->currencyCode;
+                        },
+                        'pageSummaryOptions' => [
+                            'class' => 'text-end border-end-0 '
+                        ]
                     ],
                     [
-                        'class' => '\yii\grid\DataColumn',
+                        'class' => 'kartik\grid\DataColumn',
                         'attribute' => 'harga_barang',
+                        'label' => 'Unit Price',
+                        'headerOptions' => [
+                            'class' => 'text-end text-nowrap border-start-0'
+                        ],
+                        'contentOptions' => [
+                            'class' => 'text-end border-start-0'
+                        ],
+                        'format' => ['decimal', 2],
+                        'pageSummary' => false,
+                        'pageSummaryOptions' => [
+                            'class' => 'text-end border-start-0'
+                        ]
                     ],
-                ]
+                    [
+                        'class' => 'kartik\grid\DataColumn',
+                        'headerOptions' => [
+                            'class' => 'text-end border-end-0 '
+                        ],
+                        'contentOptions' => [
+                            'class' => 'text-end border-end-0 '
+                        ],
+                        'value' => function ($model) {
+                            return Yii::$app->getFormatter()->currencyCode;
+                        },
+                        'pageSummary' => function ($summary, $data) {
+                            return Yii::$app->getFormatter()->currencyCode;
+                        },
+                        'pageSummaryOptions' => [
+                            'class' => 'text-end border-end-0 '
+                        ]
+                    ],
+                    [
+                        'class' => 'kartik\grid\DataColumn',
+                        'label' => 'Subtotal',
+                        'headerOptions' => [
+                            'class' => 'text-end border-start-0'
+                        ],
+                        'contentOptions' => [
+                            'class' => 'text-end border-start-0'
+                        ],
+                        'value' => function ($model) {
+                            /** @var FakturDetail $model */
+                            return $model->subTotal;
+                        },
+                        'format' => ['decimal', 2],
+                        'pageSummary' => true,
+                        'pageSummaryOptions' => [
+                            'class' => 'text-end border-start-0'
+                        ]
+                    ]
+                ],
+                'showPageSummary' => true
             ]) :
             Html::tag("p", 'Faktur Detail tidak tersedia', [
                 'class' => 'text-warning font-weight-bold p-3'

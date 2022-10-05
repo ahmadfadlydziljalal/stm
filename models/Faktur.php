@@ -11,7 +11,9 @@ use yii\helpers\ArrayHelper;
 class Faktur extends BaseFaktur
 {
 
-    public function behaviors()
+    public ?string $total = null;
+
+    public function behaviors(): array
     {
         return ArrayHelper::merge(
             parent::behaviors(),
@@ -27,7 +29,7 @@ class Faktur extends BaseFaktur
         );
     }
 
-    public function rules()
+    public function rules(): array
     {
         return ArrayHelper::merge(
             parent::rules(),
@@ -36,4 +38,14 @@ class Faktur extends BaseFaktur
             ]
         );
     }
+
+    public function getSumSubtotal()
+    {
+        return array_sum(
+            array_map(function ($el) {
+                return $el->quantity * $el->harga_barang;
+            }, $this->fakturDetails)
+        );
+    }
+
 }

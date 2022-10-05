@@ -1,11 +1,11 @@
 <?php
-use yii\helpers\Html;
-use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\search\BarangSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-/* @see app\controllers\BarangController::actionIndex() */
+
+use yii\helpers\Html;
+use yii\grid\GridView;
 
 $this->title = 'Barang';
 $this->params['breadcrumbs'][] = $this->title;
@@ -28,11 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ]);
         } catch(Exception $e){
             echo $e->getMessage();
-        }
-        catch (Throwable $e) {
+        } catch (Throwable $e) {
             echo $e->getMessage();
         }
-    
          ?>
 
 </div>

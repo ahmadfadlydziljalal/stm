@@ -21,15 +21,6 @@ class SatuanQuery extends ActiveQuery
 
     /**
      * @inheritdoc
-     * @return Satuan[]|array
-     */
-    public function all($db = null)
-    {
-        return parent::all($db);
-    }
-
-    /**
-     * @inheritdoc
      * @return Satuan|array|null
      */
     public function one($db = null)
@@ -40,6 +31,15 @@ class SatuanQuery extends ActiveQuery
     public function map()
     {
 
-        return ArrayHelper::map(s);
+        return ArrayHelper::map(parent::select('id,nama')->all(), 'id', 'nama');
+    }
+
+    /**
+     * @inheritdoc
+     * @return Satuan[]|array
+     */
+    public function all($db = null)
+    {
+        return parent::all($db);
     }
 }

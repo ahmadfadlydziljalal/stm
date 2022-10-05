@@ -1,9 +1,10 @@
 <?php
+
 return [
     [
         'class' => 'yii\grid\SerialColumn',
     ],
-        // [
+    // [
         // 'class'=>'\yii\grid\DataColumn',
         // 'attribute'=>'id',
         // 'format'=>'text',
@@ -16,11 +17,6 @@ return [
     [
         'class'=>'\yii\grid\DataColumn',
         'attribute'=>'part_number',
-        'format'=>'text',
-    ],
-    [
-        'class'=>'\yii\grid\DataColumn',
-        'attribute'=>'satuan_id',
         'format'=>'text',
     ],
     [

@@ -7,13 +7,13 @@
 
   th {
     text-align: left;
-    font-weight: normal;
   }
 
   th, td {
     padding: 5pt;
     border: 1pt solid black;
   }
+
 
   thead {
 
@@ -35,12 +35,12 @@
 
 }
 
-.card{
+.card {
 
   margin-top: 6pt;
   padding: 6pt 0;
 
-  .table{
+  .table {
     th, td {
       padding: 5pt 0;
       border: none;
@@ -53,9 +53,9 @@
         border: 1pt solid $black;
       }
 
-      thead{
-        tr{
-          th{
+      thead {
+        tr {
+          th {
             text-align: center;
           }
         }
