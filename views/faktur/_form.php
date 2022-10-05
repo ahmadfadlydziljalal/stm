@@ -53,7 +53,8 @@ use yii\widgets\MaskedInput;
                         <?= $form->field($model, 'card_id')->widget(Select2::class, [
                             'data' => Card::find()->map(),
                             'options' => [
-                                'prompt' => '= Pilih Customer ='
+                                'prompt' => '= Pilih Customer =',
+                                'autofocus' => 'autofocus'
                             ],
                         ])->label('Customer') ?>
 
@@ -62,9 +63,7 @@ use yii\widgets\MaskedInput;
                     <div class="col-12 col-lg-3">
                         <?= $form->field($model, 'tanggal_faktur')->widget(DateControl::class, [
                             'type' => kartik\datecontrol\DateControl::FORMAT_DATE,
-                            'options' => [
-                                'autofocus' => 'autofocus'
-                            ]
+
                         ]) ?>
                     </div>
                     <div class="col-12 col-lg-3">
@@ -280,12 +279,12 @@ JS;
             <div class="d-flex justify-content-between">
                 <?= Html::a(' Tutup', ['index'], ['class' => 'btn btn-secondary']) ?>
                 <div>
-                    <?= Html::submitButton(' Simpan', ['class' => 'btn btn-success']) ?>
                     <?= Html::submitButton(' Simpan & Buat Faktur Lainnya', [
                         'class' => 'btn btn-success',
                         'name' => 'create-another',
                         'value' => 'true'
                     ]) ?>
+                    <?= Html::submitButton(' Simpan', ['class' => 'btn btn-success']) ?>
                 </div>
 
             </div>
@@ -297,6 +296,7 @@ JS;
 
 <?php
 $afterInsert = <<<JS
+    jQuery('#faktur-card_id').select2('open');
     jQuery(".dynamicform_wrapper").on("afterInsert", function(e, item) {
         var barangId = jQuery(item).find('.barang-id');
         barangId.val('').trigger('change');

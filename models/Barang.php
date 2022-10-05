@@ -2,8 +2,7 @@
 
 namespace app\models;
 
-use Yii;
-use \app\models\base\Barang as BaseBarang;
+use app\models\base\Barang as BaseBarang;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -11,6 +10,8 @@ use yii\helpers\ArrayHelper;
  */
 class Barang extends BaseBarang
 {
+
+    public ?string $satuanHarga = null;
 
     public function behaviors()
     {

@@ -2,9 +2,11 @@
 
 namespace app\models\search;
 
+use app\models\Barang;
+use app\models\BarangSatuan;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Barang;
+use yii\db\Expression;
 
 /**
  * BarangSearch represents the model behind the search form about `app\models\Barang`.
@@ -14,7 +16,7 @@ class BarangSearch extends Barang
     /**
      * @inheritdoc
      */
-    public function rules() : array
+    public function rules(): array
     {
         return [
             [['id'], 'integer'],
@@ -25,7 +27,7 @@ class BarangSearch extends Barang
     /**
      * @inheritdoc
      */
-    public function scenarios() : array
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -36,9 +38,22 @@ class BarangSearch extends Barang
      * @param array $params
      * @return ActiveDataProvider
      */
-    public function search(array $params) : ActiveDataProvider
+    public function search(array $params): ActiveDataProvider
     {
-        $query = Barang::find();
+        $query = Barang::find()
+            ->select([
+                'id' => 'b.id',
+                'nama' => 'b.nama',
+                'part_number' => 'b.part_number',
+                'satuanHarga' => new Expression('JSON_OBJECTAGG(satuan.nama, bs.harga )')
+            ])
+            ->alias('b')
+            ->joinWith(['barangSatuans' => function ($model) {
+                /** @var BarangSatuan $model */
+                $model->alias('bs')
+                    ->joinWith('satuan', false);
+            }], false)
+            ->groupBy('b.id');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

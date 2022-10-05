@@ -62,12 +62,12 @@ services:
 
 # Docker Networks
 networks:
-  tms-starter-network:
+  stm-network:
     driver: bridge
 
 # Docker Volumes
 volumes:
-  tms-starter-volumes:
+  stm-volumes:
     driver: local
-  tms-starter-mongo-volumes:
+  stm-mongo-volumes:
     driver: local

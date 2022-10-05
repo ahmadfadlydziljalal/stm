@@ -12,8 +12,8 @@ class m010101_090110_CreateDatabaseTest extends Migration
      */
     public function safeUp()
     {
-        if(YII_ENV_DEV){
-            $this->execute("CREATE DATABASE IF NOT EXISTS `tms_starter_test`");
+        if (YII_ENV_DEV) {
+            $this->execute("CREATE DATABASE IF NOT EXISTS `" . getenv('MONGO_INITDB_DATABASE_TEST') . "`");
         }
         return true;
     }
@@ -23,7 +23,7 @@ class m010101_090110_CreateDatabaseTest extends Migration
      */
     public function safeDown()
     {
-        if(YII_ENV_DEV){
+        if (YII_ENV_DEV) {
             $this->execute("DROP DATABASE IF EXISTS `tms_starter_test`");
         }
         return true;
