@@ -42,12 +42,12 @@ use yii\widgets\MaskedInput;
                 ]
             ]*/
         ]); ?>
-        
+
         <div class="d-flex flex-column mt-0" style="gap: 1rem">
 
             <div class="form-master">
                 <div class="row">
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-3">
                         <?= $form->field($model, 'tanggal_faktur')->widget(DateControl::class, [
                             'type' => kartik\datecontrol\DateControl::FORMAT_DATE,
                             'options' => [
@@ -55,11 +55,11 @@ use yii\widgets\MaskedInput;
                             ]
                         ]) ?>
                     </div>
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-3">
                         <?= $form->field($model, 'nomor_purchase_order')->textInput(['maxlength' => true]) ?>
                     </div>
-                    <div class="col-12 col-lg-4">
-                        <?= $form->field($model, 'jenis_transaksi_id')->radioList(ArrayHelper::map(
+                    <div class="col-12 col-lg-3">
+                        <?= $form->field($model, 'jenis_transaksi_id', ['inline' => true])->radioList(ArrayHelper::map(
                             JenisTransaksi::find()->all(),
                             'id',
                             'nama'
@@ -254,7 +254,7 @@ JS;
                         <tfoot>
                         <tr>
                             <td class="text-end" colspan="5">
-                                <?php echo Html::button('<span class="bi bi-plus-circle"></span> Tambah', ['class' => 'add-item btn btn-success',]); ?>
+                                <?php echo Html::button('<span class="bi bi-plus-circle"></span> Tambah', ['class' => 'add-item btn btn-primary',]); ?>
                             </td>
                             <td></td>
                         </tr>

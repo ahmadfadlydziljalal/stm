@@ -39,6 +39,13 @@ class Faktur extends BaseFaktur
         );
     }
 
+    public function attributeLabels()
+    {
+        return ArrayHelper::merge(parent::attributeLabels(), [
+            'jenis_transaksi_id' => 'Jenis Transaksi',
+        ]);
+    }
+
     public function getSumSubtotal()
     {
         return array_sum(
@@ -47,5 +54,6 @@ class Faktur extends BaseFaktur
             }, $this->fakturDetails)
         );
     }
+
 
 }
