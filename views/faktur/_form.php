@@ -3,6 +3,7 @@
 use app\components\helpers\ArrayHelper;
 use app\models\Barang;
 use app\models\BarangSatuan;
+use app\models\Card;
 use app\models\FakturDetail;
 use app\models\JenisTransaksi;
 use kartik\datecontrol\DateControl;
@@ -47,6 +48,17 @@ use yii\widgets\MaskedInput;
 
             <div class="form-master">
                 <div class="row">
+                    <div class="col-12 col-lg-3">
+
+                        <?= $form->field($model, 'card_id')->widget(Select2::class, [
+                            'data' => Card::find()->map(),
+                            'options' => [
+                                'prompt' => '= Pilih Customer ='
+                            ],
+                        ])->label('Customer') ?>
+
+                    </div>
+
                     <div class="col-12 col-lg-3">
                         <?= $form->field($model, 'tanggal_faktur')->widget(DateControl::class, [
                             'type' => kartik\datecontrol\DateControl::FORMAT_DATE,

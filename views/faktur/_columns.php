@@ -14,6 +14,11 @@ return [
     // ],
     [
         'class' => '\yii\grid\DataColumn',
+        'attribute' => 'card_id',
+        'value' => 'card.nama',
+    ],
+    [
+        'class' => '\yii\grid\DataColumn',
         'attribute' => 'tanggal_faktur',
         'format' => 'date',
     ],

@@ -2,9 +2,9 @@
 
 namespace app\models\search;
 
+use app\models\Faktur;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Faktur;
 
 /**
  * FakturSearch represents the model behind the search form about `app\models\Faktur`.
@@ -14,10 +14,10 @@ class FakturSearch extends Faktur
     /**
      * @inheritdoc
      */
-    public function rules() : array
+    public function rules(): array
     {
         return [
-            [['id', 'jenis_transaksi_id'], 'integer'],
+            [['id', 'jenis_transaksi_id', 'card_id'], 'integer'],
             [['tanggal_faktur', 'nomor_faktur', 'nomor_purchase_order'], 'safe'],
         ];
     }
@@ -25,7 +25,7 @@ class FakturSearch extends Faktur
     /**
      * @inheritdoc
      */
-    public function scenarios() : array
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -36,7 +36,7 @@ class FakturSearch extends Faktur
      * @param array $params
      * @return ActiveDataProvider
      */
-    public function search(array $params) : ActiveDataProvider
+    public function search(array $params): ActiveDataProvider
     {
         $query = Faktur::find();
 
@@ -59,6 +59,7 @@ class FakturSearch extends Faktur
 
         $query->andFilterWhere([
             'id' => $this->id,
+            'card_id' => $this->card_id,
             'tanggal_faktur' => $this->tanggal_faktur,
             'jenis_transaksi_id' => $this->jenis_transaksi_id,
         ]);

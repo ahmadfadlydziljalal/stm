@@ -20,6 +20,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $updated_by
  *
  * @property \app\models\CardBelongsType[] $cardBelongsTypes
+ * @property \app\models\Faktur[] $fakturs
  * @property string $aliasModel
  */
 abstract class Card extends \yii\db\ActiveRecord
@@ -84,6 +85,14 @@ abstract class Card extends \yii\db\ActiveRecord
     public function getCardBelongsTypes()
     {
         return $this->hasMany(\app\models\CardBelongsType::class, ['card_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFakturs()
+    {
+        return $this->hasMany(\app\models\Faktur::class, ['card_id' => 'id']);
     }
 
 

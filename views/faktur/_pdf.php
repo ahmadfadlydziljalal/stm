@@ -48,14 +48,18 @@ $settings = Yii::$app->settings;
         <div style="float: right; width: 55%">
             <table style="width: 100%">
                 <tr>
-                    <td class="text-end">Jakarta:</td>
+                    <td class="text-end">Jakarta</td>
+                    <td style="width: 1px">:</td>
                     <td><?= Yii::$app->formatter->asDate($model->tanggal_faktur) ?></td>
-
                 </tr>
                 <tr>
-                    <td class="text-end">Kepada Yth:</td>
+                    <td class="text-end">Kepada Yth</td>
+                    <td style="width: 1px">:</td>
                     <td style="font-weight: bold;">
-                        <?= $model->jenisTransaksi->nama ?>
+                        <?= $model->jenisTransaksi->nama ?>, <?= isset($model->card) ?
+                            $model->card->nama :
+                            ''
+                        ?>
                     </td>
                 </tr>
             </table>
