@@ -1,6 +1,7 @@
 <?php
 
 use app\models\JenisTransaksi;
+use yii\helpers\Html;
 
 return [
     [
@@ -51,6 +52,14 @@ return [
         }
     ],
     [
-        'class' => 'yii\grid\ActionColumn',
+        'class' => 'app\components\grid\ActionColumn',
+        'template' => '{print} {update} {view} {delete}',
+        'buttons' => [
+            'print' => function ($url, $model) {
+                return Html::a('<i class="bi bi-printer-fill"></i>', ['faktur/pdf', 'id' => $model->id], [
+                    'target' => '_blank'
+                ]);
+            },
+        ],
     ],
 ];   

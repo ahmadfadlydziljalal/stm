@@ -42,9 +42,7 @@ use yii\widgets\MaskedInput;
                 ]
             ]*/
         ]); ?>
-
-        <p><?= $form->errorSummary($model) ?></p>
-
+        
         <div class="d-flex flex-column mt-0" style="gap: 1rem">
 
             <div class="form-master">
