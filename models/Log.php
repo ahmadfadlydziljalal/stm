@@ -2,26 +2,27 @@
 
 namespace app\models;
 
-use Yii;
+use MongoDB\BSON\ObjectID;
+use yii\mongodb\ActiveRecord;
 
 /**
  * This is the model class for collection "log".
  *
- * @property \MongoDB\BSON\ObjectID|string $_id
+ * @property ObjectID|string $_id
  * @property mixed $level
  * @property mixed $category
  * @property mixed $log_time
  * @property mixed $prefix
  * @property mixed $message
  */
-class Log extends \yii\mongodb\ActiveRecord
+class Log extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function collectionName()
     {
-        return ['tms_starter', 'log'];
+        return ['stm', 'log'];
     }
 
     /**

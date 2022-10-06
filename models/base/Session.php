@@ -50,7 +50,7 @@ abstract class Session extends ActiveRecord
      */
     public static function collectionName()
     {
-        return ['tms_starter', 'session'];
+        return ['stm', 'session'];
     }
 
     /**
@@ -93,5 +93,5 @@ abstract class Session extends ActiveRecord
         ];
     }
 
-    
+
 }

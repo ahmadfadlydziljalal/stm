@@ -20,7 +20,7 @@ class Cache extends ActiveRecord
      */
     public static function collectionName()
     {
-        return ['tms_starter', 'cache'];
+        return ['stm', 'cache'];
     }
 
     /**
