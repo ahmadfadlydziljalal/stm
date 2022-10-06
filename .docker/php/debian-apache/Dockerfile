@@ -6,7 +6,7 @@
 #    build:
 #      target: deploy
 
-FROM php:8.1.5-apache-buster as base
+FROM --platform=linux/amd64 php:8.1.5-apache-buster as base
 
 # Install dependencies & extensions
 RUN apt-get update && apt-get install -y \
