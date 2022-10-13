@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'dirMode' => 0755,
     'bundles' => [
         'yii\bootstrap5\BootstrapAsset' => [
             'css' => [],
