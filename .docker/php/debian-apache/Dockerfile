@@ -44,29 +44,22 @@ RUN a2enmod rewrite && service apache2 restart
 # Alias codeception
 RUN echo 'alias c="vendor/bin/codecept"' >> /etc/bash.bashrc
 
-# Aktifkan sebagai user www-data
-USER www-data
+# Copy semua file
+COPY . .
 
 # Copy settingan - settingan
 COPY ./.docker/php/php.ini /usr/local/etc/php/php.ini
 COPY ./.docker/php/debian-apache/000-default.conf /etc/apache2/sites-available/000-default.conf
 
-# Baris ini akan di ekseksusi kalau target di set deploy
+# Baris ini akan di ekseksusi 
+# kalau target di set deploy (server)
 FROM base AS deploy
-COPY --chown=www-data:www-data ./assets assets
-COPY --chown=www-data:www-data ./commands commands
-COPY --chown=www-data:www-data ./components components
-COPY --chown=www-data:www-data ./config config
-COPY --chown=www-data:www-data ./controllers controllers
-COPY --chown=www-data:www-data ./mail mail
-COPY --chown=www-data:www-data ./migrations migrations
-COPY --chown=www-data:www-data ./models models
-COPY --chown=www-data:www-data ./runtime runtime
-COPY --chown=www-data:www-data ./themes themes
-COPY --chown=www-data:www-data ./vendor vendor
-COPY --chown=www-data:www-data ./views views
-COPY --chown=www-data:www-data ./web web
-COPY --chown=www-data:www-data ./widgets widgets
 
-COPY ./yii yii
-COPY --chown=www-data:www-data ./web/index-prod.php web/index.php
+RUN mkdir ./runtime ./web/assets
+RUN echo "*\n!.gitignore" | tee ./runtime/.gitignore ./web/assets/.gitignore
+
+RUN chown www-data:www-data ./runtime
+RUN chgrp www-data ./web/assets
+RUN chmod g+w ./web/assets
+
+COPY ./web/index-prod.php web/index.php
