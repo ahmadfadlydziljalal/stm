@@ -256,7 +256,10 @@ class FakturController extends Controller
 
         /** @var Pdf $pdf */
         $pdf = Yii::$app->pdf;
-        $pdf->content =  $this->renderPartial('_pdf', [
+        $pdf->format = [215, 140];
+        $pdf->marginTop = 8;
+        $pdf->marginBottom = 2;
+        $pdf->content = $this->renderPartial('_pdf', [
             'model' => $model
         ]);
 

@@ -4,13 +4,14 @@
 
   width: 100%;
   border-collapse: collapse;
+  font-size: 10pt;
 
   th {
     text-align: left;
   }
 
   th, td {
-    padding: 5pt;
+    padding: 1pt 2pt;
     border: 1pt solid black;
   }
 

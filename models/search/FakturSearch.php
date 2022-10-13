@@ -3,6 +3,7 @@
 namespace app\models\search;
 
 use app\models\Faktur;
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
@@ -17,7 +18,7 @@ class FakturSearch extends Faktur
     public function rules(): array
     {
         return [
-            [['id', 'jenis_transaksi_id', 'card_id'], 'integer'],
+            [['id', 'toko_saya_id', 'jenis_transaksi_id', 'card_id'], 'integer'],
             [['tanggal_faktur', 'nomor_faktur', 'nomor_purchase_order'], 'safe'],
         ];
     }
@@ -59,8 +60,10 @@ class FakturSearch extends Faktur
 
         $query->andFilterWhere([
             'id' => $this->id,
+            'toko_saya_id' => $this->toko_saya_id,
             'card_id' => $this->card_id,
-            'tanggal_faktur' => $this->tanggal_faktur,
+            'tanggal_faktur' => empty($this->tanggal_faktur) ? $this->tanggal_faktur :
+                Yii::$app->formatter->asDate($this->tanggal_faktur, 'php:Y-m-d'),
             'jenis_transaksi_id' => $this->jenis_transaksi_id,
         ]);
 

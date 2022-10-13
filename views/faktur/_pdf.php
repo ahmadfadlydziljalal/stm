@@ -18,7 +18,7 @@ $settings = Yii::$app->settings;
 <div class="faktur-pdf">
 
     <div style="width: 100%">
-        <div style="float: left; width: 40%">
+        <div style="float: left; width: 40%; height: 42pt !important; min-height: 42pt">
 
             <table>
                 <tr>
@@ -29,15 +29,17 @@ $settings = Yii::$app->settings;
                         ]) ?>
                     </td>
                     <td class="text-nowrap">
-                        <h1><?= $settings->get('site.name') ?></h1>
+                        <h1 style="font-size: 16pt"><?= $model->tokoSaya->nama ?></h1>
                         <?= $settings->get('site.slogan') ?>
                     </td>
                 </tr>
             </table>
 
-            <small>
-                <?= $settings->get('site.alamat') ?>
-            </small>
+            <?php if ($model->tokoSaya->kode == 'STM'): ?>
+                <small>
+                    <?= $settings->get('site.alamat') ?>
+                </small>
+            <?php endif; ?>
 
         </div>
 
@@ -67,14 +69,12 @@ $settings = Yii::$app->settings;
 
     <?php $sumSubtotal = $model->sumSubtotal ?>
     <?php $maxRows = Yii::$app->settings->get('faktur.maximalRowItemInPrintMode'); ?>
-
-
-    <table class="table mt-5 kv-grid-table table-bordered">
+    <table class="table mt-3 kv-grid-table table-bordered">
         <thead class="w0">
         <tr>
             <th colspan="2" style="color: red; white-space: nowrap; width: 14rem; min-width: 14rem;">Faktur
                 No: <?= $model->nomor_faktur ?></th>
-            <th>NO P.O: <?= $model->nomor_purchase_order ?></th>
+            <th>NO P.O: <?= !empty($model->nomor_purchase_order) ? $model->nomor_purchase_order : "-" ?></th>
         </tr>
 
         <tr class="text-nowrap text-center">
@@ -152,33 +152,35 @@ $settings = Yii::$app->settings;
         </tbody>
     </table>
 
-    <div class="mt-5" style="width: 100%">
+
+    <div class="mt-1" style="width: 100%">
         <div style="float:left; width: 20%">Tanda Terima</div>
         <div style="float:left; width: 35%">
-            Pembayaran Melalui Bank
-            <table>
-                <tr>
-                    <th class="text-start">BCA</th>
-                    <th>:</th>
-                    <th class="text-start">4281 4065 52</th>
-                </tr>
-                <tr>
-                    <th class="text-start">BNI</th>
-                    <th>:</th>
-                    <th class="text-start">0335 6020 74</th>
-                </tr>
-                <tr>
-                    <th class="text-start">A/N</th>
-                    <th>:</th>
-                    <th class="text-start">Supriyanto</th>
-                </tr>
-            </table>
+            <?php if ($model->tokoSaya->kode == 'STM'): ?>
+                Pembayaran Melalui Bank
+                <table>
+                    <tr>
+                        <th class="text-start">BCA</th>
+                        <th>:</th>
+                        <th class="text-start">4281 4065 52</th>
+                    </tr>
+                    <tr>
+                        <th class="text-start">BNI</th>
+                        <th>:</th>
+                        <th class="text-start">0335 6020 74</th>
+                    </tr>
+                    <tr>
+                        <th class="text-start">A/N</th>
+                        <th>:</th>
+                        <th class="text-start">Supriyanto</th>
+                    </tr>
+                </table>
+            <?php endif ?>
         </div>
-        <div style="float:left; width: 20%">Hormat Kami</div>
-        <div style="float:left; width: 25%">
+        <div style="float:right; width: 25%">
             Grand Total<br/>
             <b><?= Yii::$app->getFormatter()->currencyCode ?> <?= Yii::$app->formatter->asDecimal($sumSubtotal, 2) ?></b>
         </div>
+        <div style="float:right; width: 20%">Hormat Kami</div>
     </div>
-
 </div>

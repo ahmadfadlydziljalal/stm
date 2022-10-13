@@ -46,35 +46,53 @@ use yii\widgets\MaskedInput;
 
         <div class="d-flex flex-column mt-0" style="gap: 1rem">
 
-            <div class="form-master">
-                <div class="row">
-                    <div class="col-12 col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-lg-3">
+                            <?= $form->field($model, 'toko_saya_id')->widget(Select2::class, [
+                                'data' => Card::find()->map(Card::GET_ONLY_TOKO_SAYA),
+                                'options' => [
+                                    'prompt' => '= Pilih Toko =',
+                                    'autofocus' => 'autofocus'
+                                ],
+                            ]) ?>
+                        </div>
 
-                        <?= $form->field($model, 'card_id')->widget(Select2::class, [
-                            'data' => Card::find()->map(),
-                            'options' => [
-                                'prompt' => '= Pilih Customer =',
-                                'autofocus' => 'autofocus'
-                            ],
-                        ])->label('Customer') ?>
+                        <div class="col-12 col-lg-3">
 
+                            <?= $form->field($model, 'card_id')->widget(Select2::class, [
+                                'data' => Card::find()->map(Card::GET_APART_FROM_TOKO_SAYA),
+                                'options' => [
+                                    'prompt' => '= Pilih Customer =',
+                                    'autofocus' => 'autofocus'
+                                ],
+                            ])->label('Customer') ?>
+
+                        </div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="col-12 col-lg-3">
-                        <?= $form->field($model, 'tanggal_faktur')->widget(DateControl::class, [
-                            'type' => kartik\datecontrol\DateControl::FORMAT_DATE,
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-lg-3">
+                            <?= $form->field($model, 'tanggal_faktur')->widget(DateControl::class, [
+                                'type' => kartik\datecontrol\DateControl::FORMAT_DATE,
 
-                        ]) ?>
-                    </div>
-                    <div class="col-12 col-lg-3">
-                        <?= $form->field($model, 'nomor_purchase_order')->textInput(['maxlength' => true]) ?>
-                    </div>
-                    <div class="col-12 col-lg-3">
-                        <?= $form->field($model, 'jenis_transaksi_id', ['inline' => true])->radioList(ArrayHelper::map(
-                            JenisTransaksi::find()->all(),
-                            'id',
-                            'nama'
-                        )) ?>
+                            ]) ?>
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            <?= $form->field($model, 'nomor_purchase_order')->textInput(['maxlength' => true]) ?>
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            <?= $form->field($model, 'jenis_transaksi_id', ['inline' => true])->radioList(ArrayHelper::map(
+                                JenisTransaksi::find()->all(),
+                                'id',
+                                'nama'
+                            )) ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -99,9 +117,7 @@ use yii\widgets\MaskedInput;
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
-                        <tr>
-                            <th colspan="6">Faktur detail</th>
-                        </tr>
+                       
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Barang</th>
@@ -296,7 +312,7 @@ JS;
 
 <?php
 $afterInsert = <<<JS
-    jQuery('#faktur-card_id').select2('open');
+    jQuery('#faktur-toko_saya_id').select2('open');
     jQuery(".dynamicform_wrapper").on("afterInsert", function(e, item) {
         var barangId = jQuery(item).find('.barang-id');
         barangId.val('').trigger('change');

@@ -12,6 +12,9 @@ class Card extends BaseCard
 {
 
     const SCENARIO_CREATE_AND_UPDATE = 'create-and-update';
+    const GET_ALL = 'all';
+    const GET_ONLY_TOKO_SAYA = 'only-toko-saya';
+    const GET_APART_FROM_TOKO_SAYA = 'selain-toko-saya';
 
     public ?array $cardBelongsTypesForm = [];
     public ?string $cardTypeName = null;

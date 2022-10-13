@@ -15,10 +15,12 @@ use Yii;
  * @property string $tanggal_faktur
  * @property string $nomor_purchase_order
  * @property integer $jenis_transaksi_id
+ * @property integer $toko_saya_id
  *
  * @property \app\models\Card $card
  * @property \app\models\FakturDetail[] $fakturDetails
  * @property \app\models\JenisTransaksi $jenisTransaksi
+ * @property \app\models\Card $tokoSaya
  * @property string $aliasModel
  */
 abstract class Faktur extends \yii\db\ActiveRecord
@@ -40,11 +42,12 @@ abstract class Faktur extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['card_id', 'tanggal_faktur', 'jenis_transaksi_id'], 'required'],
-            [['card_id', 'jenis_transaksi_id'], 'integer'],
+            [['card_id', 'tanggal_faktur', 'jenis_transaksi_id', 'toko_saya_id'], 'required'],
+            [['card_id', 'jenis_transaksi_id', 'toko_saya_id'], 'integer'],
             [['tanggal_faktur'], 'safe'],
             [['nomor_faktur', 'nomor_purchase_order'], 'string', 'max' => 255],
             [['card_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Card::class, 'targetAttribute' => ['card_id' => 'id']],
+            [['toko_saya_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Card::class, 'targetAttribute' => ['toko_saya_id' => 'id']],
             [['jenis_transaksi_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\JenisTransaksi::class, 'targetAttribute' => ['jenis_transaksi_id' => 'id']]
         ];
     }
@@ -61,6 +64,7 @@ abstract class Faktur extends \yii\db\ActiveRecord
             'tanggal_faktur' => 'Tanggal Faktur',
             'nomor_purchase_order' => 'Nomor Purchase Order',
             'jenis_transaksi_id' => 'Jenis Transaksi ID',
+            'toko_saya_id' => 'Toko Saya ID',
         ];
     }
 
@@ -86,6 +90,14 @@ abstract class Faktur extends \yii\db\ActiveRecord
     public function getJenisTransaksi()
     {
         return $this->hasOne(\app\models\JenisTransaksi::class, ['id' => 'jenis_transaksi_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTokoSaya()
+    {
+        return $this->hasOne(\app\models\Card::class, ['id' => 'toko_saya_id']);
     }
 
 

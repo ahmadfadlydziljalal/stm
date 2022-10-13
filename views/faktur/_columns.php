@@ -1,6 +1,9 @@
 <?php
 
+use app\models\Card;
 use app\models\JenisTransaksi;
+use kartik\date\DatePicker;
+use kartik\grid\GridView;
 use yii\helpers\Html;
 
 return [
@@ -14,13 +17,29 @@ return [
     // ],
     [
         'class' => '\yii\grid\DataColumn',
-        'attribute' => 'card_id',
-        'value' => 'card.nama',
+        'attribute' => 'toko_saya_id',
+        'value' => 'tokoSaya.nama',
+        'filter' => Card::find()->map(Card::GET_ONLY_TOKO_SAYA)
     ],
     [
         'class' => '\yii\grid\DataColumn',
+        'attribute' => 'card_id',
+        'value' => 'card.nama',
+        'filter' => Card::find()->map(Card::GET_APART_FROM_TOKO_SAYA)
+    ],
+    [
+        'class' => '\kartik\grid\DataColumn',
         'attribute' => 'tanggal_faktur',
         'format' => 'date',
+        'filterType' => GridView::FILTER_DATE,
+        'filterWidgetOptions' => [
+            'type' => DatePicker::TYPE_INPUT,
+            'pluginOptions' => [
+                'format' => 'dd-mm-yyyy',
+                'autoclose' => true,
+                'todayHighlight' => true,
+            ]
+        ],
     ],
     [
         'class' => '\yii\grid\DataColumn',
@@ -31,6 +50,7 @@ return [
         'class' => '\yii\grid\DataColumn',
         'attribute' => 'nomor_purchase_order',
         'format' => 'text',
+        'header' => 'P.O'
     ],
     [
         'class' => '\yii\grid\DataColumn',

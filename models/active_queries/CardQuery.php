@@ -5,6 +5,7 @@ namespace app\models\active_queries;
 use app\components\helpers\ArrayHelper;
 use app\models\Card;
 use yii\db\ActiveQuery;
+use yii\web\NotFoundHttpException;
 
 /**
  * This is the ActiveQuery class for [[\app\models\Card]].
@@ -28,9 +29,38 @@ class CardQuery extends ActiveQuery
         return parent::one($db);
     }
 
-    public function map()
+    public function map(string $mode = Card::GET_ALL)
     {
-        return ArrayHelper::map(parent::select('id, nama')->all(), 'id', 'nama');
+
+        $q = parent::select('card.id as id, card.nama as nama')
+            ->joinWith(['cardBelongsTypes' => function ($cbt) {
+                $cbt->joinWith('cardType', false);
+            }], false);
+
+        switch ($mode):
+
+            case Card::GET_ALL:
+                $q->groupBy('card.id');
+                break;
+
+            case Card::GET_ONLY_TOKO_SAYA:
+                $q->where([
+                    'card_type.kode' => 'TS'
+                ])->groupBy('card.id');
+                break;
+
+            case Card::GET_APART_FROM_TOKO_SAYA:
+                $q->where([
+                    '!=', 'card_type.kode', 'TS'
+                ])->groupBy('card.id');
+                break;
+
+            default:
+                throw new NotFoundHttpException('Mode Anda tidak didukung');
+        endswitch;
+
+
+        return ArrayHelper::map($q->all(), 'id', 'nama');
     }
 
     /**
