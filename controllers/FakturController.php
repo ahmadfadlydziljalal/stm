@@ -129,7 +129,6 @@ class FakturController extends Controller
                         $transaction->rollBack();
                         $status = ['code' => 0, 'message' => 'Roll Back'];
                     }
-
                 } catch (Exception $e) {
                     $transaction->rollBack();
                     $status = ['code' => 0, 'message' => 'Roll Back ' . $e->getMessage(),];
@@ -151,7 +150,6 @@ class FakturController extends Controller
             'model' => $model,
             'modelsDetail' => empty($modelsDetail) ? [new FakturDetail()] : $modelsDetail,
         ]);
-
     }
 
     /**
@@ -258,7 +256,7 @@ class FakturController extends Controller
 
         /** @var Pdf $pdf */
         $pdf = Yii::$app->pdf;
-        $pdf->content = $this->renderPartial('_pdf', [
+        $pdf->content =  $this->renderPartial('_pdf', [
             'model' => $model
         ]);
 

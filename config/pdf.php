@@ -11,6 +11,6 @@ return [
     'options' => [
         'showWatermarkText' => true,
         'useSubstitutions' => false,
-        // 'simpleTables' => true,
+        //'simpleTables' => true,
     ]
 ];
