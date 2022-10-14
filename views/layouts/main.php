@@ -8,7 +8,6 @@ use app\assets\ThemeAsset;
 use mdm\admin\components\MenuHelper;
 use yii\bootstrap5\Html;
 use yii\helpers\Inflector;
-use yii\helpers\VarDumper;
 
 ThemeAsset::register($this);
 
@@ -35,7 +34,7 @@ $topItems = MenuHelper::getAssignedMenu(Yii::$app->user->id, 15, function ($item
                 'items' => $item['children'],
                 'icon' => $data['icon'] ?? null,
                 'active' =>
-                Yii::$app->controller->module->id == $data['module'] &&
+                    Yii::$app->controller->module->id == $data['module'] &&
                     Yii::$app->controller->id == $data['controller']
             ]
             :
@@ -120,7 +119,7 @@ $leftItems = MenuHelper::getAssignedMenu(Yii::$app->user->id, 16, function ($ite
                 'items' => $item['children'],
                 'icon' => $data['icon'] ?? null,
                 'active' =>
-                Yii::$app->controller->module->id == $data['module'] &&
+                    Yii::$app->controller->module->id == $data['module'] &&
                     Yii::$app->controller->id == $data['controller']
             ]
             :
@@ -133,7 +132,7 @@ $leftItems = MenuHelper::getAssignedMenu(Yii::$app->user->id, 16, function ($ite
     }
 
     if (isset($data['controller'])) {
-        return  [
+        return [
             'label' => $label,
             'url' => is_null($item['route']) ? "#" . $collapsedId : [$item['route']],
             'items' => $item['children'],
@@ -157,15 +156,15 @@ $leftItems = MenuHelper::getAssignedMenu(Yii::$app->user->id, 16, function ($ite
 
 ?>
 <?php $this->beginPage() ?>
-<!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
+    <!DOCTYPE html>
+    <html lang="<?= Yii::$app->language ?>">
 
-<head>
-    <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
-</head>
+    <head>
+        <title><?= Html::encode($this->title) ?></title>
+        <?php $this->head() ?>
+    </head>
 
-<body class="d-flex flex-column min-vh-100 <?= Yii::$app->params['theme'] ?>">
+    <body class="d-flex flex-column min-vh-100 <?= Yii::$app->params['theme'] ?>">
 
     <?php $this->beginBody() ?>
 
@@ -187,7 +186,7 @@ $leftItems = MenuHelper::getAssignedMenu(Yii::$app->user->id, 16, function ($ite
         </aside>
 
         <!-- Render main content -->
-        <section class="content">
+        <section class="content mb-3">
             <?= $this->render('_content', ['content' => $content]) ?>
         </section>
 
@@ -200,7 +199,7 @@ $leftItems = MenuHelper::getAssignedMenu(Yii::$app->user->id, 16, function ($ite
 
     <?php $this->endBody() ?>
 
-</body>
+    </body>
 
-</html>
+    </html>
 <?php $this->endPage() ?>
