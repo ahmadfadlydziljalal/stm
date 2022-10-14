@@ -2,6 +2,7 @@
 
 
 /* @var $this View */
+/* @var $openWindowPrint int */
 
 /* @var $model Faktur */
 
@@ -15,22 +16,45 @@ use yii\web\View;
 $settings = Yii::$app->settings;
 ?>
 
+<?php if ($openWindowPrint): ?>
+    <style type="text/css">
+        @media print {
+            @page {
+                size: 215mm 140mm;
+                margin: 4mm 2mm 2mm 2mm;
+            }
+        }
+
+        <?php echo file_get_contents(Yii::getAlias('@app') . '/themes/v2/dist/css/print.css') ?>
+    </style>
+    <script>
+        (function () {
+            window.print();
+            window.onafterprint = function () {
+                window.close();
+            }
+        })();
+    </script>
+<?php endif; ?>
+
 <div class="faktur-pdf">
 
     <div style="width: 100%">
-        <div style="float: left; width: 40%; height: 42pt !important; min-height: 42pt">
+        <div style="float: left; width: 45%">
 
             <table>
                 <tr>
-                    <td>
+                    <td style="padding: 0">
                         <?= Html::img(Yii::getAlias('@web') . '/images/logo.jpg', [
-                            'width' => '6rem',
+                            'width' => '64px',
                             'height' => 'auto'
                         ]) ?>
                     </td>
                     <td class="text-nowrap">
-                        <h1 style="font-size: 16pt"><?= $model->tokoSaya->nama ?></h1>
-                        <?= $settings->get('site.slogan') ?>
+                        <h1 style="font-size: 11pt"><?= $model->tokoSaya->nama ?><br/>
+                            <small><?= $settings->get('site.slogan') ?></small>
+                        </h1>
+
                     </td>
                 </tr>
             </table>
@@ -43,12 +67,12 @@ $settings = Yii::$app->settings;
 
         </div>
 
-        <div style="float: right; width: 55%">
+        <div style="float: right; width: 54%">
             <table style="width: 100%">
                 <tr>
                     <td class="text-end">Jakarta</td>
                     <td style="width: 1px">:</td>
-                    <td><?= Yii::$app->formatter->asDate($model->tanggal_faktur, 'php:d F Y') ?></td>
+                    <td><?= Yii::$app->formatter->asDate($model->tanggal_faktur) ?></td>
                 </tr>
                 <tr>
                     <td class="text-end">Kepada Yth</td>
@@ -129,16 +153,7 @@ $settings = Yii::$app->settings;
         <tr class="table-warning kv-page-summary w0">
             <td class="kv-align-center kv-align-middle" style="width:50px;">&nbsp;</td>
             <td colspan="5">
-                <?=
-                Html::tag('span', 'Terbilang: ' . Yii::$app->formatter->asSpellout($sumSubtotal),
-                    [
-//                        'style' => [
-//                            'font-weight' => 'bold'
-//                        ]
-                    ]
-                );
-                ?>
-
+                <?= Html::tag('span', 'Terbilang: ' . Yii::$app->formatter->asSpellout($sumSubtotal)); ?>
             </td>
             <td class="text-end border-end-0 ">
                 <?= Yii::$app->getFormatter()->currencyCode; ?>

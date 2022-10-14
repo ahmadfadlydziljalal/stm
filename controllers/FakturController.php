@@ -259,10 +259,47 @@ class FakturController extends Controller
         $pdf->format = [215, 140];
         $pdf->marginTop = 8;
         $pdf->marginBottom = 2;
-        $pdf->content = $this->renderPartial('_pdf', [
-            'model' => $model
+        $pdf->content = $this->renderPartial('preview_print', [
+            'model' => $model,
+            'openWindowPrint' => 0,
         ]);
 
         return $pdf->render();
+    }
+
+    /**
+     * @throws NotFoundHttpException
+     */
+    public function actionPreviewPrint($id): array
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $model = $this->findModel($id);
+
+        return [
+            'title' => 'Faktur ' . $model->nomor_faktur,
+            'content' => $this->renderAjax('preview_print', [
+                'model' => $model,
+                'openWindowPrint' => 0
+            ]),
+            'footer' => Html::a('Print', ['faktur/print', 'id' => $id], [
+                'class' => 'btn btn-success',
+                'onclick' => 'window.open(this.href); return false',
+                'id' => 'btn-print'
+            ])
+        ];
+    }
+
+    /**
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionPrint($id): string
+    {
+        $model = $this->findModel($id);
+        return $this->renderPartial('preview_print', [
+            'model' => $model,
+            'openWindowPrint' => 1
+        ]);
     }
 }

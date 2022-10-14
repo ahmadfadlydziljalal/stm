@@ -78,10 +78,15 @@ return [
     ],
     [
         'class' => 'app\components\grid\ActionColumn',
-        'template' => '{print} {update} {view} {delete}',
+        'template' => '{preview-print} {update} {view} {pdf} {delete}',
         'buttons' => [
-            'print' => function ($url, $model) {
-                return Html::a('<i class="bi bi-printer-fill"></i>', ['faktur/pdf', 'id' => $model->id], [
+            'preview-print' => function ($url, $model) {
+                return Html::a('<i class="bi bi-printer-fill"></i>', ['faktur/preview-print', 'id' => $model->id], [
+                    'class' => 'preview-print text-success'
+                ]);
+            },
+            'pdf' => function ($url, $model) {
+                return Html::a('<i class="bi bi-file-pdf-fill"></i>', ['faktur/pdf', 'id' => $model->id], [
                     'target' => '_blank'
                 ]);
             },

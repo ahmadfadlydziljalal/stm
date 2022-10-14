@@ -21,11 +21,11 @@ class m221013_075357_UpdateFakturTableAddTokoSayaId extends Migration
         $this->addColumn($this->table, 'toko_saya_id', $this->integer());
         $this->update($this->table, ['toko_saya_id' => 3], ['toko_saya_id' => null]);
         $this->alterColumn($this->table, 'toko_saya_id', $this->integer()->notNull());
-
         $this->batchInsert('card_belongs_type', ['card_id', 'card_type_id'], [
             [3, 3],
             [4, 3],
         ]);
+        
     }
 
     /**
