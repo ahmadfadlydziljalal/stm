@@ -1,10 +1,10 @@
-name: Run composer
+name: Init composer
 on:
   push:
     branches: ["main"]
 
 jobs:
-  run-tests:
+  run-composer:
     name: composer initialization
     runs-on: ubuntu-latest
     container:
@@ -12,10 +12,7 @@ jobs:
       volumes:
         - ${{ github.workspace }}:/app
     steps:
-      
-      - name: Install sudo package
-        run: apt update && apt install sudo    
-        
+              
       - name: Check out the repo
         uses: actions/checkout@v3
 
@@ -24,7 +21,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
-          tools: composer, phpunit
+          tools: composer
           extensions: mongodb-mongodb/mongo-php-driver@v1.9
           
       - name: Cache Composer packages
