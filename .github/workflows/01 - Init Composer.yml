@@ -12,7 +12,10 @@ jobs:
       volumes:
         - ${{ github.workspace }}:/app
     steps:
-    
+      
+      - name: Install sudo package
+        run: apt update && apt install sudo    
+        
       - name: Check out the repo
         uses: actions/checkout@v3
 
