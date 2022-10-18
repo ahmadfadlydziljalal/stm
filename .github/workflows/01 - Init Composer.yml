@@ -16,13 +16,12 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
 
-      - name: PHP setup with MongoDB driver
+      - name: PHP setup with Extension
         id: setup-php
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
-          tools: composer
-          extensions: mongodb-mongodb/mongo-php-driver@v1.9
+          extensions: mbstring,PDO,grpc,tokenizer,xml,json,ctype,fileinfo,openssl,bcmath
           
       - name: Cache Composer packages
         id: composer-cache
