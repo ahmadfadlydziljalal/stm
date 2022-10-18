@@ -16,11 +16,12 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
 
-      - name: Setup PHP dengan Mongo Driver
+      - name: PHP setup with MongoDB driver
         id: setup-php
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
+          tools: composer, phpunit
           extensions: mongodb-mongodb/mongo-php-driver@v1.9
           
       - name: Cache Composer packages
