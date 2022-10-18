@@ -2,6 +2,18 @@
 
 @media print {
 
+  @page {
+    /* Ukuran kertas */
+    size:
+            21.5cm /*Panjang*/
+            14.0cm; /* Lebar */
+    margin:
+            0.25cm /*Top*/
+            0.2cm /*Right*/
+            0 /*Bottom*/
+            0.25cm; /* Left */
+  }
+
   body {
 
     font-weight: normal;

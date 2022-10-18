@@ -18,13 +18,6 @@ $settings = Yii::$app->settings;
 
 <?php if ($openWindowPrint): ?>
     <style type="text/css">
-        @media print {
-            @page {
-                size: 215mm 140mm;
-                margin: 4mm 2mm 2mm 2mm;
-            }
-        }
-
         <?php echo file_get_contents(Yii::getAlias('@app') . '/themes/v2/dist/css/print.css') ?>
     </style>
     <script>
@@ -33,14 +26,14 @@ $settings = Yii::$app->settings;
             window.onafterprint = function () {
                 window.close();
             }
-        })();
+        })();   
     </script>
 <?php endif; ?>
 
 <div class="faktur-pdf">
 
     <div style="width: 100%">
-        <div style="float: left; width: 45%">
+        <div style=" float: left; width: 50%">
 
             <table>
                 <tr>
@@ -50,24 +43,23 @@ $settings = Yii::$app->settings;
                             'height' => 'auto'
                         ]) ?>
                     </td>
-                    <td class="text-nowrap">
-                        <h1 style="font-size: 11pt"><?= $model->tokoSaya->nama ?><br/>
-                            <small><?= $settings->get('site.slogan') ?></small>
-                        </h1>
-
+                    <td class="">
+                        <h3 style="margin: 0; padding: 0"><?= $model->tokoSaya->nama ?></h3>
+                        <p style="margin: 0; padding: 0; font-size: 10pt"><?= $settings->get('site.slogan') ?></p>
+                        <?php if ($model->tokoSaya->kode == 'STM'): ?>
+                            <small style="margin: 0; padding: 0">
+                                <?= $settings->get('site.alamat') ?>
+                            </small>
+                        <?php endif; ?>
                     </td>
                 </tr>
             </table>
 
-            <?php if ($model->tokoSaya->kode == 'STM'): ?>
-                <small>
-                    <?= $settings->get('site.alamat') ?>
-                </small>
-            <?php endif; ?>
+
 
         </div>
 
-        <div style="float: right; width: 54%">
+        <div style="float: right; width: 48%">
             <table style="width: 100%">
                 <tr>
                     <td class="text-end">Jakarta</td>
