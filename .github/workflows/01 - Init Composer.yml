@@ -18,6 +18,9 @@ jobs:
           php-version: '8.1'
           tools: composer:v2
           
+      - name: Print PHP version
+        run: echo ${{ steps.setup-php.outputs.php-version }}
+        
       - name: Cache Composer packages
         id: composer-cache
         uses: actions/cache@v3
