@@ -47,6 +47,9 @@ use yii\helpers\Html;
                         'autofocus' => 'autofocus'
                     ]) ?>
                     <?= $form->field($model, 'part_number')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'keterangan')->textarea([
+                            'rows' => '4'
+                    ]) ?>
                 </div>
             </div>
         </div>

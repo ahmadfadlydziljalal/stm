@@ -45,6 +45,7 @@ class BarangSearch extends Barang
                 'id' => 'b.id',
                 'nama' => 'b.nama',
                 'part_number' => 'b.part_number',
+                'keterangan' => 'b.keterangan',
                 'satuanHarga' => new Expression("
                      JSON_ARRAYAGG(
                         JSON_OBJECT(

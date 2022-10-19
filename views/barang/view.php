@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <div class="row">
-        <div class="col-12 col-lg-4">
+        <div class="col-12 col-lg-8">
             <?php try {
             echo DetailView::widget([
                 'model' => $model,
@@ -49,6 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attributes' => [
                     'nama',
                     'part_number',
+                    'keterangan',
                 ],
             ]);
             ?>

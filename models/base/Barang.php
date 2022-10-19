@@ -5,6 +5,7 @@
 namespace app\models\base;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the base-model class for table "barang".
@@ -12,6 +13,7 @@ use Yii;
  * @property integer $id
  * @property string $nama
  * @property string $part_number
+ * @property string $keterangan
  *
  * @property \app\models\BarangSatuan[] $barangSatuans
  * @property \app\models\FakturDetail[] $fakturDetails
@@ -35,12 +37,13 @@ abstract class Barang extends \yii\db\ActiveRecord
      */
     public function rules()
     {
-        return [
+        return ArrayHelper::merge(parent::rules(), [
             [['nama'], 'required'],
+            [['keterangan'], 'string'],
             [['nama'], 'string', 'max' => 255],
             [['part_number'], 'string', 'max' => 32],
             [['part_number'], 'unique']
-        ];
+        ]);
     }
 
     /**
@@ -52,6 +55,7 @@ abstract class Barang extends \yii\db\ActiveRecord
             'id' => 'ID',
             'nama' => 'Nama',
             'part_number' => 'Part Number',
+            'keterangan' => 'Keterangan',
         ];
     }
 

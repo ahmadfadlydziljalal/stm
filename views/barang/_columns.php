@@ -4,6 +4,7 @@ use app\components\helpers\ArrayHelper;
 use kartik\grid\GridView;
 use kartik\grid\SerialColumn;
 use yii\data\ArrayDataProvider;
+use yii\helpers\Html;
 use yii\helpers\Json;
 
 return [
@@ -26,7 +27,13 @@ return [
     [
         'class' => '\yii\grid\DataColumn',
         'attribute' => 'part_number',
-        'format' => 'text',
+        'format' => 'raw',
+        'value' => function($model){
+            return
+                Html::tag('span', $model->part_number) . '<br/>'
+                . Html::tag('span', $model->keterangan)
+                ;
+        }
     ],
     [
         'class' => '\yii\grid\DataColumn',
