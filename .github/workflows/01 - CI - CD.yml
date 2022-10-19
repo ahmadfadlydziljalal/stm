@@ -1,4 +1,4 @@
-name: CI
+name: CI - CD
 on:
   push:
     branches: ["main"]
@@ -61,5 +61,8 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd stm
-            docker-compose down && docker-compose pull && docker-compose up -d
-            docker exec -it stm-php php yii migrate --interactive=0
+            docker-compose down
+            docker-compose pull 
+            docker-compose up -d
+            docker exec -it stm-php php /var/www/html/yii migrate --interactive=0
+            exit
