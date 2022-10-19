@@ -3,7 +3,6 @@ version: "3.7"
 # SERVICES
 services:
 
-  # MAIN DATABASE
   db:
     image: mysql:8.0.28-oracle
     hostname: mysql
@@ -22,9 +21,13 @@ services:
     ports:
       - ${DB_PORT}:3306
 
-  # PHP, Yii2 framework disini
+  check-db-started:
+    image: jwilder/dockerize:0.6.1
+    depends_on:
+      - db
+    command: 'dockerize -wait=tcp://db:3306'
+
   php:
-    platform: linux/amd64
     image: "${REGISTRY_HOST}/${APP_NAME}-php:latest"
     hostname: php
     container_name: ${APP_NAME}-php
@@ -37,7 +40,8 @@ services:
     networks:
       - ${APP_NAME}-network
     depends_on:
-      - db
+      - check-db-started
+    restart: on-failure
 
   # Mongo Service, database pendukung, eg: cache, log, dll
   mongodb:
