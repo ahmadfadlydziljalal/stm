@@ -11,6 +11,12 @@ jobs:
               
       - name: Check out the repo
         uses: actions/checkout@v3
+        
+      - name: Setup PHP with composer v2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: composer:v2
           
       - name: Cache Composer packages
         id: composer-cache
