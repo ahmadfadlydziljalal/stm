@@ -1,11 +1,11 @@
-name: Init composer
+name: CI
 on:
   push:
     branches: ["main"]
 
 jobs:
   run-composer:
-    name: composer initialization
+    name: Continuous integration
     runs-on: ubuntu-latest
     steps:
               
@@ -42,7 +42,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
           
-      - name: Build and push Dokcer image
+      - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
           context: .
