@@ -52,3 +52,11 @@ jobs:
           tags: dziljalal/stm-php:latest
           cache-from: type=registry,ref=dziljalal/stm-php:latest
           cache-to: type=inline
+          
+      - name: Remote SSH DigitalOcean
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: whoami
