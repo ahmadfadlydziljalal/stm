@@ -61,5 +61,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd stm
+            docker compose down
+            docker compose pull --quiet
+            docker compose up -d --wait
+            docker ps -a
             docker compose exec php php /var/www/html/yii migrate --interactive=0
             exit
