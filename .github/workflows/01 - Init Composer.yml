@@ -42,11 +42,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
           
-      - name: Build and push
+      - name: Build and push Dokcer image
         uses: docker/build-push-action@v3
         with:
           context: .
           target: deploy
-          dockerfile: "./.docker/php/debian-apache/Dockerfile"
+          file: "./.docker/php/debian-apache/Dockerfile"
           push: true
           tags: dziljalal/stm:latest
