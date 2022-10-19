@@ -1,5 +1,8 @@
 <?php
 
+/** @see \app\controllers\FakturController::actionPdf() */
+/** @see \app\controllers\FakturController::actionPreviewPrint() */
+/** @see \app\controllers\FakturController::actionPrint() */
 
 /* @var $this View */
 /* @var $openWindowPrint int */
@@ -85,7 +88,9 @@ $settings = Yii::$app->settings;
 
     <?php $sumSubtotal = $model->sumSubtotal ?>
     <?php $maxRows = Yii::$app->settings->get('faktur.maximalRowItemInPrintMode'); ?>
-    <table class="table mt-3 kv-grid-table table-bordered">
+
+    <?php if (!$openWindowPrint) echo Html::beginTag('div', ['class' => 'table-responsive']) ?>
+        <table class="table mt-3 kv-grid-table table-bordered">
         <thead class="w0">
         <tr>
             <th colspan="2" style="color: red; white-space: nowrap; width: 14rem; min-width: 14rem;">Faktur
@@ -158,6 +163,7 @@ $settings = Yii::$app->settings;
         </tr>
         </tbody>
     </table>
+    <?php if (!$openWindowPrint) echo Html::endTag('div') ?>
 
 
     <div class="mt-1" style="width: 100%">

@@ -28,13 +28,14 @@ class BarangQuery extends ActiveQuery
         return parent::one($db);
     }
 
-    public function availableSatuan($barangId): array
+    public function availableSatuan($barangId, $vendorId): array
     {
         return parent::select('satuan.id as id, satuan.nama as name')
             ->joinWith(['barangSatuans' => function ($bs) {
                 return $bs->joinWith('satuan', false);
             }], false)
             ->where('barang.id =:barangId', [':barangId' => $barangId])
+            ->andWhere('barang_satuan.vendor_id =:vendorId', [':vendorId' => $vendorId])
             ->asArray()
             ->all();
     }
@@ -53,5 +54,16 @@ class BarangQuery extends ActiveQuery
         return ArrayHelper::map(parent::all(), 'id', function ($el) {
             return $el->part_number . ' - ' . $el->nama;
         });
+    }
+
+    public function availableVendor(int $barangId): array
+    {
+        return parent::select('card.id as id, card.nama as name')
+            ->joinWith(['barangSatuans' => function ($bs) {
+                return $bs->joinWith('vendor', false);
+            }], false)
+            ->where('barang.id =:barangId', [':barangId' => $barangId])
+            ->asArray()
+            ->all();
     }
 }

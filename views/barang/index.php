@@ -4,8 +4,8 @@
 /* @var $searchModel app\models\search\BarangSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+use kartik\grid\GridView;
 use yii\helpers\Html;
-use yii\grid\GridView;
 
 $this->title = 'Barang';
 $this->params['breadcrumbs'][] = $this->title;

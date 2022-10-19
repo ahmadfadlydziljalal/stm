@@ -43,6 +43,9 @@ class Faktur extends BaseFaktur
     {
         return ArrayHelper::merge(parent::attributeLabels(), [
             'jenis_transaksi_id' => 'Jenis Transaksi',
+            'card_id' => 'Customer',
+            'toko_saya_id' => 'Toko Saya',
+            'tanggal_faktur' => 'Tgl Faktur'
         ]);
     }
 

@@ -19,7 +19,9 @@ use yii\behaviors\TimestampBehavior;
  * @property string $created_by
  * @property string $updated_by
  *
+ * @property \app\models\BarangSatuan[] $barangSatuans
  * @property \app\models\CardBelongsType[] $cardBelongsTypes
+ * @property \app\models\FakturDetail[] $fakturDetails
  * @property \app\models\Faktur[] $fakturs
  * @property \app\models\Faktur[] $fakturs0
  * @property string $aliasModel
@@ -83,9 +85,25 @@ abstract class Card extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getBarangSatuans()
+    {
+        return $this->hasMany(\app\models\BarangSatuan::class, ['vendor_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getCardBelongsTypes()
     {
         return $this->hasMany(\app\models\CardBelongsType::class, ['card_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFakturDetails()
+    {
+        return $this->hasMany(\app\models\FakturDetail::class, ['vendor_id' => 'id']);
     }
 
     /**

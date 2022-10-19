@@ -232,11 +232,11 @@ class BarangController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionFindAvailableSatuan()
+    public function actionFindAvailableVendor()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
         $barangId = (int)Yii::$app->request->post('barangId');
-        $data = ArrayHelper::map(Barang::find()->availableSatuan($barangId), 'id', 'name');
+        $data = ArrayHelper::map(Barang::find()->availableVendor($barangId), 'id', 'name');
         return [
             'data' => $data,
             'countData' => count($data),
@@ -244,19 +244,37 @@ class BarangController extends Controller
         ];
     }
 
-    public function actionFindHargaBerdasarkanSatuan()
+
+
+    public function actionFindAvailableSatuan()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
         $barangId = (int)Yii::$app->request->post('barangId');
-        $satuanId = (int)Yii::$app->request->post('satuanId');
+        $vendorId = (int)Yii::$app->request->post('vendorId');
+        $data = ArrayHelper::map(Barang::find()->availableSatuan($barangId, $vendorId), 'id', 'name');
+        return [
+            'data' => $data,
+            'countData' => count($data),
+            'barangId' => $barangId,
+        ];
+
+
+    }
+
+    public function actionFindAvailableHarga(): array
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
         return [
             'data' => BarangSatuan::findOne([
-                'barang_id' => $barangId,
-                'satuan_id' => $satuanId
+                'barang_id' =>  (int)Yii::$app->request->post('barangId'),
+                'vendor_id' =>  (int)Yii::$app->request->post('vendorId'),
+                'satuan_id' =>  (int)Yii::$app->request->post('satuanId')
             ]),
-            'barangId' => $barangId,
-            'satuanId' => $satuanId,
+            'barangId' =>  (int)Yii::$app->request->post('barangId'),
+            'vendorId' =>  (int)Yii::$app->request->post('vendorId'),
+            'satuanId' =>  (int)Yii::$app->request->post('satuanId'),
 
         ];
     }
+
 }

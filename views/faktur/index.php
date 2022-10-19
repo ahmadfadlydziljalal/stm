@@ -1,5 +1,6 @@
 <?php
 
+/** @see \app\controllers\FakturController::actionIndex()  */
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\search\FakturSearch */
 
@@ -42,7 +43,10 @@ Modal::begin([
     'id' => 'modal',
     'title' => 'Test',
     'size' => Modal::SIZE_EXTRA_LARGE,
-    'footer' => ''
+    'footer' => '',
+    'footerOptions' => [
+            'class' => 'd-flex flex-row'
+    ]
 ]);
 Modal::end();
 ?>

@@ -135,7 +135,15 @@ class FakturController extends Controller
                 }
 
                 if ($status['code']) {
-                    Yii::$app->session->setFlash('success', 'Faktur: ' . Html::a($model->nomor_faktur, ['view', 'id' => $model->id]) . " berhasil ditambahkan.");
+
+                    Yii::$app->session->setFlash('success', 'Faktur: '
+                        . Html::a($model->nomor_faktur, ['view', 'id' => $model->id]) . " berhasil ditambahkan. "
+                        . Html::a(' Print disini.', ['faktur/print', 'id' => $model->id],[
+                            'target' => '_blank',
+                            'rel' => 'noopener noreferrer'
+                        ])
+                    );
+
                     if ($request->post('create-another')) {
                         return $this->redirect(['faktur/create']);
                     }
@@ -207,7 +215,13 @@ class FakturController extends Controller
                 }
 
                 if ($status['code']) {
-                    Yii::$app->session->setFlash('info', "Faktur: " . Html::a($model->id, ['view', 'id' => $model->nomor_faktur]) . " berhasil di update.");
+                    Yii::$app->session->setFlash('info', "Faktur: "
+                        . Html::a($model->nomor_faktur, ['view', 'id' => $model->id]) . " berhasil di update. "
+                        . Html::a(' Print disini.', ['faktur/print', 'id' => $model->id],[
+                            'target' => '_blank',
+                            'rel' => 'noopener noreferrer'
+                        ])
+                    );
                     if ($request->post('create-another')) {
                         return $this->redirect(['faktur/create']);
                     }
@@ -281,11 +295,22 @@ class FakturController extends Controller
                 'model' => $model,
                 'openWindowPrint' => 0
             ]),
-            'footer' => Html::a('Print', ['faktur/print', 'id' => $id], [
-                'class' => 'btn btn-success',
-                'onclick' => 'window.open(this.href); return false',
-                'id' => 'btn-print'
-            ])
+            'footer' =>
+                Html::button('Close', [
+                    'class' => 'btn btn-dark',
+                    'data-bs-dismiss' => "modal"
+                ]) .
+
+                Html::a('PDF', ['faktur/pdf', 'id' => $id], [
+                    'class' => 'btn btn-success',
+                    'target' => '_blank',
+                    'rel' => 'noopener noreferrer'
+                ]) .
+                Html::a('Print', ['faktur/print', 'id' => $id], [
+                    'class' => 'btn btn-success ms-auto',
+                    'onclick' => 'window.open(this.href); return false',
+                    'id' => 'btn-print'
+                ])
         ];
     }
 

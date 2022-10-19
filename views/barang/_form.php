@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Card;
 use app\models\Satuan;
 use kartik\number\NumberControl;
 use wbraganca\dynamicform\DynamicFormWidget;
@@ -63,7 +64,7 @@ use yii\helpers\Html;
                 'deleteButton' => '.remove-item',
                 'model' => $modelsDetail[0],
                 'formId' => 'dynamic-form',
-                'formFields' => ['id', 'barang_id', 'satuan_id', 'harga',],
+                'formFields' => ['id', 'vendor_id' , 'barang_id', 'satuan_id', 'harga_beli', 'harga_jual'],
             ]);
             ?>
 
@@ -75,8 +76,10 @@ use yii\helpers\Html;
                     </tr>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Vendor</th>
                         <th scope="col">Satuan</th>
-                        <th scope="col">Harga</th>
+                        <th scope="col">Harga Beli</th>
+                        <th scope="col">Harga Jual</th>
                         <th scope="col" style="width: 2px">Aksi</th>
                     </tr>
                     </thead>
@@ -94,6 +97,18 @@ use yii\helpers\Html;
                             </td>
 
                             <td>
+                                <?= $form->field($modelDetail, "[$i]vendor_id", ['template' =>
+                                    '{input}{error}{hint}', 'options' => ['class' => null]])
+                                    ->widget(\kartik\select2\Select2::class, [
+                                            'data' =>Card::find()->map(),
+                                        'options' => [
+                                            'prompt' => '= Pilih Salah Satu ='
+                                        ]
+                                    ]);
+                                ?>
+                            </td>
+
+                            <td>
                                 <?= $form->field($modelDetail, "[$i]satuan_id", ['template' =>
                                     '{input}{error}{hint}', 'options' => ['class' => null]])
                                     ->dropDownList(Satuan::find()->map(), [
@@ -101,13 +116,22 @@ use yii\helpers\Html;
                                     ]);
                                 ?>
                             </td>
-                            <td><?= $form->field($modelDetail, "[$i]harga", ['template' =>
+                            <td><?= $form->field($modelDetail, "[$i]harga_beli", ['template' =>
                                     '{input}{error}{hint}', 'options' => ['class' => null]])->widget(NumberControl::class, [
                                     'maskedInputOptions' => [
                                         'prefix' => Yii::$app->getFormatter()->currencyCode,
                                         'allowMinus' => false
                                     ],
-                                ]); ?></td>
+                                ]); ?>
+                            </td>
+                            <td><?= $form->field($modelDetail, "[$i]harga_jual", ['template' =>
+                                    '{input}{error}{hint}', 'options' => ['class' => null]])->widget(NumberControl::class, [
+                                    'maskedInputOptions' => [
+                                        'prefix' => Yii::$app->getFormatter()->currencyCode,
+                                        'allowMinus' => false
+                                    ],
+                                ]); ?>
+                            </td>
 
                             <td>
                                 <button type="button" class="remove-item btn btn-link text-danger">
@@ -121,7 +145,7 @@ use yii\helpers\Html;
 
                     <tfoot>
                     <tr>
-                        <td class="text-end" colspan="3">
+                        <td class="text-end" colspan="6">
                             <?php echo Html::button('<span class="bi bi-plus-circle"></span> Tambah', ['class' => 'add-item btn btn-success',]); ?>
                         </td>
                         <td></td>

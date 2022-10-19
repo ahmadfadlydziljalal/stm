@@ -37,17 +37,26 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-    <?php try {
-        echo DetailView::widget([
-            'model' => $model,
-            'options' => [
-                'class' => 'table table-bordered table-detail-view'
-            ],
-            'attributes' => [
-                'nama',
-                'part_number',
-            ],
-        ]);
+
+    <div class="row">
+        <div class="col-12 col-lg-4">
+            <?php try {
+            echo DetailView::widget([
+                'model' => $model,
+                'options' => [
+                    'class' => 'table table-bordered table-detail-view'
+                ],
+                'attributes' => [
+                    'nama',
+                    'part_number',
+                ],
+            ]);
+            ?>
+
+        </div>
+    </div>
+
+    <?php
 
         echo Html::tag('h2', 'Barang Satuan');
         echo !empty($model->barangSatuans) ?
@@ -65,6 +74,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     // 'attribute'=>'barang_id',
                     // ],
                     [
+                            'class' => \yii\grid\SerialColumn::class
+                    ],
+                    [
+                        'class' => '\yii\grid\DataColumn',
+                        'attribute' => 'vendor_id',
+                        'value' => 'vendor.nama'
+                    ],
+                    [
                         'class' => '\yii\grid\DataColumn',
                         'attribute' => 'satuan_id',
                         'value' => 'satuan.nama'
@@ -72,7 +89,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'class' => '\yii\grid\DataColumn',
                         'attribute' => 'harga',
-                        'format' => ['decimal', 2]
+                        'format' => ['decimal', 2],
+                        'contentOptions' => [
+                            'class' => 'text-end'
+                        ]
                     ],
                 ]
             ]) :

@@ -45,14 +45,26 @@ class BarangSearch extends Barang
                 'id' => 'b.id',
                 'nama' => 'b.nama',
                 'part_number' => 'b.part_number',
-                'satuanHarga' => new Expression('JSON_OBJECTAGG(satuan.nama, bs.harga )')
+                'satuanHarga' => new Expression("
+                     JSON_ARRAYAGG(
+                        JSON_OBJECT(
+                            'vendor', card.nama,
+                            'satuan', satuan.nama,
+                            'harga_beli' , harga_beli,
+                            'harga_jual' , harga_jual
+                        )
+                    )
+                ")
             ])
             ->alias('b')
             ->joinWith(['barangSatuans' => function ($model) {
                 /** @var BarangSatuan $model */
                 $model->alias('bs')
-                    ->joinWith('satuan', false);
+                    ->joinWith('satuan', false)
+                    ->joinWith('vendor', false)
+                ;
             }], false)
+
             ->groupBy('b.id');
 
         $dataProvider = new ActiveDataProvider([

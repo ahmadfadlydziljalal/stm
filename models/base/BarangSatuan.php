@@ -10,12 +10,15 @@ use Yii;
  * This is the base-model class for table "barang_satuan".
  *
  * @property integer $id
+ * @property integer $vendor_id
  * @property integer $barang_id
  * @property integer $satuan_id
- * @property string $harga
+ * @property string $harga_beli
+ * @property string $harga_jual
  *
  * @property \app\models\Barang $barang
  * @property \app\models\Satuan $satuan
+ * @property \app\models\Card $vendor
  * @property string $aliasModel
  */
 abstract class BarangSatuan extends \yii\db\ActiveRecord
@@ -37,11 +40,12 @@ abstract class BarangSatuan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['barang_id', 'satuan_id'], 'integer'],
-            [['satuan_id'], 'required'],
-            [['harga'], 'number'],
+            [['vendor_id', 'satuan_id', 'harga_jual'], 'required'],
+            [['vendor_id', 'barang_id', 'satuan_id'], 'integer'],
+            [['harga_beli', 'harga_jual'], 'number'],
             [['barang_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Barang::class, 'targetAttribute' => ['barang_id' => 'id']],
-            [['satuan_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Satuan::class, 'targetAttribute' => ['satuan_id' => 'id']]
+            [['satuan_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Satuan::class, 'targetAttribute' => ['satuan_id' => 'id']],
+            [['vendor_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Card::class, 'targetAttribute' => ['vendor_id' => 'id']]
         ];
     }
 
@@ -52,9 +56,11 @@ abstract class BarangSatuan extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'vendor_id' => 'Vendor ID',
             'barang_id' => 'Barang ID',
             'satuan_id' => 'Satuan ID',
-            'harga' => 'Harga',
+            'harga_beli' => 'Harga Beli',
+            'harga_jual' => 'Harga Jual',
         ];
     }
 
@@ -72,6 +78,14 @@ abstract class BarangSatuan extends \yii\db\ActiveRecord
     public function getSatuan()
     {
         return $this->hasOne(\app\models\Satuan::class, ['id' => 'satuan_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVendor()
+    {
+        return $this->hasOne(\app\models\Card::class, ['id' => 'vendor_id']);
     }
 
 

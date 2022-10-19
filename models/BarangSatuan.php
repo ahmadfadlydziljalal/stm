@@ -2,8 +2,7 @@
 
 namespace app\models;
 
-use Yii;
-use \app\models\base\BarangSatuan as BaseBarangSatuan;
+use app\models\base\BarangSatuan as BaseBarangSatuan;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -30,5 +29,13 @@ class BarangSatuan extends BaseBarangSatuan
                 # custom validation rules
             ]
         );
+    }
+
+    public function attributeLabels(): array
+    {
+        return ArrayHelper::merge(parent::attributeLabels(),[
+            'vendor_id' => 'Vendor',
+            'satuan_id' => 'Satuan'
+        ]);
     }
 }

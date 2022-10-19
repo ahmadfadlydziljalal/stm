@@ -4,9 +4,7 @@
 
 namespace app\models\base;
 
-use app\models\active_queries\FakturDetailQuery;
-use yii\db\ActiveQuery;
-use yii\db\ActiveRecord;
+use Yii;
 
 /**
  * This is the base-model class for table "faktur_detail".
@@ -16,15 +14,18 @@ use yii\db\ActiveRecord;
  * @property integer $barang_id
  * @property string $quantity
  * @property integer $satuan_id
+ * @property integer $vendor_id
  * @property string $harga_barang
  *
  * @property \app\models\Barang $barang
  * @property \app\models\Faktur $faktur
  * @property \app\models\Satuan $satuan
+ * @property \app\models\Card $vendor
  * @property string $aliasModel
  */
-abstract class FakturDetail extends ActiveRecord
+abstract class FakturDetail extends \yii\db\ActiveRecord
 {
+
 
 
     /**
@@ -37,25 +38,17 @@ abstract class FakturDetail extends ActiveRecord
 
     /**
      * @inheritdoc
-     * @return FakturDetailQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new FakturDetailQuery(get_called_class());
-    }
-
-    /**
-     * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['faktur_id', 'barang_id', 'satuan_id'], 'integer'],
-            [['barang_id', 'quantity', 'satuan_id', 'harga_barang'], 'required'],
+            [['faktur_id', 'barang_id', 'satuan_id', 'vendor_id'], 'integer'],
+            [['barang_id', 'quantity', 'satuan_id', 'vendor_id', 'harga_barang'], 'required'],
             [['quantity', 'harga_barang'], 'number'],
             [['barang_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Barang::class, 'targetAttribute' => ['barang_id' => 'id']],
             [['faktur_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Faktur::class, 'targetAttribute' => ['faktur_id' => 'id']],
-            [['satuan_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Satuan::class, 'targetAttribute' => ['satuan_id' => 'id']]
+            [['satuan_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Satuan::class, 'targetAttribute' => ['satuan_id' => 'id']],
+            [['vendor_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Card::class, 'targetAttribute' => ['vendor_id' => 'id']]
         ];
     }
 
@@ -70,12 +63,13 @@ abstract class FakturDetail extends ActiveRecord
             'barang_id' => 'Barang ID',
             'quantity' => 'Quantity',
             'satuan_id' => 'Satuan ID',
+            'vendor_id' => 'Vendor ID',
             'harga_barang' => 'Harga Barang',
         ];
     }
 
     /**
-     * @return ActiveQuery
+     * @return \yii\db\ActiveQuery
      */
     public function getBarang()
     {
@@ -83,7 +77,7 @@ abstract class FakturDetail extends ActiveRecord
     }
 
     /**
-     * @return ActiveQuery
+     * @return \yii\db\ActiveQuery
      */
     public function getFaktur()
     {
@@ -91,11 +85,30 @@ abstract class FakturDetail extends ActiveRecord
     }
 
     /**
-     * @return ActiveQuery
+     * @return \yii\db\ActiveQuery
      */
     public function getSatuan()
     {
         return $this->hasOne(\app\models\Satuan::class, ['id' => 'satuan_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVendor()
+    {
+        return $this->hasOne(\app\models\Card::class, ['id' => 'vendor_id']);
+    }
+
+
+    
+    /**
+     * @inheritdoc
+     * @return \app\models\active_queries\FakturDetailQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \app\models\active_queries\FakturDetailQuery(get_called_class());
     }
 
 
