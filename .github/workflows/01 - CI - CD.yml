@@ -64,5 +64,5 @@ jobs:
             docker-compose down
             docker-compose pull 
             docker-compose up -d
-            docker exec -it stm-php php /var/www/html/yii migrate --interactive=0
+            docker exec -i stm-php php /var/www/html/yii migrate --interactive=0
             exit
