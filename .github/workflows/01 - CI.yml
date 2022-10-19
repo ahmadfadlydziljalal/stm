@@ -59,4 +59,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          script: whoami
+          script: |
+            cd stm
+            docker-compose down && docker-compose pull && docker-compose up -d
+            docker exec -it stm-php php yii migrate --interactive=0
