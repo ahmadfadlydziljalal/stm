@@ -3,8 +3,7 @@
 @media print {
   *{
     font-family: "Arial", serif;
-    font-weight: bold;
-
+    font-weight: normal;
   }
 
   @page {
@@ -14,7 +13,7 @@
             14.0cm; /* Lebar */
     margin:
             0.5cm /*Top*/
-            0.2cm /*Right*/
+            0 /*Right*/
             0 /*Bottom*/
             0.25cm; /* Left */
   }
