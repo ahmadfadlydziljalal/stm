@@ -2,7 +2,7 @@
 
 @media print {
   *{
-    font-family: "Courier New" ,"Courier", "monospace", "Calibri";
+    font-family: "Arial", serif;
     font-weight: bold;
 
   }
@@ -14,15 +14,14 @@
             14.0cm; /* Lebar */
     margin:
             0.5cm /*Top*/
-            1cm /*Right*/
+            0.2cm /*Right*/
             0 /*Bottom*/
             0.25cm; /* Left */
   }
 
   body {
 
-    font-size: 10pt;
-
+    font-size: 11pt;
     @import "print_table";
     @import "print_utils";
 

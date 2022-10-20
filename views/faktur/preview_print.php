@@ -36,7 +36,7 @@ $settings = Yii::$app->settings;
 <div class="faktur-pdf">
 
     <div style="width: 100%">
-        <div style=" float: left; width: 52%">
+        <div style=" float: left; width: 54%">
 
             <table>
                 <tr>
@@ -59,7 +59,7 @@ $settings = Yii::$app->settings;
             </table>
         </div>
 
-        <div style="float: right; width: 46%">
+        <div style="float: right; width: 44%">
             <table style="width: 100%">
                 <tr>
                     <td class="text-end" style="width: 96px">Jakarta</td>
@@ -67,7 +67,7 @@ $settings = Yii::$app->settings;
                     <td><?= Yii::$app->formatter->asDate($model->tanggal_faktur) ?></td>
                 </tr>
                 <tr>
-                    <td class="text-end" style="vertical-align: top">Kepada Yth</td>
+                    <td class="text-end" style="vertical-align: top;white-space: nowrap">Kepada Yth</td>
                     <td style="width: 1px; vertical-align: top">:</td>
                     <td style="font-weight: bold;vertical-align: top">
                         <?= isset($model->card) ? $model->card->nama : '' ?>
