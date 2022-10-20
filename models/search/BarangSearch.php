@@ -72,7 +72,7 @@ class BarangSearch extends Barang
             'query' => $query,
             'sort' => [
                 'defaultOrder' => [
-                    'id' => SORT_DESC
+                    'nama' => SORT_ASC
                 ]
             ]
         ]);
@@ -89,7 +89,7 @@ class BarangSearch extends Barang
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'nama', $this->nama])
+        $query->andFilterWhere(['like', 'b.nama', $this->nama])
             ->andFilterWhere(['like', 'part_number', $this->part_number]);
 
         return $dataProvider;
