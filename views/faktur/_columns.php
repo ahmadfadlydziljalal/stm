@@ -2,6 +2,7 @@
 
 use app\models\Card;
 use app\models\JenisTransaksi;
+use app\models\Rekening;
 use kartik\date\DatePicker;
 use kartik\grid\GridView;
 use yii\helpers\Html;
@@ -62,7 +63,7 @@ return [
     [
         'class' => '\yii\grid\DataColumn',
         'attribute' => 'rekening_id',
-        'filter' => \app\models\Rekening::find()->map(),
+        'filter' => Rekening::find()->map(),
         'value' => 'rekening.atas_nama',
     ],
     [

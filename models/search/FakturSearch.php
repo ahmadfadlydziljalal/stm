@@ -18,7 +18,7 @@ class FakturSearch extends Faktur
     public function rules(): array
     {
         return [
-            [['id', 'toko_saya_id', 'jenis_transaksi_id', 'card_id'], 'integer'],
+            [['id', 'toko_saya_id', 'jenis_transaksi_id', 'card_id', 'rekening_id'], 'integer'],
             [['tanggal_faktur', 'nomor_faktur', 'nomor_purchase_order'], 'safe'],
         ];
     }
@@ -65,6 +65,7 @@ class FakturSearch extends Faktur
             'tanggal_faktur' => empty($this->tanggal_faktur) ? $this->tanggal_faktur :
                 Yii::$app->formatter->asDate($this->tanggal_faktur, 'php:Y-m-d'),
             'jenis_transaksi_id' => $this->jenis_transaksi_id,
+            'rekening_id' => $this->rekening_id,
         ]);
 
         $query->andFilterWhere(['like', 'nomor_faktur', $this->nomor_faktur])
