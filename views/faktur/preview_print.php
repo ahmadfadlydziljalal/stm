@@ -36,7 +36,7 @@ $settings = Yii::$app->settings;
 <div class="faktur-pdf">
 
     <div style="width: 100%">
-        <div style=" float: left; width: 50%">
+        <div style=" float: left; width: 52%">
 
             <table>
                 <tr>
@@ -59,7 +59,7 @@ $settings = Yii::$app->settings;
             </table>
         </div>
 
-        <div style="float: right; width: 48%">
+        <div style="float: right; width: 46%">
             <table style="width: 100%">
                 <tr>
                     <td class="text-end" style="width: 96px">Jakarta</td>
@@ -86,16 +86,14 @@ $settings = Yii::$app->settings;
         <table class="table mt-3 kv-grid-table table-bordered">
         <thead class="w0">
         <tr>
-            <th colspan="2" style="white-space: nowrap; width: 14rem; min-width: 14rem;">Faktur
+            <th colspan="2" style="white-space: nowrap; width: 6rem; min-width: 6rem;">Faktur
                 No: <?= $model->nomor_faktur ?></th>
             <th>NO P.O: <?= !empty($model->nomor_purchase_order) ? $model->nomor_purchase_order : "-" ?></th>
         </tr>
 
         <tr class="text-nowrap text-center">
-            <th class="text-end border-top-0 border-end-0" style="width:50px;min-width:1% !important">
-                No.
-            </th>
-            <th class="text-center border-top-0 border-end-0" data-col-seq="1">Part Number</th>
+            <th class="text-end border-top-0 border-end-0" style="width:2px !important;">No.</th>
+            <th class="text-center border-top-0 border-end-0" style="width:40px !important;">Part Number</th>
             <th class="text-center border-top-0 border-end-0" data-col-seq="2">Description</th>
             <th class="text-center  border-end-0" data-col-seq="3">Qty</th>
             <th class="text-end  border-end-0 " data-col-seq="4"></th>
@@ -109,10 +107,8 @@ $settings = Yii::$app->settings;
 
             <?php if (!isset($model->fakturDetails[$i])): ?>
                 <tr class="text-nowrap">
-                    <td class="text-end border-bottom-0 border-top-0 border-end-0"
-                        style="width:50px; min-width:1% !important; height: 2.25em"></td>
-                    <td class="border-bottom-0 border-top-0 border-end-0 "
-                        style="white-space: nowrap; width: 12rem; min-width: 12rem;"></td>
+                    <td class="text-end border-bottom-0 border-top-0 border-end-0" style=" height: 2.25em"></td>
+                    <td class="border-bottom-0 border-top-0 border-end-0 "></td>
                     <td class="text-nowrap border-bottom-0 border-top-0 border-end-0 "></td>
                     <td class="text-nowrap border-bottom-0 border-top-0 border-end-0 "></td>
                     <td class="text-end border-end-0 border-bottom-0 border-top-0"></td>
@@ -124,11 +120,9 @@ $settings = Yii::$app->settings;
             <?php else : ?>
 
                 <tr class="text-nowrap" data-key="<?= $model->fakturDetails[0]->id ?>">
-                    <td class="text-end border-bottom-0 border-top-0 border-end-0"
-                        style="width:50px; min-width:1% !important"><?= $i + 1 ?></td>
-                    <td class="border-bottom-0 border-top-0 border-end-0 "
-                        style="white-space: nowrap; width: 12rem; min-width: 12rem;"><?= $model->fakturDetails[$i]->barang->part_number ?></td>
-                    <td class="text-nowrap border-bottom-0 border-top-0 border-end-0 "><?= $model->fakturDetails[$i]->barang->nama ?></td>
+                    <td class="text-end border-bottom-0 border-top-0 border-end-0" style="width:2px !important; min-width:2px !important"><?= $i + 1 ?></td>
+                    <td class="border-bottom-0 border-top-0 border-end-0" style="width:40px !important;"><?= $model->fakturDetails[$i]->barang->part_number ?></td>
+                    <td class="text-wrap border-bottom-0 border-top-0 border-end-0 "><?= $model->fakturDetails[$i]->barang->nama ?></td>
                     <td class="text-end text-nowrap border-bottom-0 border-top-0 border-end-0 "><?= $model->fakturDetails[$i]->quantity ?> <?= $model->fakturDetails[$i]->satuan->nama ?> </td>
                     <td class="text-end border-end-0 border-bottom-0 border-top-0"><?= Yii::$app->getFormatter()->currencyCode ?></td>
                     <td class="text-end border-start-0 border-end-0 border-bottom-0 border-top-0"><?= Yii::$app->formatter->asDecimal($model->fakturDetails[$i]->harga_barang, 2) ?></td>
@@ -140,7 +134,7 @@ $settings = Yii::$app->settings;
         </tbody>
         <tbody class="kv-page-summary-container">
             <tr class="table-warning kv-page-summary w0">
-            <td class="kv-align-center kv-align-middle" style="width:50px;">&nbsp;</td>
+            <td class="kv-align-center kv-align-middle" style="width:2px !important;">&nbsp;</td>
             <td colspan="5">
                 <?= Html::tag('span', 'Terbilang: ' . Yii::$app->formatter->asSpellout($sumSubtotal)); ?>
             </td>
@@ -160,7 +154,7 @@ $settings = Yii::$app->settings;
 
     <div class="mt-1" style="width: 100%">
         <div style="float:left; width: 20%">Tanda Terima</div>
-        <div style="float:left; width: 45%">
+        <div style="float:left; width: 40%">
             <?php if ($model->tokoSaya->kode == 'STM'): ?>
 
                 <?php if($model->rekening_id) : ?>
@@ -188,6 +182,6 @@ $settings = Yii::$app->settings;
             Grand Total<br/>
             <b><?= Yii::$app->getFormatter()->currencyCode ?> <?= Yii::$app->formatter->asDecimal($sumSubtotal, 2) ?></b>
         </div>
-        <div style="float:right; width: 10%">Hormat Kami</div>
+        <div style="float:right; width: 15%">Hormat Kami</div>
     </div>
 </div>

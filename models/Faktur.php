@@ -22,7 +22,7 @@ class Faktur extends BaseFaktur
                 [
                     'class' => 'mdm\autonumber\Behavior',
                     'attribute' => 'nomor_faktur', // required
-                    'value' => '?' . '/' . date('m/Y') , // format auto number. '?' will be replaced with generated number
+                    'value' => '?' . '/' . date('Y') , // format auto number. '?' will be replaced with generated number
                     'digit' => 4
                 ],
             ]
