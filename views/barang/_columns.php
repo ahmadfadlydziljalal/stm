@@ -41,14 +41,13 @@ return [
         'format' => 'raw',
         'value' => function ($model) {
 
-
             $items = (Json::decode($model->satuanHarga));
             $string = '';
             if($items){
                 ArrayHelper::multisort($items,'vendor');
                 $string .= GridView::widget([
                     'tableOptions' => [
-                        'class' => 'table'
+                        'class' => 'table p-0 m-0'
                     ],
                     'dataProvider' => new ArrayDataProvider([
                         'allModels' => $items,
