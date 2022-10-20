@@ -1,6 +1,9 @@
 @import "vars";
 
 @media print {
+  *{
+    font-family: "Courier New" ,"Courier", "monospace", "Calibri";
+  }
 
   @page {
     /* Ukuran kertas */
@@ -8,8 +11,8 @@
             21.5cm /*Panjang*/
             14.0cm; /* Lebar */
     margin:
-            0.25cm /*Top*/
-            0.2cm /*Right*/
+            0.5cm /*Top*/
+            1cm /*Right*/
             0 /*Bottom*/
             0.25cm; /* Left */
   }
