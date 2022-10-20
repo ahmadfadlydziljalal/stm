@@ -41,6 +41,7 @@ return [
         'format' => 'raw',
         'value' => function ($model) {
 
+            /** @var $model \app\models\Barang*/
             $items = (Json::decode($model->satuanHarga));
             $string = '';
             if($items){

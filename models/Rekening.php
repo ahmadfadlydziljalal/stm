@@ -2,8 +2,7 @@
 
 namespace app\models;
 
-use Yii;
-use \app\models\base\Rekening as BaseRekening;
+use app\models\base\Rekening as BaseRekening;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -11,6 +10,9 @@ use yii\helpers\ArrayHelper;
  */
 class Rekening extends BaseRekening
 {
+
+
+    public ?string $nomorNomorRekeningBank = null;
 
     public function behaviors()
     {

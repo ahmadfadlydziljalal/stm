@@ -21,7 +21,7 @@ return [
                 'class' => 'text-nowrap'
             ],
             'tableOptions' => [
-                'class' => 'table table-bordered table-striped table-grid-view'
+                'class' => 'table table-bordered table-grid-view'
             ],
             'layout' =>
                 '<div class="table-responsive">' .
@@ -48,7 +48,7 @@ return [
                 'class' => 'text-nowrap'
             ],
             'tableOptions' => [
-                'class' => 'table table-striped table-grid-view'
+                'class' => 'table table-grid-view'
             ],
             'panel' => false,
             'bordered' => true,

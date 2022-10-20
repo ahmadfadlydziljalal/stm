@@ -2,9 +2,10 @@
 
 namespace app\models\search;
 
+use app\models\Rekening;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Rekening;
+use yii\db\Expression;
 
 /**
  * RekeningSearch represents the model behind the search form about `app\models\Rekening`.
@@ -38,7 +39,22 @@ class RekeningSearch extends Rekening
      */
     public function search(array $params) : ActiveDataProvider
     {
-        $query = Rekening::find();
+        $query = Rekening::find()
+            ->select([
+                'id' => 'rekening.id',
+                'atas_nama' => 'rekening.atas_nama',
+                'nomorNomorRekeningBank' => new Expression("
+                     JSON_ARRAYAGG(
+                        JSON_OBJECT(
+                            'bank', rekening_detail.bank,
+                            'nomor_rekening',rekening_detail.nomor_rekening
+                        )
+                    )
+                ")
+            ])
+            ->joinWith('rekeningDetails', false)
+            ->groupBy('rekening.id');
+        ;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
