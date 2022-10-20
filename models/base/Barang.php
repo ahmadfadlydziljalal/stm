@@ -41,8 +41,7 @@ abstract class Barang extends \yii\db\ActiveRecord
             [['nama'], 'required'],
             [['keterangan'], 'string'],
             [['nama'], 'string', 'max' => 255],
-            [['part_number'], 'string', 'max' => 32],
-            [['part_number'], 'unique']
+            [['part_number'], 'string', 'max' => 32]
         ]);
     }
 
