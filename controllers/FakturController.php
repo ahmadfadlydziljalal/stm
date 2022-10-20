@@ -290,7 +290,15 @@ class FakturController extends Controller
         $model = $this->findModel($id);
 
         return [
-            'title' => 'Faktur ' . $model->nomor_faktur,
+            'title' => 'Faktur ' . $model->nomor_faktur . ' ' .
+                (
+                    Html::tag('span', $model->jenisTransaksi->nama, [
+                        'class' =>strtolower($model->jenisTransaksi->nama )== 'cash' ?
+                            'badge text-bg-primary' :
+                            'badge text-bg-warning'
+                    ])
+                )
+            ,
             'content' => $this->renderAjax('preview_print', [
                 'model' => $model,
                 'openWindowPrint' => 0

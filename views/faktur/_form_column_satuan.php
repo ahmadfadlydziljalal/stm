@@ -54,7 +54,7 @@ try {
         ->widget(Select2::class, [
             'data' => $data,
             'options' => [
-                'prompt' => '-',
+                'prompt' => '= Pilih Salah Satu =',
                 'class' => 'satuan-id form-control',
                 'onchange' => "$js",
             ]

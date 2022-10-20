@@ -50,16 +50,13 @@ $settings = Yii::$app->settings;
                         <h3 style="margin: 0; padding: 0"><?= $model->tokoSaya->nama ?></h3>
                         <p style="margin: 0; padding: 0; font-size: 10pt"><?= $settings->get('site.slogan') ?></p>
                         <?php if ($model->tokoSaya->kode == 'STM'): ?>
-                            <small style="margin: 0; padding: 0">
-                                <?= $settings->get('site.alamat') ?>
-                            </small>
+<!--                            <small style="margin: 0; padding: 0">-->
+                                <?php //echo $settings->get('site.alamat') ?>
+<!--                            </small>-->
                         <?php endif; ?>
                     </td>
                 </tr>
             </table>
-
-
-
         </div>
 
         <div style="float: right; width: 48%">
@@ -73,14 +70,10 @@ $settings = Yii::$app->settings;
                     <td class="text-end">Kepada Yth</td>
                     <td style="width: 1px">:</td>
                     <td style="font-weight: bold;">
-                        <?= $model->jenisTransaksi->nama ?>, <?= isset($model->card) ?
-                            $model->card->nama :
-                            ''
-                        ?>
+                        <?= isset($model->card) ? $model->card->nama : '' ?>
                     </td>
                 </tr>
             </table>
-
         </div>
     </div>
 
@@ -112,8 +105,7 @@ $settings = Yii::$app->settings;
         </tr>
         </thead>
         <tbody class="border-bottom">
-
-        <?php for ($i = 0; $i <= $maxRows; $i++): ?>
+            <?php for ($i = 0; $i <= $maxRows; $i++): ?>
 
             <?php if (!isset($model->fakturDetails[$i])): ?>
                 <tr class="text-nowrap">
@@ -137,7 +129,7 @@ $settings = Yii::$app->settings;
                     <td class="border-bottom-0 border-top-0 border-end-0 "
                         style="white-space: nowrap; width: 12rem; min-width: 12rem;"><?= $model->fakturDetails[$i]->barang->part_number ?></td>
                     <td class="text-nowrap border-bottom-0 border-top-0 border-end-0 "><?= $model->fakturDetails[$i]->barang->nama ?></td>
-                    <td class="text-nowrap border-bottom-0 border-top-0 border-end-0 "><?= $model->fakturDetails[$i]->quantity ?> <?= $model->fakturDetails[$i]->satuan->nama ?> </td>
+                    <td class="text-end text-nowrap border-bottom-0 border-top-0 border-end-0 "><?= $model->fakturDetails[$i]->quantity ?> <?= $model->fakturDetails[$i]->satuan->nama ?> </td>
                     <td class="text-end border-end-0 border-bottom-0 border-top-0"><?= Yii::$app->getFormatter()->currencyCode ?></td>
                     <td class="text-end border-start-0 border-end-0 border-bottom-0 border-top-0"><?= Yii::$app->formatter->asDecimal($model->fakturDetails[$i]->harga_barang, 2) ?></td>
                     <td class="text-end border-end-0 border-bottom-0 border-top-0"><?= Yii::$app->getFormatter()->currencyCode ?></td>
@@ -147,7 +139,7 @@ $settings = Yii::$app->settings;
         <?php endfor ?>
         </tbody>
         <tbody class="kv-page-summary-container">
-        <tr class="table-warning kv-page-summary w0">
+            <tr class="table-warning kv-page-summary w0">
             <td class="kv-align-center kv-align-middle" style="width:50px;">&nbsp;</td>
             <td colspan="5">
                 <?= Html::tag('span', 'Terbilang: ' . Yii::$app->formatter->asSpellout($sumSubtotal)); ?>

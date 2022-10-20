@@ -18,7 +18,7 @@ return [
     [
         'class' => '\yii\grid\DataColumn',
         'attribute' => 'toko_saya_id',
-        'value' => 'tokoSaya.nama',
+        'value' => 'tokoSaya.kode',
         'filter' => Card::find()->map(Card::GET_ONLY_TOKO_SAYA)
     ],
     [
