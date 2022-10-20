@@ -12,12 +12,27 @@ use yii\helpers\Html;
 /* @var $model app\models\Faktur */
 /* @var $modelsDetail app\models\FakturDetail */
 /* @var $form yii\bootstrap5\ActiveForm */
+
+$this->registerCss("
+ table td.column-barang .select2-container{
+    width: 250px !important;
+    max-width: 250px !important;
+ }
+
+ table td.column-vendor .select2-container{
+    width: 200px !important;
+    max-width: 200px !important;
+ }
+  
+  
+");
 ?>
 
     <div class="faktur-form">
 
         <?php $form = ActiveForm::begin([
             'id' => 'dynamic-form',
+            'enableClientValidation' => true
         ]); ?>
 
         <div class="d-flex flex-column mt-0" style="gap: 1rem">
@@ -44,6 +59,14 @@ use yii\helpers\Html;
                                 ],
                             ])->label('Customer') ?>
                         </div>
+
+                        <div class="col-12 col-lg-3">
+                            <?= $form->field($model, 'tanggal_faktur')->widget(DateControl::class, [
+                                'type' => kartik\datecontrol\DateControl::FORMAT_DATE,
+
+                            ]) ?>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -51,12 +74,7 @@ use yii\helpers\Html;
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-12 col-lg-3">
-                            <?= $form->field($model, 'tanggal_faktur')->widget(DateControl::class, [
-                                'type' => kartik\datecontrol\DateControl::FORMAT_DATE,
 
-                            ]) ?>
-                        </div>
                         <div class="col-12 col-lg-3">
                             <?= $form->field($model, 'nomor_purchase_order')->textInput(['maxlength' => true]) ?>
                         </div>

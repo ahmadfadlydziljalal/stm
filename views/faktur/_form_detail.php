@@ -35,13 +35,13 @@ use yii\widgets\MaskedInput;
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Barang</th>
-                <th scope="col">Vendor</th>
-                <th scope="col">Satuan</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Harga</th>
-                <th scope="col" style="width: 2px">Aksi</th>
+                <th class="d-none">#</th>
+                <th>Barang</th>
+                <th>Vendor</th>
+                <th>Satuan</th>
+                <th style="width: 148px" >Quantity</th>
+                <th>Harga</th>
+                <th style="width: 2px">Aksi</th>
             </tr>
             </thead>
 
@@ -51,14 +51,14 @@ use yii\widgets\MaskedInput;
             foreach ($modelsDetail as $i => $modelDetail): ?>
                 <tr class="item">
 
-                    <td style="width: 2px;" class="align-middle">
+                    <td style="width: 2px;" class="align-middle d-none">
                         <?php if (!$modelDetail->isNewRecord) {
                             echo Html::activeHiddenInput($modelDetail, "[$i]id");
                         } ?>
                         <i class="bi bi-arrow-right-short"></i>
                     </td>
 
-                    <td>
+                    <td class="column-barang">
                         <?= $this->render('_form_column_barang', [
                             'modelDetail' => $modelDetail,
                             'form' => $form,
@@ -66,7 +66,7 @@ use yii\widgets\MaskedInput;
                         ]) ?>
                     </td>
 
-                    <td>
+                    <td class="column-vendor">
                         <?= $this->render('_form_column_vendor', [
                             'modelDetail' => $modelDetail,
                             'form' => $form,
@@ -76,7 +76,7 @@ use yii\widgets\MaskedInput;
                         ?>
                     </td>
 
-                    <td style="min-width: 150px">
+                    <td >
                         <?= $this->render('_form_column_satuan', [
                             'modelDetail' => $modelDetail,
                             'form' => $form,
@@ -135,7 +135,7 @@ use yii\widgets\MaskedInput;
 
             <tfoot>
             <tr>
-                <td class="text-end" colspan="6">
+                <td class="text-end" colspan="5">
                     <?php echo Html::button('<span class="bi bi-plus-circle"></span> Tambah', ['class' => 'add-item btn btn-primary',]); ?>
                 </td>
                 <td></td>
