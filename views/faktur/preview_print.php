@@ -62,14 +62,14 @@ $settings = Yii::$app->settings;
         <div style="float: right; width: 48%">
             <table style="width: 100%">
                 <tr>
-                    <td class="text-end">Jakarta</td>
+                    <td class="text-end" style="width: 96px">Jakarta</td>
                     <td style="width: 1px">:</td>
                     <td><?= Yii::$app->formatter->asDate($model->tanggal_faktur) ?></td>
                 </tr>
                 <tr>
-                    <td class="text-end">Kepada Yth</td>
-                    <td style="width: 1px">:</td>
-                    <td style="font-weight: bold;">
+                    <td class="text-end" style="vertical-align: top">Kepada Yth</td>
+                    <td style="width: 1px; vertical-align: top">:</td>
+                    <td style="font-weight: bold;vertical-align: top">
                         <?= isset($model->card) ? $model->card->nama : '' ?>
                     </td>
                 </tr>
@@ -160,7 +160,7 @@ $settings = Yii::$app->settings;
 
     <div class="mt-1" style="width: 100%">
         <div style="float:left; width: 20%">Tanda Terima</div>
-        <div style="float:left; width: 35%">
+        <div style="float:left; width: 45%">
             <?php if ($model->tokoSaya->kode == 'STM'): ?>
                 Pembayaran Melalui Bank
                 <table>
@@ -168,11 +168,22 @@ $settings = Yii::$app->settings;
                         <th class="text-start">BCA</th>
                         <th>:</th>
                         <th class="text-start">4281 4065 52</th>
+
+                        <th rowspan="3" style="width: 50px"></th>
+
+                        <th class="text-start">BCA</th>
+                        <th>:</th>
+                        <th class="text-start">362 043 3666</th>
+
                     </tr>
                     <tr>
                         <th class="text-start">BNI</th>
                         <th>:</th>
                         <th class="text-start">0335 6020 74</th>
+
+                        <th class="text-start">A/N</th>
+                        <th>:</th>
+                        <th class="text-start">Diki prayogo </th>
                     </tr>
                     <tr>
                         <th class="text-start">A/N</th>
@@ -182,10 +193,10 @@ $settings = Yii::$app->settings;
                 </table>
             <?php endif ?>
         </div>
-        <div style="float:right; width: 25%">
+        <div style="float:right; width: 25%; text-align: right">
             Grand Total<br/>
             <b><?= Yii::$app->getFormatter()->currencyCode ?> <?= Yii::$app->formatter->asDecimal($sumSubtotal, 2) ?></b>
         </div>
-        <div style="float:right; width: 20%">Hormat Kami</div>
+        <div style="float:right; width: 10%">Hormat Kami</div>
     </div>
 </div>

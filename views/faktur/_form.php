@@ -14,9 +14,19 @@ use yii\helpers\Html;
 /* @var $form yii\bootstrap5\ActiveForm */
 
 $this->registerCss("
+ table td.column-barang{
+    width: 316px !important;
+    max-width: 316px !important;
+ }
+ 
  table td.column-barang .select2-container{
-    width: 250px !important;
-    max-width: 250px !important;
+    width: 300px !important;
+    max-width: 300px !important;
+ }
+
+ table td.column-vendor{
+    width: 216px !important;
+    max-width: 216px !important;
  }
 
  table td.column-vendor .select2-container{
