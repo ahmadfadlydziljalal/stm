@@ -3,6 +3,8 @@
 @media print {
   *{
     font-family: "Courier New" ,"Courier", "monospace", "Calibri";
+    font-weight: bold;
+
   }
 
   @page {
@@ -19,7 +21,6 @@
 
   body {
 
-    font-weight: normal;
     font-size: 10pt;
 
     @import "print_table";
