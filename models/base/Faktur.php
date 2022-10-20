@@ -5,6 +5,7 @@
 namespace app\models\base;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the base-model class for table "faktur".
@@ -16,10 +17,12 @@ use Yii;
  * @property string $nomor_purchase_order
  * @property integer $jenis_transaksi_id
  * @property integer $toko_saya_id
+ * @property integer $rekening_id
  *
  * @property \app\models\Card $card
  * @property \app\models\FakturDetail[] $fakturDetails
  * @property \app\models\JenisTransaksi $jenisTransaksi
+ * @property \app\models\Rekening $rekening
  * @property \app\models\Card $tokoSaya
  * @property string $aliasModel
  */
@@ -41,15 +44,16 @@ abstract class Faktur extends \yii\db\ActiveRecord
      */
     public function rules()
     {
-        return [
+        return ArrayHelper::merge(parent::rules(), [
             [['card_id', 'tanggal_faktur', 'jenis_transaksi_id', 'toko_saya_id'], 'required'],
-            [['card_id', 'jenis_transaksi_id', 'toko_saya_id'], 'integer'],
+            [['card_id', 'jenis_transaksi_id', 'toko_saya_id', 'rekening_id'], 'integer'],
             [['tanggal_faktur'], 'safe'],
             [['nomor_faktur', 'nomor_purchase_order'], 'string', 'max' => 255],
             [['card_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Card::class, 'targetAttribute' => ['card_id' => 'id']],
             [['toko_saya_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Card::class, 'targetAttribute' => ['toko_saya_id' => 'id']],
-            [['jenis_transaksi_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\JenisTransaksi::class, 'targetAttribute' => ['jenis_transaksi_id' => 'id']]
-        ];
+            [['jenis_transaksi_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\JenisTransaksi::class, 'targetAttribute' => ['jenis_transaksi_id' => 'id']],
+            [['rekening_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Rekening::class, 'targetAttribute' => ['rekening_id' => 'id']]
+        ]);
     }
 
     /**
@@ -65,6 +69,7 @@ abstract class Faktur extends \yii\db\ActiveRecord
             'nomor_purchase_order' => 'Nomor Purchase Order',
             'jenis_transaksi_id' => 'Jenis Transaksi ID',
             'toko_saya_id' => 'Toko Saya ID',
+            'rekening_id' => 'Rekening ID',
         ];
     }
 
@@ -90,6 +95,14 @@ abstract class Faktur extends \yii\db\ActiveRecord
     public function getJenisTransaksi()
     {
         return $this->hasOne(\app\models\JenisTransaksi::class, ['id' => 'jenis_transaksi_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRekening()
+    {
+        return $this->hasOne(\app\models\Rekening::class, ['id' => 'rekening_id']);
     }
 
     /**

@@ -252,7 +252,7 @@ class FakturController extends Controller
         $model = $this->findModel($id);
         $model->delete();
 
-        Yii::$app->session->setFlash('danger', " Faktur : " . $model->id . " berhasil dihapus.");
+        Yii::$app->session->setFlash('danger', " Faktur : " . $model->nomor_faktur . " berhasil dihapus.");
         return $this->redirect(['index']);
     }
 

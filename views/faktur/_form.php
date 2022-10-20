@@ -76,6 +76,9 @@ $this->registerCss("
 
                             ]) ?>
                         </div>
+                        <div class="col-12 col-lg-3">
+                            <?= $form->field($model, 'nomor_purchase_order')->textInput(['maxlength' => true]) ?>
+                        </div>
 
                     </div>
                 </div>
@@ -85,15 +88,17 @@ $this->registerCss("
                 <div class="card-body">
                     <div class="row">
 
-                        <div class="col-12 col-lg-3">
-                            <?= $form->field($model, 'nomor_purchase_order')->textInput(['maxlength' => true]) ?>
-                        </div>
+
                         <div class="col-12 col-lg-3">
                             <?= $form->field($model, 'jenis_transaksi_id', ['inline' => true])->radioList(ArrayHelper::map(
                                 JenisTransaksi::find()->all(),
                                 'id',
                                 'nama'
                             )) ?>
+                        </div>
+
+                        <div class="col-12 col-lg-3">
+                            <?= $form->field($model, 'rekening_id', ['inline' => true])->radioList(\app\models\Rekening::find()->map()) ?>
                         </div>
                     </div>
                 </div>

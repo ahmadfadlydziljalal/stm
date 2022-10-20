@@ -86,7 +86,7 @@ $settings = Yii::$app->settings;
         <table class="table mt-3 kv-grid-table table-bordered">
         <thead class="w0">
         <tr>
-            <th colspan="2" style="color: red; white-space: nowrap; width: 14rem; min-width: 14rem;">Faktur
+            <th colspan="2" style="white-space: nowrap; width: 14rem; min-width: 14rem;">Faktur
                 No: <?= $model->nomor_faktur ?></th>
             <th>NO P.O: <?= !empty($model->nomor_purchase_order) ? $model->nomor_purchase_order : "-" ?></th>
         </tr>
@@ -162,35 +162,26 @@ $settings = Yii::$app->settings;
         <div style="float:left; width: 20%">Tanda Terima</div>
         <div style="float:left; width: 45%">
             <?php if ($model->tokoSaya->kode == 'STM'): ?>
+
+                <?php if($model->rekening_id) : ?>
                 Pembayaran Melalui Bank
                 <table>
-                    <tr>
-                        <th class="text-start">BCA</th>
-                        <th>:</th>
-                        <th class="text-start">4281 4065 52</th>
+                    <?php foreach($model->rekening->rekeningDetails as $rekeningDetail) : ?>
+                        <tr>
+                            <th class="text-start"><?= $rekeningDetail->bank ?></th>
+                            <th>:</th>
+                            <th class="text-start"><?= $rekeningDetail->nomor_rekening ?></th>
+                        </tr>
+                    <?php endforeach; ?>
 
-                        <th rowspan="3" style="width: 50px"></th>
-
-                        <th class="text-start">BCA</th>
-                        <th>:</th>
-                        <th class="text-start">362 043 3666</th>
-
-                    </tr>
-                    <tr>
-                        <th class="text-start">BNI</th>
-                        <th>:</th>
-                        <th class="text-start">0335 6020 74</th>
-
-                        <th class="text-start">A/N</th>
-                        <th>:</th>
-                        <th class="text-start">Diki prayogo </th>
-                    </tr>
                     <tr>
                         <th class="text-start">A/N</th>
                         <th>:</th>
-                        <th class="text-start">Supriyanto</th>
+                        <th class="text-start"><?= $model->rekening->atas_nama ?></th>
                     </tr>
+                 
                 </table>
+                <?php endif ?>
             <?php endif ?>
         </div>
         <div style="float:right; width: 25%; text-align: right">

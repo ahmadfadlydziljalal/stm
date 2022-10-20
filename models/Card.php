@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\models\base\Card as BaseCard;
 use yii\helpers\ArrayHelper;
+use yii\helpers\StringHelper;
 
 /**
  * This is the model class for table "card".
@@ -40,5 +41,10 @@ class Card extends BaseCard
                 [['cardBelongsTypesForm'], 'required', 'on' => self::SCENARIO_CREATE_AND_UPDATE],
             ]
         );
+    }
+
+    public function getSingkatanNama(): string
+    {
+        return StringHelper::truncate($this->nama, 18);
     }
 }

@@ -24,7 +24,7 @@ return [
     [
         'class' => '\yii\grid\DataColumn',
         'attribute' => 'card_id',
-        'value' => 'card.nama',
+        'value' => 'card.singkatanNama',
         'filter' => Card::find()->map(Card::GET_APART_FROM_TOKO_SAYA)
     ],
     [
@@ -58,6 +58,12 @@ return [
         'format' => 'text',
         'filter' => JenisTransaksi::find()->map(),
         'value' => 'jenisTransaksi.nama',
+    ],
+    [
+        'class' => '\yii\grid\DataColumn',
+        'attribute' => 'rekening_id',
+        'filter' => \app\models\Rekening::find()->map(),
+        'value' => 'rekening.atas_nama',
     ],
     [
         'class' => 'kartik\grid\DataColumn',

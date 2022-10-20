@@ -22,7 +22,7 @@ class Faktur extends BaseFaktur
                 [
                     'class' => 'mdm\autonumber\Behavior',
                     'attribute' => 'nomor_faktur', // required
-                    'value' => '.?' . date('Y') , // format auto number. '?' will be replaced with generated number
+                    'value' => '?' . '-' . date('Y') , // format auto number. '?' will be replaced with generated number
                     'digit' => 4
                 ],
             ]
@@ -42,10 +42,11 @@ class Faktur extends BaseFaktur
     public function attributeLabels()
     {
         return ArrayHelper::merge(parent::attributeLabels(), [
-            'jenis_transaksi_id' => 'Jenis Transaksi',
+            'jenis_transaksi_id' => 'Transaksi',
             'card_id' => 'Customer',
             'toko_saya_id' => 'Toko Saya',
-            'tanggal_faktur' => 'Tgl Faktur'
+            'tanggal_faktur' => 'Tgl Faktur',
+            'rekening_id' => 'Rekening',
         ]);
     }
 
