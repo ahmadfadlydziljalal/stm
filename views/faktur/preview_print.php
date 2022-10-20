@@ -63,7 +63,7 @@ $settings = Yii::$app->settings;
             <table style="width: 100%">
                 <tr>
                     <td class="text-end" style="width: 96px">Jakarta</td>
-                    <td style="width: 1px">:</td>
+                    <td style="width: 1px">,</td>
                     <td><?= Yii::$app->formatter->asDate($model->tanggal_faktur) ?></td>
                 </tr>
                 <tr>
