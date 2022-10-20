@@ -88,13 +88,13 @@ $settings = Yii::$app->settings;
         <tr>
             <th colspan="2" style="white-space: nowrap; width: 6rem; min-width: 6rem;">Faktur
                 No: <?= $model->nomor_faktur ?></th>
-            <th>NO P.O: <?= !empty($model->nomor_purchase_order) ? $model->nomor_purchase_order : "-" ?></th>
+            <th style="white-space: nowrap; width: 6rem; min-width: 6rem;">NO P.O: <?= !empty($model->nomor_purchase_order) ? $model->nomor_purchase_order : "-" ?></th>
         </tr>
 
         <tr class="text-nowrap text-center">
             <th class="text-end border-top-0 border-end-0" style="width:2px !important;">No.</th>
             <th class="text-center border-top-0 border-end-0" style="width:40px !important;">Part Number</th>
-            <th class="text-center border-top-0 border-end-0" data-col-seq="2">Description</th>
+            <th class="text-center border-top-0 border-end-0" style="width:100px !important; min-width:100px !important; white-space: normal">Description</th>
             <th class="text-center  border-end-0" data-col-seq="3">Qty</th>
             <th class="text-end  border-end-0 " data-col-seq="4"></th>
             <th class="text-end text-nowrap border-start-0 border-end-0" data-col-seq="5">Unit Price</th>
@@ -122,7 +122,7 @@ $settings = Yii::$app->settings;
                 <tr class="text-nowrap" data-key="<?= $model->fakturDetails[0]->id ?>">
                     <td class="text-end border-bottom-0 border-top-0 border-end-0" style="width:2px !important; min-width:2px !important"><?= $i + 1 ?></td>
                     <td class="border-bottom-0 border-top-0 border-end-0" style="width:40px !important;"><?= $model->fakturDetails[$i]->barang->part_number ?></td>
-                    <td class="text-wrap border-bottom-0 border-top-0 border-end-0 "><?= $model->fakturDetails[$i]->barang->nama ?></td>
+                    <td class="text-wrap border-bottom-0 border-top-0 border-end-0 " style="width:150px !important; min-width:200px !important; white-space: normal"><?= $model->fakturDetails[$i]->barang->nama ?></td>
                     <td class="text-end text-nowrap border-bottom-0 border-top-0 border-end-0 "><?= $model->fakturDetails[$i]->quantity ?> <?= $model->fakturDetails[$i]->satuan->nama ?> </td>
                     <td class="text-end border-end-0 border-bottom-0 border-top-0"><?= Yii::$app->getFormatter()->currencyCode ?></td>
                     <td class="text-end border-start-0 border-end-0 border-bottom-0 border-top-0"><?= Yii::$app->formatter->asDecimal($model->fakturDetails[$i]->harga_barang, 2) ?></td>
