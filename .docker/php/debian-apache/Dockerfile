@@ -44,20 +44,18 @@ RUN a2enmod rewrite && service apache2 restart
 # Alias codeception
 RUN echo 'alias c="vendor/bin/codecept"' >> /etc/bash.bashrc
 
+# Baris ini akan di ekseksusi 
+# kalau target di set deploy (server)
+FROM base AS deploy
+
 # Copy semua file
 COPY . .
+COPY ./web/index-prod.php web/index.php
 
 # Copy settingan - settingan
 COPY ./.docker/php/php.ini /usr/local/etc/php/php.ini
 COPY ./.docker/php/debian-apache/000-default.conf /etc/apache2/sites-available/000-default.conf
 
-# Baris ini akan di ekseksusi 
-# kalau target di set deploy (server)
-FROM base AS deploy
-
-RUN mkdir ./runtime ./web/assets
+RUN mkdir ./runtime ./web/assets && rm -rf .docker
 RUN echo "*\n!.gitignore" | tee ./runtime/.gitignore ./web/assets/.gitignore
 RUN chown www-data:www-data ./runtime && chgrp www-data ./web/assets && chmod g+w ./web/assets
-RUN rm -rf .docker
-
-COPY ./web/index-prod.php web/index.php

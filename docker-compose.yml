@@ -39,6 +39,8 @@ services:
       - .env
     volumes:
       - ./:/var/www/html # Only for local dev, gunakan copy untuk production (Lihat build Dockerfile)
+      - ./.docker/php/php.ini:/usr/local/etc/php/php.ini
+      - ./.docker/php/debian-apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
     networks:
       - ${APP_NAME}-network
     depends_on:
