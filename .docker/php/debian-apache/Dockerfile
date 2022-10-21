@@ -48,7 +48,7 @@ RUN echo 'alias c="vendor/bin/codecept"' >> /etc/bash.bashrc
 # kalau target di set deploy (server)
 FROM base AS deploy
 
-RUN a2enmod ssl && service apache2 restart
+# RUN a2enmod ssl && service apache2 restart
 
 # Copy semua file
 COPY . .
@@ -56,8 +56,12 @@ COPY ./web/index-prod.php web/index.php
 
 # Copy settingan - settingan
 COPY ./.docker/php/php.ini /usr/local/etc/php/php.ini
-COPY ./.docker/php/debian-apache/000-default-prod.conf /etc/apache2/sites-available/000-default.conf
+# COPY ./.docker/php/debian-apache/000-default.conf /etc/apache2/sites-available/000-default.conf
 
-RUN mkdir ./runtime ./web/assets && rm -rf .docker
-RUN echo "*\n!.gitignore" | tee ./runtime/.gitignore ./web/assets/.gitignore
-RUN chown www-data:www-data ./runtime && chgrp www-data ./web/assets && chmod g+w ./web/assets
+RUN mkdir ./runtime ./web/assets && \
+    rm -rf .docker && \
+    echo "*\n!.gitignore" | tee ./runtime/.gitignore ./web/assets/.gitignore && \
+    chown -R www-data:www-data ./web/.well-known && \
+    chown www-data:www-data ./runtime && \
+    chgrp www-data ./web/assets && \
+    chmod g+w ./web/assets
