@@ -16,7 +16,7 @@ composer.json
 composer.lock
 docker-compose.chrome.yml
 docker-compose.prod.yml
-docker-compose.sass.yml
+docker-compose.gulp.yml
 docker-compose.staging.yml
 docker-compose.yml
 generators
