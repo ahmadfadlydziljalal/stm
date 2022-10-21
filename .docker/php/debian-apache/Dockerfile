@@ -58,5 +58,6 @@ FROM base AS deploy
 RUN mkdir ./runtime ./web/assets
 RUN echo "*\n!.gitignore" | tee ./runtime/.gitignore ./web/assets/.gitignore
 RUN chown www-data:www-data ./runtime && chgrp www-data ./web/assets && chmod g+w ./web/assets
+RUN rm -rf .docker
 
 COPY ./web/index-prod.php web/index.php

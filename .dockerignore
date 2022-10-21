@@ -5,6 +5,7 @@
 .env-example
 .gii
 .git
+.github
 .gitignore
 .idea
 LICENSE.md
@@ -27,5 +28,6 @@ runtime
 tests
 vagrant
 web/assets
+web/index-test.php
 yarn.lock
 yii.bat
