@@ -23,6 +23,7 @@ services:
 
   check-db-started:
     image: jwilder/dockerize:0.6.1
+    container_name: ${APP_NAME}-check-db-started
     depends_on:
       - db
     command: 'dockerize -wait=tcp://db:3306'
@@ -39,9 +40,34 @@ services:
       - .env
     networks:
       - ${APP_NAME}-network
+    volumes:
+      - ./000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./etc:/etc/letsencrypt
+      - ./var:/var/lib/letsencrypt
+      - ./www:/var/www/html/web/.well-known
     depends_on:
       - check-db-started
-    restart: on-failure
+      # restart: on-failure
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    hostname: certbot
+    volumes:
+      - ./etc:/etc/letsencrypt
+      - ./var:/var/lib/letsencrypt
+      - ./www:/var/www/html/web/.well-known
+    command: >-
+      certonly
+      --webroot
+      --webroot-path=/var/www/html/web
+      --email ahmadfadlydziljalal@gmail.com
+      --agree-tos
+      --no-eff-email
+      --force-renewal
+      -d stm.dzil.my.id
+    depends_on:
+      - php
 
   # Mongo Service, database pendukung, eg: cache, log, dll
   mongodb:
