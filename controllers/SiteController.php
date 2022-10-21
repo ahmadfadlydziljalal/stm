@@ -24,7 +24,7 @@ class SiteController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['login', 'error', 'contact', 'captcha'],
+                        'actions' => ['index', 'login', 'error', 'contact', 'captcha'],
                     ],
                     [
                         'allow' => true,
@@ -66,7 +66,7 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
-
+    
     /**
      * Login action.
      *

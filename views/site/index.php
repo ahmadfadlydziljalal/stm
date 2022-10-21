@@ -1,12 +1,16 @@
 <?php
 
-/** @var yii\web\View $this */
+
+/** @see \app\controllers\SiteController::actionDashboard()  */
+/* @var $this View */
+
 
 use app\models\Faktur;
 use yii\helpers\Html;
+use yii\web\View;
 
-$this->title = 'Dashboard';
 ?>
+
 <div class="site-index d-flex flex-column">
 
 
@@ -51,7 +55,7 @@ $this->title = 'Dashboard';
                 </div>
             </div>
         </div>
-        
+
     </div>
 
 </div>

@@ -66,75 +66,78 @@ $brandLabel =
     </div>
 
 <?php
-try {
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav flex-sm-grow-0 flex-md-grow-1'],
-        'activateParents' => true,
-        'dropdownClass' => Dropdown::class,
-        'items' => $topItems
-    ]);
-} catch (Throwable $e) {
-    echo $e->getMessage();
-}
 
-try {
+if(!Yii::$app->user->isGuest) :
+    try {
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav flex-sm-grow-0 flex-md-grow-1'],
+            'activateParents' => true,
+            'dropdownClass' => Dropdown::class,
+            'items' => $topItems
+        ]);
+    } catch (Throwable $e) {
+        echo $e->getMessage();
+    }
 
-    $profileImage =
-        Html::beginTag('div', ['class' => 'd-flex flex-column align-items-center navbar-photo-profile px-3', 'style' => ['gap' => '.75rem']]) .
-        (!empty(Yii::$app->cache->get('sihrd-user-image' . Yii::$app->user->identity->id)) ?
-            Yii::$app->cache->get('sihrd-user-image' . Yii::$app->user->identity->id) :
-            '<i class="bi bi-person-badge" style="font-size: 64px"></i>' . '<span>' . substr(Yii::$app->user->identity->username, 0, 7) . '</span>'
-        )
-        .
-        Html::endTag('div');
+    try {
 
-    $dropdownItems = ArrayHelper::merge([$profileImage . '<div class="dropdown-divider"></div>'], MenuHelper::getAssignedMenu(Yii::$app->user->id, '28'));
-    $dropdownItems[] = '<div class="dropdown-divider"></div>';
-    $dropdownItems[] = '<div class="d-flex flex-row w-100">
-                            <div class="col bg-primary text-white p-2"></div>
-                            <div class="col bg-success text-white p-2"></div>
-                            <div class="col bg-info p-2"></div>
-                            <div class="col bg-warning p-2"></div>
-                            <div class="col bg-danger text-white p-2"></div>
-                        </div>';
-    $dropdownItems[] = '<div class="dropdown-divider"></div>';
-    $dropdownItems[] =
-        [
-            'label' => '<div class="d-flex justify-content-start" style="gap: 1rem"> <i class="bi bi-box-arrow-right"></i> <span>Log Out</span></div>',
-            'url' => ['/site/logout'],
-            'linkOptions' => ['data-method' => 'post']
-        ];
+        $profileImage =
+            Html::beginTag('div', ['class' => 'd-flex flex-column align-items-center navbar-photo-profile px-3', 'style' => ['gap' => '.75rem']]) .
+            (!empty(Yii::$app->cache->get('sihrd-user-image' . Yii::$app->user->identity->id)) ?
+                Yii::$app->cache->get('sihrd-user-image' . Yii::$app->user->identity->id) :
+                '<i class="bi bi-person-badge" style="font-size: 64px"></i>' . '<span>' . substr(Yii::$app->user->identity->username, 0, 7) . '</span>'
+            )
+            .
+            Html::endTag('div');
 
-    echo Nav::widget([
-        'encodeLabels' => false,
-        'options' => ['class' => 'navbar-nav order-2 ms-auto'],
-        'activateParents' => true,
-        'items' => [
+        $dropdownItems = ArrayHelper::merge([$profileImage . '<div class="dropdown-divider"></div>'], MenuHelper::getAssignedMenu(Yii::$app->user->id, '28'));
+        $dropdownItems[] = '<div class="dropdown-divider"></div>';
+        $dropdownItems[] = '<div class="d-flex flex-row w-100">
+                                <div class="col bg-primary text-white p-2"></div>
+                                <div class="col bg-success text-white p-2"></div>
+                                <div class="col bg-info p-2"></div>
+                                <div class="col bg-warning p-2"></div>
+                                <div class="col bg-danger text-white p-2"></div>
+                            </div>';
+        $dropdownItems[] = '<div class="dropdown-divider"></div>';
+        $dropdownItems[] =
             [
-                'label' => (Yii::$app->params['theme'] === 'dark' ?
-                    '<div class="d-flex" style="gap: .25rem"><i class="bi bi-sun"></i><span class="d-block d-sm-block d-md-none d-lg-none">Light Mode</span></div>' :
-                    '<div class="d-flex" style="gap: .25rem"><i class="bi bi-moon"></i><span class="d-block d-sm-block d-md-none d-lg-none">Dark Mode</span></div>'),
-                'url' => ['/dark-light-toggle/index'],
-                'linkOptions' => [
-                    'id' => 'dark-light-link',
-                ]
-            ],
-            [
-                'label' => '<i class="bi bi-person"> </i> ' . substr(Yii::$app->user->identity->username, 0, 7),
-                'dropdownOptions' => [
-                    'class' => 'dropdown-menu dropdown-menu-end',
-                    'style' => [
-                        'min-width' => '12rem'
-                    ],
+                'label' => '<div class="d-flex justify-content-start" style="gap: 1rem"> <i class="bi bi-box-arrow-right"></i> <span>Log Out</span></div>',
+                'url' => ['/site/logout'],
+                'linkOptions' => ['data-method' => 'post']
+            ];
+
+        echo Nav::widget([
+            'encodeLabels' => false,
+            'options' => ['class' => 'navbar-nav order-2 ms-auto'],
+            'activateParents' => true,
+            'items' => [
+                [
+                    'label' => (Yii::$app->params['theme'] === 'dark' ?
+                        '<div class="d-flex" style="gap: .25rem"><i class="bi bi-sun"></i><span class="d-block d-sm-block d-md-none d-lg-none">Light Mode</span></div>' :
+                        '<div class="d-flex" style="gap: .25rem"><i class="bi bi-moon"></i><span class="d-block d-sm-block d-md-none d-lg-none">Dark Mode</span></div>'),
+                    'url' => ['/dark-light-toggle/index'],
+                    'linkOptions' => [
+                        'id' => 'dark-light-link',
+                    ]
                 ],
-                'options' => [],
-                'items' => $dropdownItems
+                [
+                    'label' => '<i class="bi bi-person"> </i> ' . substr(Yii::$app->user->identity->username, 0, 7),
+                    'dropdownOptions' => [
+                        'class' => 'dropdown-menu dropdown-menu-end',
+                        'style' => [
+                            'min-width' => '12rem'
+                        ],
+                    ],
+                    'options' => [],
+                    'items' => $dropdownItems
+                ],
             ],
-        ],
-    ]);
-} catch (Throwable $e) {
-    echo $e->getMessage();
-}
+        ]);
+    } catch (Throwable $e) {
+        echo $e->getMessage();
+    }
+endif;
 ?>
 
 <?php NavBar::end(); ?>
