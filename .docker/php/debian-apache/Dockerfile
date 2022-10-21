@@ -48,6 +48,8 @@ RUN echo 'alias c="vendor/bin/codecept"' >> /etc/bash.bashrc
 # kalau target di set deploy (server)
 FROM base AS deploy
 
+RUN a2enmod ssl && service apache2 restart
+
 # Copy semua file
 COPY . .
 COPY ./web/index-prod.php web/index.php
