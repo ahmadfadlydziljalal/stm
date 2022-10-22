@@ -56,7 +56,7 @@ COPY ./web/index-prod.php web/index.php
 
 # Copy settingan - settingan
 COPY ./.docker/php/php.ini /usr/local/etc/php/php.ini
-# COPY ./.docker/php/debian-apache/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY ./.docker/php/debian-apache/000-default-prod.conf /etc/apache2/sites-available/000-default.conf
 
 RUN mkdir ./runtime ./web/assets && \
     rm -rf .docker && \
